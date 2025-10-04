@@ -1,0 +1,76 @@
+/* Search Container */
+.search-container {
+    margin: 20px 0 30px;
+    position: relative;
+}
+
+.search-input {
+    width: 100%;
+    padding: 15px 20px;
+    border: 1px solid var(--light-blue);
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    font-family: inherit;
+    background: white;
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 6px 15px rgba(66, 165, 245, 0.2);
+}
+
+/* Search Results */
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--light-blue);
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 100;
+    display: none;
+}
+
+.search-results.active {
+    display: block;
+}
+
+.search-result-item {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--light-blue);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background-color: var(--light-blue);
+}
+
+.search-result-item.highlight {
+    background-color: var(--accent-blue);
+    color: white;
+}
+
+/* Hidden class for filtered items */
+.box.hidden {
+    display: none;
+}
+
+/* No results message */
+.no-results {
+    padding: 20px;
+    text-align: center;
+    color: var(--dark-blue);
+    font-style: italic;
+}

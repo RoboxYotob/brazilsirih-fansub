@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Doraemon Episode 870 - Brazil Sirih FanSub</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/nightmode.css" />
+  <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+  <style>
+    .episode-cover {
+      width: 100%;
+      max-width: 700px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      margin: 20px auto;
+      display: block;
+    }
+
+    .episode-info {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    .info-box {
+      margin: 20px 0;
+      padding: 20px;
+      background: white;
+      border-radius: var(--border-radius);
+      border: 1px solid var(--light-blue);
+      box-shadow: var(--box-shadow);
+    }
+
+    /* Styling untuk sinopsis */
+    .synopsis-box {
+      margin: 25px 0;
+      padding: 25px;
+      background: white;
+      border-radius: var(--border-radius);
+      border: 1px solid var(--light-blue);
+      box-shadow: var(--box-shadow);
+      position: relative;
+    }
+
+    .synopsis-box::before {
+      content: "❝";
+      font-size: 4rem;
+      color: var(--accent-blue);
+      opacity: 0.2;
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      font-family: serif;
+    }
+
+    .synopsis-title {
+      color: var(--dark-blue);
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 1.5rem;
+      position: relative;
+    }
+
+    .synopsis-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: var(--accent-blue);
+      border-radius: 2px;
+      margin: 10px auto;
+    }
+
+    .synopsis-content {
+      line-height: 1.7;
+      text-align: justify;
+      font-size: 1.05rem;
+      color: #333;
+    }
+
+    .synopsis-content p {
+      margin-bottom: 15px;
+      text-indent: 2em;
+    }
+
+    .synopsis-italic {
+      font-style: italic;
+      color: #555;
+      text-align: right;
+      display: block;
+      margin-top: 5px;
+    }
+
+    .synopsis-source {
+      text-align: right;
+      color: #666;
+      font-size: 0.9rem;
+      margin-top: 25px;
+      padding-top: 15px;
+      border-top: 1px dashed var(--light-blue);
+      font-style: italic;
+    }
+
+    table.download-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .download-table th,
+    .download-table td {
+      padding: 12px;
+      border: 1px solid var(--light-blue);
+      text-align: center;
+    }
+
+    .download-table th {
+      background-color: var(--accent-blue);
+      color: white;
+    }
+
+    .download-table tr:nth-child(even) {
+      background-color: #f1f8ff;
+    }
+
+    .download-table a {
+      color: var(--primary-blue);
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .download-table a:hover {
+      text-decoration: underline;
+    }
+
+    .password-box {
+      margin-top: 20px;
+      font-weight: bold;
+      color: var(--dark-blue);
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    /* GROUPING STYLES - YANG BARU DITAMBAHKAN */
+    .content-group-1 {
+      margin-bottom: 40px;
+    }
+
+    /* Night mode styles untuk halaman episode */
+    body.night-mode .info-box {
+      background: var(--night-secondary);
+      border-color: var(--night-border);
+      color: var(--night-text);
+    }
+
+    body.night-mode .synopsis-box {
+      background: var(--night-secondary);
+      border-color: var(--night-border);
+      color: var(--night-text);
+    }
+
+    body.night-mode .synopsis-content {
+      color: var(--night-text);
+    }
+
+    body.night-mode .synopsis-italic {
+      color: #cccccc;
+    }
+
+    body.night-mode .synopsis-source {
+      color: #aaaaaa;
+      border-top-color: var(--night-border);
+    }
+
+    body.night-mode .download-table th {
+      background-color: var(--night-accent);
+    }
+
+    body.night-mode .download-table tr:nth-child(even) {
+      background-color: var(--night-primary);
+    }
+
+    body.night-mode .download-table a {
+      color: var(--night-accent);
+    }
+
+    body.night-mode .password-box {
+      color: var(--night-text);
+    }
+
+    body.night-mode .password-box code {
+      background: var(--night-primary);
+      color: var(--night-text);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    /* Night mode untuk grouping */
+    body.night-mode .content-group-1,
+    body.night-mode .content-group-2 {
+      background: transparent;
+    }
+
+    /* Responsive styles untuk halaman episode */
+    @media (max-width: 900px) {
+      .episode-cover {
+        max-width: 90%;
+        margin: 15px auto;
+      }
+      
+      .info-box, .synopsis-box {
+        padding: 18px;
+      }
+      
+      .synopsis-title {
+        font-size: 1.3rem;
+      }
+      
+      .synopsis-content {
+        font-size: 1rem;
+        text-align: left;
+      }
+      
+      .download-table th,
+      .download-table td {
+        padding: 10px;
+        font-size: 0.9rem;
+      }
+      
+      .content-group-1 {
+        margin-bottom: 30px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .episode-cover {
+        max-width: 95%;
+        margin: 10px auto;
+      }
+      
+      .info-box, .synopsis-box {
+        padding: 15px;
+        margin: 15px 0;
+      }
+      
+      .synopsis-box::before {
+        font-size: 3rem;
+        top: 5px;
+        left: 15px;
+      }
+      
+      .synopsis-title {
+        font-size: 1.2rem;
+      }
+      
+      .synopsis-content {
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+      
+      .synopsis-content p {
+        text-indent: 1.5em;
+      }
+      
+      .download-table th,
+      .download-table td {
+        padding: 8px;
+        font-size: 0.85rem;
+      }
+      
+      .password-box {
+        font-size: 0.9rem;
+      }
+      
+      .content-group-1 {
+        margin-bottom: 25px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .download-table {
+        font-size: 0.8rem;
+      }
+      
+      .download-table th,
+      .download-table td {
+        padding: 6px;
+      }
+      
+      .synopsis-box::before {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <!-- Navigasi Global dengan struktur baru -->
+    <header id="headerArea">
+      <nav id="navbar">
+        <div class="nav-left">
+          <a href="../home.html" class="logo-container">
+            <img src="../assets/logo.png" alt="Brazil Sirih FanSub Logo" class="logo">
+          </a>
+        </div>
+        
+        <div class="nav-center">
+          <ul>
+            <li><a href="../home.html">Home</a></li>
+            <li><a href="../info.html">Info</a></li>
+            <li><a href="../announcement.html">Announcement</a></li>
+            <li><a href="../anime.html" class="active">Anime</a></li>
+            <li><a href="../index.html#list">Index</a></li>
+          </ul>
+        </div>
+        
+        <div class="nav-right">
+          <button id="nightModeToggle" aria-label="Toggle Night Mode">
+            <span class="toggle-icon">🌙</span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <h1 class="center-content">Doraemon Episode 870</h1>
+
+      <!-- KELOMPOK 1: Gambar, Info, Sinopsis -->
+      <div class="content-group-1">
+        <img src="870.jpg" alt="Doraemon Episode 870" class="episode-cover" />
+
+        <div class="info-box">
+          <div class="episode-info">
+            <p><strong>Judul:</strong> Gunakan Pil Penolong Kepadaku & Ku, ku, Kunang-kunang Datang<br>
+            <strong>Tanggal Tayang:</strong> 5 Juli 2025<br>
+            <strong>Jenis:</strong> Episode TV<br>
+            <strong>Sub:</strong> Indonesia & Inggris</p>
+          </div>
+        </div>
+
+        <!-- Sinopsis Section 870A -->
+        <div class="synopsis-box">
+          <h2 class="synopsis-title">Sinopsis 870A : Gunakan Pil Penolong Kepadaku</h2>
+          <div class="synopsis-content">
+            <p>Saat Doraemon sedang mengamati burung dari jendela kamarnya, ia melihat Nobita berlari tergesa-gesa. Nobita, yang menumpuk banyak pekerjaan rumah, langsung pulang tanpa menolong orang-orang yang sedang kesulitan di jalan.</p>
+            
+            <p>Melihat hal itu, Doraemon mengeluarkan "Tasukelon", sebuah obat yang membuat siapa pun yang meminumnya tak bisa menahan diri untuk tidak menolong orang lain. Namun setelah mendengar penjelasan Doraemon, Nobita justru mendapat ide untuk membuat semua orang meminum Tasukelon agar mereka membantunya mengerjakan PR...</p>
+            
+            <p>Tanpa mendengarkan peringatan Doraemon, Nobita keluar rumah dan mencoba membuat Giant dan Suneo meminum Tasukelon. Namun setelah terjadi dorong-mendorong, Nobita malah terpaksa meminumnya sendiri. Bahkan, setelah mengetahui efek Tasukelon, Giant dan teman-temannya justru memaksa Nobita untuk mengantarkan peralatan baseball ke rumah mereka!</p>
+            
+            <p>Tak hanya itu, efek Tasukelon membuat Nobita juga harus membantu Suneo membersihkan halaman rumah ibunya dan membantu mengantar barang untuk ibu Giant. Bahkan saat dalam perjalanan, Nobita tak bisa menolak untuk menolong orang yang kesulitan, sehingga semakin sulit baginya untuk mulai mengerjakan PR... Lalu, bagaimana Nobita menghadapi semuanya ini?!</p>
+            <span class="synopsis-italic">(Diambil dari "Boku wo Tasukelon", Tentōmushi Comics Volume 20)</span>
+          </div>
+        </div>
+
+        <!-- Sinopsis Section 870B -->
+        <div class="synopsis-box">
+          <h2 class="synopsis-title">Sinopsis 870B : Ku, ku, Kunang-kunang Datang</h2>
+          <div class="synopsis-content">
+            <p>Pada suatu hari musim panas yang terik, Nobita tiba-tiba terpikir untuk pergi ke kolam renang. Namun, karena ia tidak bisa berenang, Doraemon menentangnya. Lalu Nobita bilang ingin makan es krim, dan Doraemon pun mengeluarkan dari kantongnya sebuah ember beserta sesuatu yang mirip pegangan.</p>
+
+            <p>Pertama, ketika Doraemon menekan tombol pada ember itu, air berwarna merah muda mulai mengisi ember. Lalu, sambil menyiramkan air itu, ia bernyanyi, "A, a, a~ isukoi! Air di sini manis, lho~!" — dan tiba-tiba sebuah mobil penjual es krim berhenti di depan rumah mereka! Nobita dan Doraemon pun berhasil meminta Mama membeli es krim untuk mereka.</p>
+            
+            <p>Menurut Doraemon, itu adalah alat rahasia bernama "Set Air Manis dan Pahit". Jika tombol pada ember ditekan, air manis akan terkumpul, dan saat disiram sambil bernyanyi, benda yang disebut dalam lagu akan datang mendekat. Sebaliknya, jika tombol lainnya ditekan, air pahit akan terkumpul, dan saat disiram sambil bernyanyi, benda itu akan menjauh.</p>
+            
+            <p>Mendengar itu, Nobita mencoba menyiramkan air manis sambil bernyanyi untuk memanggil orang yang sedang kesulitan mengerjakan PR... tapi apa yang terjadi selanjutnya...!?</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- KELOMPOK 2: Download dan Tonton Online - BERTUMPUK -->
+      <div class="content-group-2">
+        <div class="info-box">
+          <h3>🎬 Download</h3>
+          <table class="download-table">
+            <thead>
+              <tr>
+                <th>Jenis</th>
+                <th>MediaFire</th>
+                <th>TeraBox</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Hardsub</td>
+                <td><a href="https://www.mediafire.com/file/p1hqggc3zut0gzw/MD#870HC.7z/file">Link</a></td>
+                <td><a href="https://1024terabox.com/s/1eyMOuPenXRUKrHmrBOlkmw">Link</a></td>
+              </tr>
+              <tr>
+                <td>Softsub</td>
+                <td><a href="https://www.mediafire.com/file/8gchslgumy52t6e/MD#870.7z/file">Link</a></td>
+                <td><a href="https://1024terabox.com/s/1lr9DH6CnQvNM5WuKiDn4rg">Link</a></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="password-box">
+            🔐 Password Ekstrak: <code> brazilsirihfansub</code>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <h3>📺 Tonton Online</h3>
+          <table class="download-table">
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Link</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>YouTube</td>
+                <td><a href="https://www.youtube.com/@BrazilSirihFanSub">Tidak ada</a></td>
+              </tr>
+              <tr>
+                <td>Bilibili.tv</td>
+                <td><a href="https://www.bilibili.tv/id/video/4795974955046912">Tonton</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer">
+      Disclaimer: Ini adalah fansite non-komersial. Kami tidak berafiliasi dengan pemilik lisensi resmi.
+    </footer>
+  </div>
+
+  <!-- JavaScript untuk Night Mode (standalone untuk halaman episode) -->
+  <script>
+    // Simple Night Mode implementation untuk halaman episode
+    class EpisodeNightMode {
+      constructor() {
+        this.toggleButton = document.getElementById('nightModeToggle');
+        this.isNightMode = localStorage.getItem('nightMode') === 'true';
+        this.init();
+      }
+
+      init() {
+        // Apply saved mode
+        if (this.isNightMode) {
+          this.enableNightMode();
+        }
+
+        // Add event listener
+        this.toggleButton.addEventListener('click', this.toggleMode.bind(this));
+      }
+
+      toggleMode() {
+        this.isNightMode = !this.isNightMode;
+        
+        if (this.isNightMode) {
+          this.enableNightMode();
+        } else {
+          this.disableNightMode();
+        }
+
+        // Save preference
+        localStorage.setItem('nightMode', this.isNightMode);
+      }
+
+      enableNightMode() {
+        document.body.classList.add('night-mode');
+        this.updateToggleIcon(true);
+      }
+
+      disableNightMode() {
+        document.body.classList.remove('night-mode');
+        this.updateToggleIcon(false);
+      }
+
+      updateToggleIcon(isNightMode) {
+        const icon = this.toggleButton.querySelector('.toggle-icon');
+        if (icon) {
+          icon.textContent = isNightMode ? '☀️' : '🌙';
+        }
+      }
+    }
+
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      new EpisodeNightMode();
+    });
+  </script>
+</body>
+</html>

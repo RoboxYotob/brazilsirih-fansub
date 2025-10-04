@@ -1,0 +1,114 @@
+/* Night Mode Variables */
+:root {
+    --night-primary: #0a1929;
+    --night-secondary: #132f4c;
+    --night-accent: #3399ff;
+    --night-text: #e6f7ff;
+    --night-border: #1e4976;
+}
+
+/* Night Mode Styles */
+body.night-mode {
+    background-color: var(--night-primary);
+    color: var(--night-text);
+    background-image: linear-gradient(120deg, #0a1929 0%, #132f4c 100%);
+}
+
+body.night-mode main {
+    background: var(--night-secondary);
+    border-color: var(--night-border);
+}
+
+body.night-mode .box {
+    background: var(--night-secondary);
+    border-color: var(--night-border);
+    color: var(--night-text);
+}
+
+body.night-mode .box:hover {
+    border-color: var(--night-accent);
+}
+
+body.night-mode h1, 
+body.night-mode h2, 
+body.night-mode h3 {
+    color: var(--night-text);
+}
+
+body.night-mode .flex-item {
+    background: var(--night-secondary);
+    border-color: var(--night-border);
+    color: var(--night-text);
+}
+
+body.night-mode .flex-item p {
+    color: var(--night-text);
+}
+
+body.night-mode .search-input {
+    background: var(--night-secondary);
+    border-color: var(--night-border);
+    color: var(--night-text);
+}
+
+body.night-mode .search-input::placeholder {
+    color: #a0c4e0;
+}
+
+body.night-mode .search-results {
+    background: var(--night-secondary);
+    border-color: var(--night-border);
+}
+
+body.night-mode .search-result-item {
+    border-color: var(--night-border);
+    color: var(--night-text);
+}
+
+body.night-mode .search-result-item:hover {
+    background-color: var(--night-primary);
+}
+
+body.night-mode .no-results {
+    color: var(--night-text);
+}
+
+body.night-mode .button-link {
+    background: var(--night-accent);
+}
+
+body.night-mode .button-link:hover {
+    background: #1a7cd6;
+}
+
+body.night-mode .toggle-icon {
+    transform: rotate(180deg);
+}
+
+/* Night Mode Styles untuk Logo Container */
+body.night-mode .logo-container {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body.night-mode .logo-container:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Night Mode Scrollbar */
+body.night-mode .nav-center::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+body.night-mode .nav-center::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+body.night-mode .nav-center::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Untuk Firefox */
+body.night-mode .nav-center {
+    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.05);
+}
