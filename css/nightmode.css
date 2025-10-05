@@ -1,26 +1,30 @@
-/* Night Mode Variables */
+/* Enhanced Night Mode */
 :root {
     --night-primary: #0a1929;
     --night-secondary: #132f4c;
     --night-accent: #3399ff;
     --night-text: #e6f7ff;
     --night-border: #1e4976;
+    --night-gradient: linear-gradient(135deg, #0a1929 0%, #132f4c 100%);
+    --night-card: linear-gradient(145deg, #132f4c 0%, #0a1929 100%);
 }
 
-/* Night Mode Styles */
 body.night-mode {
     background-color: var(--night-primary);
     color: var(--night-text);
-    background-image: linear-gradient(120deg, #0a1929 0%, #132f4c 100%);
+    background-image: 
+        radial-gradient(at 40% 20%, hsla(240, 100%, 20%, 0.5) 0px, transparent 50%),
+        radial-gradient(at 80% 0%, hsla(189, 100%, 20%, 0.15) 0px, transparent 50%),
+        radial-gradient(at 0% 50%, hsla(355, 100%, 20%, 0.3) 0px, transparent 50%);
 }
 
 body.night-mode main {
-    background: var(--night-secondary);
+    background: var(--night-card);
     border-color: var(--night-border);
 }
 
 body.night-mode .box {
-    background: var(--night-secondary);
+    background: var(--night-card);
     border-color: var(--night-border);
     color: var(--night-text);
 }
@@ -32,13 +36,15 @@ body.night-mode .box:hover {
 body.night-mode h1, 
 body.night-mode h2, 
 body.night-mode h3 {
-    color: var(--night-text);
+    background: linear-gradient(135deg, #66b3ff 0%, #3399ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 body.night-mode .flex-item {
-    background: var(--night-secondary);
+    background: var(--night-card);
     border-color: var(--night-border);
-    color: var(--night-text);
 }
 
 body.night-mode .flex-item p {
@@ -46,8 +52,8 @@ body.night-mode .flex-item p {
 }
 
 body.night-mode .search-input {
-    background: var(--night-secondary);
-    border-color: var(--night-border);
+    background: linear-gradient(var(--night-secondary), var(--night-secondary)) padding-box,
+                var(--gradient-accent) border-box;
     color: var(--night-text);
 }
 
@@ -55,60 +61,15 @@ body.night-mode .search-input::placeholder {
     color: #a0c4e0;
 }
 
-body.night-mode .search-results {
-    background: var(--night-secondary);
-    border-color: var(--night-border);
-}
-
-body.night-mode .search-result-item {
-    border-color: var(--night-border);
-    color: var(--night-text);
-}
-
-body.night-mode .search-result-item:hover {
-    background-color: var(--night-primary);
-}
-
-body.night-mode .no-results {
-    color: var(--night-text);
-}
-
 body.night-mode .button-link {
-    background: var(--night-accent);
+    background: linear-gradient(135deg, #3399ff 0%, #66b3ff 100%);
 }
 
 body.night-mode .button-link:hover {
-    background: #1a7cd6;
+    background: linear-gradient(135deg, #66b3ff 0%, #99ccff 100%);
 }
 
-body.night-mode .toggle-icon {
-    transform: rotate(180deg);
-}
-
-/* Night Mode Styles untuk Logo Container */
-body.night-mode .logo-container {
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-body.night-mode .logo-container:hover {
-    background: rgba(255, 255, 255, 0.3);
-}
-
-/* Night Mode Scrollbar */
-body.night-mode .nav-center::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-body.night-mode .nav-center::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-}
-
-body.night-mode .nav-center::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.5);
-}
-
-/* Untuk Firefox */
-body.night-mode .nav-center {
-    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.05);
+/* Enhanced night mode transitions */
+body.night-mode * {
+    transition: color 0.3s ease, background-color 0.5s ease, border-color 0.3s ease;
 }

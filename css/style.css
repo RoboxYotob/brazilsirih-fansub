@@ -8,9 +8,16 @@
     --text-light: #ffffff;
     --border-radius: 12px;
     --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    
+    /* Gradien dari CSS2 - hanya yang penting */
+    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --gradient-card: linear-gradient(145deg, #ffffff 0%, #f8fbff 100%);
+    --gradient-nav: linear-gradient(135deg, #1e88e5 0%, #0d47a1 100%);
 }
 
-/* Font Local */
+/* Font Local - dipertahankan dari CSS1 */
 @font-face {
     font-family: 'Arial Rounded MT Bold';
     src: url('../fonts/Arial Rounded MT Bold.ttf') format('truetype');
@@ -41,7 +48,7 @@ body {
     padding: 20px;
 }
 
-/* GROUPING STYLES */
+/* GROUPING STYLES - dipertahankan dari CSS1 */
 .content-group-1 {
   margin-bottom: 40px;
 }
@@ -56,29 +63,9 @@ body.night-mode .content-group-2 {
   background: transparent;
 }
 
-/* Responsive untuk grouping */
-@media (max-width: 900px) {
-  .content-group-2 {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  .content-group-1 {
-    margin-bottom: 30px;
-  }
-}
-
-@media (max-width: 600px) {
-  .content-group-2 {
-    gap: 15px;
-  }
-  .content-group-1 {
-    margin-bottom: 25px;
-  }
-}
-
-/* Header & Navigation - FIXED SIZE */
+/* Header & Navigation - FIXED SIZE dengan gradien dari CSS2 */
 #headerArea {
-    background: var(--primary-blue);
+    background: var(--gradient-nav);
     border-radius: var(--border-radius);
     padding: 10px;
     margin-bottom: 30px;
@@ -123,7 +110,7 @@ body.night-mode .content-group-2 {
 .nav-center li a {
     color: var(--text-light);
     text-decoration: none;
-    font-size: 18px; /* Ukuran normal untuk desktop */
+    font-size: 18px;
     padding: 12px 25px;
     border-radius: 30px;
     background: rgba(255, 255, 255, 0.15);
@@ -142,7 +129,7 @@ body.night-mode .content-group-2 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Logo Container */
+/* Logo Container dengan animasi ringan */
 .logo-container {
     display: flex;
     align-items: center;
@@ -163,7 +150,7 @@ body.night-mode .content-group-2 {
 }
 
 .logo {
-    height: 40px; /* Ukuran normal untuk desktop */
+    height: 40px;
     width: auto;
     transition: transform 0.3s ease;
 }
@@ -180,7 +167,7 @@ body.night-mode .content-group-2 {
     border-radius: 30px;
     padding: 12px 20px;
     cursor: pointer;
-    font-size: 18px; /* Ukuran normal untuk desktop */
+    font-size: 18px;
     transition: all 0.3s ease;
     backdrop-filter: blur(4px);
     display: flex;
@@ -201,14 +188,26 @@ body.night-mode .content-group-2 {
     transition: transform 0.3s ease;
 }
 
-/* Main Content Area - DIKECILKAN SEDIKIT */
+/* Main Content Area dengan gradien ringan */
 main {
-    background: white;
+    background: var(--gradient-card);
     border-radius: var(--border-radius);
-    padding: 25px; /* Dikurangi dari 30px */
+    padding: 25px;
     margin-bottom: 30px;
     box-shadow: var(--box-shadow);
     border: 1px solid var(--light-blue);
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 h1, h2, h3 {
@@ -218,17 +217,22 @@ h1, h2, h3 {
 }
 
 h1 {
-    font-size: 2rem; /* Dikecilkan dari 2.2rem */
+    font-size: 2rem;
     margin-bottom: 20px;
+    text-align: center;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 h2 {
-    font-size: 1.5rem; /* Dikecilkan dari 1.6rem */
+    font-size: 1.5rem;
     margin-bottom: 15px;
 }
 
 h3 {
-    font-size: 1.2rem; /* Dikecilkan dari 1.3rem */
+    font-size: 1.2rem;
     margin-bottom: 10px;
 }
 
@@ -237,9 +241,15 @@ h1:after {
     display: block;
     width: 80px;
     height: 4px;
-    background: var(--accent-blue);
+    background: var(--gradient-accent);
     border-radius: 2px;
     margin: 15px auto;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scaleX(1); opacity: 1; }
+    50% { transform: scaleX(1.1); opacity: 0.8; }
 }
 
 .center-content {
@@ -247,20 +257,21 @@ h1:after {
     padding: 0 10%;
 }
 
-/* Box Elements */
+/* Box Elements dengan gradien dan animasi ringan */
 .box {
-    background: white;
+    background: var(--gradient-card);
     border-radius: var(--border-radius);
-    padding: 20px; /* Dikurangi dari 25px */
-    margin: 20px 0; /* Dikurangi dari 25px */
+    padding: 20px;
+    margin: 20px 0;
     border: 1px solid var(--light-blue);
     box-shadow: var(--box-shadow);
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .box:hover {
     transform: translateY(-5px);
     border-color: var(--accent-blue);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .box p {
@@ -273,11 +284,11 @@ h1:after {
     font-size: 1rem;
 }
 
-/* Button Links */
+/* Button Links dengan gradien */
 .button-link {
     display: inline-block;
-    padding: 10px 20px; /* Dikurangi dari 12px 25px */
-    background: var(--primary-blue);
+    padding: 10px 20px;
+    background: var(--gradient-primary);
     color: white;
     text-decoration: none;
     border-radius: var(--border-radius);
@@ -285,12 +296,13 @@ h1:after {
     transition: all 0.3s ease;
     margin-top: 15px;
     font-size: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .button-link:hover {
-    background: var(--dark-blue);
+    background: var(--gradient-secondary);
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Video Elements */
@@ -303,25 +315,37 @@ h1:after {
     background: #000;
 }
 
-/* Flex Layouts */
+/* Flex Layouts dengan animasi ringan */
 .flex-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px; /* Dikurangi dari 25px */
-    margin: 25px 0; /* Dikurangi dari 30px */
+    gap: 20px;
+    margin: 25px 0;
 }
 
 .flex-item {
     flex: 1;
     min-width: 250px;
     max-width: 300px;
-    background: white;
+    background: var(--gradient-card);
     border-radius: var(--border-radius);
     overflow: hidden;
     box-shadow: var(--box-shadow);
     transition: all 0.3s ease;
     border: 1px solid var(--light-blue);
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .flex-item:hover {
@@ -334,7 +358,13 @@ h1:after {
     width: 100%;
     height: 200px;
     object-fit: cover;
-    border-bottom: 3px solid var(--accent-blue);
+    border-bottom: 3px solid;
+    border-image: var(--gradient-accent) 1;
+    transition: transform 0.3s ease;
+}
+
+.flex-item:hover img {
+    transform: scale(1.05);
 }
 
 .flex-item p {
@@ -348,29 +378,29 @@ h1:after {
 .flex-item a {
     display: block;
     padding: 12px;
-    background: var(--primary-blue);
+    background: var(--gradient-primary);
     color: white;
     text-decoration: none;
     text-align: center;
     font-size: 16px;
     border-radius: 0 0 var(--border-radius) var(--border-radius);
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .flex-item a:hover {
-    background: var(--dark-blue);
+    background: var(--gradient-secondary);
 }
 
-/* Footer - DIKEMBALIKAN KE UKURAN SEMULA */
+/* Footer dengan gradien */
 footer#footer {
     text-align: center;
     padding: 25px;
-    background: var(--dark-blue);
+    background: var(--gradient-nav);
     color: var(--text-light);
     border-radius: var(--border-radius);
     margin-top: 30px;
     box-shadow: var(--box-shadow);
-    font-size: 1rem; /* Kembali ke ukuran normal */
+    font-size: 1rem;
 }
 
 /* Search Container */
@@ -451,7 +481,42 @@ footer#footer {
     font-style: italic;
 }
 
-/* Responsive Design - FIXED FOR MOBILE */
+/* Scroll to Top Button - versi ringan */
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-to-top:hover {
+    transform: translateY(-3px);
+    background: var(--gradient-secondary);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive Design - FIXED FOR MOBILE (dipertahankan dari CSS1) */
 @media (max-width: 1100px) {
     .nav-center li a {
         font-size: 17px;
@@ -613,7 +678,7 @@ footer#footer {
     }
     
     footer#footer {
-        font-size: 0.95rem; /* Tetap proporsional */
+        font-size: 0.95rem;
     }
 }
 
