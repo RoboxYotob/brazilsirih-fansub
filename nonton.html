@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nonton Doraemon (2005) | Brazil Sirih FanSub</title>
+
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/nightmode.css" />
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+<style>
+.watch-layout { display: flex; gap: 20px; margin-top: 20px; }
+.sidebar-episodes { flex: 1; min-width: 300px; max-width: 350px; display: flex; flex-direction: column; }
+.video-area { flex: 2; min-width: 300px; }
+.episode-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 10px; max-height: 60vh; overflow-y: auto; padding: 10px 5px; }
+.episode-grid .box { margin: 0; padding: 15px 5px; text-align: center; text-decoration: none; font-weight: bold; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.episode-grid .button-link { margin: 0; padding: 15px 5px; }
+@keyframes bounceIn {0% { opacity: 0; transform: scale(0.3); }50% { opacity: 1; transform: scale(1.05); }70% { transform: scale(0.9); }100% { transform: scale(1); }}
+@keyframes slideInRight {from { transform: translateX(20px); opacity: 0; }to { transform: translateX(0); opacity: 1; }}
+@media (max-width: 900px) { .watch-layout { flex-direction: column-reverse; } .sidebar-episodes { max-width: 100%; } }
+</style>
+</head>
+<body>
+<div id="container">
+<header id="headerArea">
+<nav id="navbar">
+<div class="nav-left">
+    <a href="home.html" class="logo-container">
+        <img src="assets/logo.png" alt="Logo" class="logo">
+    </a>
+</div>
+<div class="nav-center">
+    <ul>
+        <li><a href="beranda.html">Beranda</a></li>
+        <li><a href="info.html">Info</a></li>
+        <li><a href="pengumuman.html">Pengumuman</a></li>
+        <li><a href="nonton.html" class="active">Nonton</a></li>
+        <li><a href="indeks.html#list">Indeks</a></li>
+    </ul>
+</div>
+<div class="nav-right">
+    <button id="nightModeToggle" aria-label="Toggle Night Mode">
+        <span class="toggle-icon">🌙</span>
+    </button>
+</div>
+</nav>
+</header>
+
+<main>
+<h1 class="center-content" id="episodeTitle">Episode</h1>
+<div class="watch-layout">
+<aside class="sidebar-episodes">
+    <div class="search-container" id="searchContainer">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍  Cari episode...">
+        <div id="searchResults" class="search-results"></div>
+    </div>
+    <div class="episode-grid" id="episodeList">
+        <!-- Grid otomatis -->
+    </div>
+</aside>
+
+<section class="video-area">
+    <div class="box" style="padding:10px; background:#000;">
+        <iframe class="youtube-video" src="" allowfullscreen></iframe>
+    </div>
+    <div class="box">
+        <h3>Deskripsi</h3>
+        <p id="episodeDesc"></p>
+    </div>
+</section>
+</div>
+</main>
+
+<footer id="footer">
+Disclaimer: Ini adalah fansite non-komersial. Kami tidak berafiliasi dengan pemilik lisensi resmi.
+</footer>
+</div>
+
+<script type="module">
+fetch('data/episodes.json')
+.then(res => res.json())
+.then(episodes => {
+    const episodeList = document.getElementById('episodeList');
+    const titleEl = document.getElementById('episodeTitle');
+    const descEl = document.getElementById('episodeDesc');
+    const iframe = document.querySelector('.youtube-video');
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+
+    const params = new URLSearchParams(window.location.search);
+    let epId = Number(params.get('episode')) || 1;
+    let currentEp = episodes.find(e => e.id === epId) || episodes[0];
+
+    function loadEpisode(ep){
+        currentEp = ep;
+        titleEl.textContent = ep.title;
+        descEl.textContent = ep.desc;
+
+        // OK.ru embed
+        iframe.src = `https://ok.ru/videoembed/${ep.videoId}`;
+        iframe.setAttribute('allowfullscreen','');
+
+        // Update grid
+        episodeList.querySelectorAll('a').forEach(a=>{
+            a.className = a.dataset.id == ep.id ? 'box button-link' : 'box';
+            a.style.animation = 'bounceIn 0.3s'; // animasi saat switch episode
+        });
+
+        // Scroll ke episode aktif
+        const activeEl = episodeList.querySelector('a.button-link');
+        if(activeEl) activeEl.scrollIntoView({ behavior:'smooth', block:'center' });
+    }
+
+    // Render grid
+    episodes.forEach(ep => {
+        const a = document.createElement('a');
+        a.textContent = ep.id;
+        a.dataset.searchText = ep.title;
+        a.dataset.id = ep.id;
+        a.href = `watch.html?episode=${ep.id}`;
+        a.className = ep.id === currentEp.id ? 'box button-link' : 'box';
+        a.addEventListener('click', e=>{
+            e.preventDefault();
+            loadEpisode(ep);
+        });
+        episodeList.appendChild(a);
+    });
+
+    loadEpisode(currentEp);
+
+    // Search autocomplete
+    searchInput.addEventListener('input', ()=>{
+        const query = searchInput.value.toLowerCase();
+        searchResults.innerHTML = '';
+        if(!query) return;
+
+        episodes.filter(ep => ep.title.toLowerCase().includes(query)).forEach(ep=>{
+            const div = document.createElement('div');
+            div.className = 'search-item';
+            div.textContent = ep.title;
+            div.addEventListener('click', ()=>{
+                loadEpisode(ep);
+                searchResults.innerHTML = '';
+                searchInput.value = '';
+            });
+            searchResults.appendChild(div);
+        });
+    });
+});
+
+// Night mode toggle
+const nightBtn = document.getElementById('nightModeToggle');
+nightBtn.addEventListener('click', () => {
+    document.body.classList.toggle('night');
+    nightBtn.classList.toggle('active'); // animasi balik ikon
+});
+</script>
+
+<script type="module" src="js/main.js"></script>
+<script type="module">
+import { SearchManager } from './js/search2.js';
+new SearchManager();
+</script>
+</body>
+</html>
