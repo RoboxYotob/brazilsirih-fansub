@@ -1,159 +1,213 @@
 <!DOCTYPE html>
 <html lang="id">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   Anime Terbaru - Brazil Sirih FanSub
-  </title>
-  <link href="css/style.css" rel="stylesheet"/>
-  <link href="css/search.css" rel="stylesheet"/>
-  <link href="css/nightmode.css" rel="stylesheet"/>
-  <link href="favicon.ico" rel="icon" type="image/x-icon"/>
- </head>
- <body>
-  <div id="container">
-   <header id="headerArea">
-    <nav id="navbar">
-     <div class="nav-left">
-      <a class="logo-container" href="home.html">
-       <img alt="Brazil Sirih FanSub Logo" class="logo" src="assets/logo.png"/>
-      </a>
-     </div>
-     <div class="nav-center">
-      <ul>
-       <li>
-        <a href="beranda.html">
-         Beranda
-        </a>
-       </li>
-       <li>
-        <a href="info.html">
-         Info
-        </a>
-       </li>
-       <li>
-        <a href="pengumuman.html">
-         Pengumuman
-        </a>
-       </li>
-       <li>
-        <a class="active" href="nonton.html">
-         Nonton
-        </a>
-       </li>
-       <li>
-        <a href="indeks.html#list">
-         Indeks
-        </a>
-       </li>
-      </ul>
-     </div>
-     <div class="nav-right">
-      <button aria-label="Toggle Night Mode" id="nightModeToggle">
-       <span class="toggle-icon">
-        🌙
-       </span>
-      </button>
-     </div>
-    </nav>
-   </header>
-   <main>
-    <h1 class="center-content">
-     Rilisan Terbaru
-    </h1>
-    <!-- Search Bar -->
-    <div class="search-container" id="searchContainer">
-     <input class="search-input" id="searchInput" placeholder="Cari episode..." type="text"/>
-     <div class="search-results" id="searchResults">
-     </div>
-    </div>
-    <!-- Episode List -->
-    <!-- Episode List -->
-    <div id="episodeList">
-     <div class="box" data-search-text="Episode 631 Awan Berpergian Separuh Badan &amp; Terkuat! Kertas Robot 28 November 2020">
-      <h2>
-       Episode 631 -
-       <i>
-        Awan Berpergian Separuh Badan &amp; Terkuat! Kertas Robot
-       </i>
-      </h2>
-      <p>
-      </p>
-      <p>
-       <strong>
-        Tanggal Rilis:
-       </strong>
-       28 November 2020
-      </p>
-      <a class="button-link" href="releases/631.html">
-       Download Sekarang
-      </a>
-     </div>
-     <div class="box" data-search-text="Episode 630 Selidiki dengan Satelit Mata-mata &amp; Membingungkan? Palu ajaib Pengabul Harapan 11 November 2020">
-      <h2>
-       Episode 630 -
-       <i>
-        Selidiki dengan Satelit Mata-mata &amp; Membingungkan? Palu ajaib Pengabul Harapan
-       </i>
-      </h2>
-      <p>
-      </p>
-      <p>
-       <strong>
-        Tanggal Rilis:
-       </strong>
-       21 November 2020
-      </p>
-      <a class="button-link" href="releases/630.html">
-       Download Sekarang
-      </a>
-     </div>
-    </div>
-    <div class="box" data-search-text="Episode 893 Payung Pemandu Bintang Jatuh &amp; Pertarungan Antar Ibu 13 Desember 2025">
-     <h2>
-      Episode 893 -
-      <i>
-       Payung Pemandu Bintang Jatuh &amp; Pertarungan Antar Ibu
-      </i>
-     </h2>
-     <p>
-     </p>
-     <p>
-      <strong>
-       Tanggal Rilis:
-      </strong>
-      13 Desember 2025
-     </p>
-     <a class="button-link" href="releases/893.html">
-      Download Sekarang
-     </a>
-    </div>
-    <div class="box" data-search-text="Episode 895 Cat Transparan &amp; Pencuri Misterius Nobita Muncul!">
-     <h2>
-      Episode 895 -
-      <i>
-       Cat Transparan &amp; Pencuri Misterius Nobita Muncul!
-      </i>
-     </h2>
-     <p>
-     </p>
-     <p>
-      <strong>
-       Tanggal Rilis:
-      </strong>
-      27 Desember 2020
-     </p>
-     <a class="button-link" href="releases/895.html">
-      Download Sekarang
-     </a>
-    </div>
-   </main>
-  </div>
-  <footer id="footer">
-   Disclaimer: Ini adalah fansite non-komersial. Kami tidak berafiliasi dengan pemilik lisensi resmi.
-  </footer>
-  <script src="js/main.js" type="module">
-  </script>
- </body>
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Indeks Anime - Brazil Sirih FanSub</title>
+    <link href="css/style.css" rel="stylesheet"/>
+    <link href="css/search.css" rel="stylesheet"/>
+    <link href="css/nightmode.css" rel="stylesheet"/>
+    <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+    <style>
+        /* Tambahan styling khusus untuk filter agar serasi dengan search-input */
+        .filter-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .filter-select {
+            width: auto;
+            min-width: 150px;
+            cursor: pointer;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 30px;
+            font-weight: bold;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <header id="headerArea">
+        <nav id="navbar">
+            <div class="nav-left">
+                <a class="logo-container" href="home.html">
+                    <img alt="Brazil Sirih FanSub Logo" class="logo" src="assets/logo.png"/>
+                </a>
+            </div>
+            <div class="nav-center">
+                <ul>
+                    <li><a href="beranda.html">Beranda</a></li>
+                    <li><a href="info.html">Info</a></li>
+                    <li><a href="pengumuman.html">Pengumuman</a></li>
+                    <li><a href="nonton.html">Nonton</a></li>
+                    <li><a class="active" href="indeks.html#list">Indeks</a></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <button aria-label="Toggle Night Mode" id="nightModeToggle">
+                    <span class="toggle-icon">🌙</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="center-content">Indeks Rilisan</h1>
+        
+        <div class="filter-container">
+           <select id="filterSeri" class="search-input filter-select">
+    <option value="all">Semua Seri</option>
+    <option value="2005" selected>2005</option> <option value="1979">1979</option>
+    <option value="Movie">Movie</option>
+    <option value="Short Movie">Short Movie</option>
+</select>
+
+            <select id="filterRange" class="search-input filter-select">
+                <option value="all">Semua Episode</option>
+            </select>
+
+            <select id="filterUrut" class="search-input filter-select">
+                <option value="desc">Terbaru (Menurun)</option>
+                <option value="asc">Terlama (Menaik)</option>
+            </select>
+        </div>
+
+        <div class="search-container" id="searchContainer">
+            <input class="search-input" id="searchInput" placeholder="🔎 Cari judul episode..." type="text"/>
+        </div>
+
+        <div id="episodeList">
+            </div>
+    </main>
+
+    <footer id="footer">
+        Disclaimer: Ini adalah fansite non-komersial. Kami tidak berafiliasi dengan pemilik lisensi resmi.
+    </footer>
+</div>
+
+<script src="js/main.js" type="module"></script>
+<script type="module">
+    let allEpisodes = [];
+
+    const filterSeri = document.getElementById('filterSeri');
+    const filterRange = document.getElementById('filterRange');
+    const filterUrut = document.getElementById('filterUrut');
+    const searchInput = document.getElementById('searchInput');
+    const episodeList = document.getElementById('episodeList');
+
+    // Mengatur Opsi Range Episode bedasarkan Seri yang dipilih
+    function updateRangeOptions() {
+        const seri = filterSeri.value;
+        filterRange.innerHTML = '<option value="all">Semua Episode</option>';
+        filterRange.disabled = false;
+
+        if (seri === '2005') {
+            for(let i = 1; i <= 1000; i += 100) {
+                let end = i + 99;
+                filterRange.innerHTML += `<option value="${i}-${end}">${i}-${end}</option>`;
+            }
+        } else if (seri === '1979') {
+            for(let i = 1; i <= 1787; i += 100) {
+                let end = Math.min(i + 99, 1787);
+                filterRange.innerHTML += `<option value="${i}-${end}">${i}-${end}</option>`;
+            }
+        } else if (seri === 'Movie' || seri === 'Short Movie' || seri === 'all') {
+            filterRange.disabled = true; 
+        }
+    }
+
+    // Menerapkan Filter, Search, dan Urutan
+    function applyFilters() {
+        let filtered = allEpisodes;
+        const seri = filterSeri.value;
+        const range = filterRange.value;
+        const urut = filterUrut.value;
+        const query = searchInput.value.toLowerCase();
+
+        // 1. Filter Seri
+        if (seri !== 'all') {
+            filtered = filtered.filter(ep => ep.seri === seri);
+        }
+
+        // 2. Filter Range Episode
+        if (range !== 'all' && !filterRange.disabled) {
+            const [min, max] = range.split('-').map(Number);
+            filtered = filtered.filter(ep => ep.id >= min && ep.id <= max);
+        }
+
+        // 3. Search Title (Pencarian Json)
+        if (query) {
+            filtered = filtered.filter(ep => ep.title.toLowerCase().includes(query));
+        }
+
+        // 4. Pengurutan (Terbaru/Menurun atau Terlama/Menaik bedasarkan ID)
+        filtered.sort((a, b) => {
+            if (urut === 'desc') return b.id - a.id; 
+            return a.id - b.id; 
+        });
+
+        renderEpisodes(filtered);
+    }
+
+    // Menampilkan ke HTML
+    function renderEpisodes(data) {
+        episodeList.innerHTML = '';
+
+        if(data.length === 0) {
+            episodeList.innerHTML = `<div class="box empty-state">Episode tidak ditemukan.</div>`;
+            return;
+        }
+
+        data.forEach(ep => {
+            // Memisahkan Judul untuk dicetak miring (<i>) seperti format aslinya
+            let formattedTitle = ep.title;
+            const splitMatch = ep.title.match(/Episode \d+ - (.*)/);
+            if (splitMatch) {
+                formattedTitle = `Episode ${ep.id} - <i>${splitMatch[1]}</i>`;
+            }
+
+            const box = document.createElement('div');
+            box.className = 'box';
+            
+            // Animasi transisi yang ada di main.js bisa di-trigger di sini
+            box.style.animation = 'fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) both';
+            
+            box.innerHTML = `
+                <h2>${formattedTitle}</h2>
+                <p></p>
+                <p><strong>Tanggal Rilis:</strong> ${ep.rilis}</p>
+                <a class="button-link" href="releases/${ep.id}.html">Download Sekarang</a>
+            `;
+            episodeList.appendChild(box);
+        });
+    }
+
+    // Ambil Data dari JSON
+    fetch('data/data_index.json')
+        .then(res => res.json())
+        .then(data => {
+            allEpisodes = data;
+            updateRangeOptions();
+            applyFilters();
+        })
+        .catch(err => {
+            console.error('Gagal mengambil data episode:', err);
+            episodeList.innerHTML = `<div class="box empty-state">Gagal memuat data. Pastikan data_index.json tersedia.</div>`;
+        });
+
+    // Pasang Event Listeners
+    filterSeri.addEventListener('change', () => {
+        updateRangeOptions();
+        applyFilters();
+    });
+    filterRange.addEventListener('change', applyFilters);
+    filterUrut.addEventListener('change', applyFilters);
+    searchInput.addEventListener('input', applyFilters);
+</script>
+</body>
 </html>
