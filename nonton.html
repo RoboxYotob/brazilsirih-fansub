@@ -10,15 +10,47 @@
 <link rel="icon" type="image/x-icon" href="favicon.ico" />
 
 <style>
+/* Layout dasar menonton */
 .watch-layout { display: flex; gap: 20px; margin-top: 20px; }
 .sidebar-episodes { flex: 1; min-width: 300px; max-width: 350px; display: flex; flex-direction: column; }
 .video-area { flex: 2; min-width: 300px; }
 .episode-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 10px; max-height: 60vh; overflow-y: auto; padding: 10px 5px; }
 .episode-grid .box { margin: 0; padding: 15px 5px; text-align: center; text-decoration: none; font-weight: bold; display: flex; align-items: center; justify-content: center; font-size: 14px; }
 .episode-grid .button-link { margin: 0; padding: 15px 5px; }
+
+/* Tambahan CSS Filter dari Indeks */
+.filter-container {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-bottom: 15px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    padding-bottom: 8px;
+    flex-wrap: nowrap;
+}
+.filter-container::-webkit-scrollbar { height: 4px; }
+.filter-container::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.05); border-radius: 2px; }
+.filter-container::-webkit-scrollbar-thumb { background: #cccccc; border-radius: 2px; }
+.filter-container::-webkit-scrollbar-thumb:hover { background: #999999; }
+.filter-select {
+    flex-shrink: 0;
+    width: auto;
+    min-width: 120px;
+    cursor: pointer;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
 @keyframes bounceIn {0% { opacity: 0; transform: scale(0.3); }50% { opacity: 1; transform: scale(1.05); }70% { transform: scale(0.9); }100% { transform: scale(1); }}
 @keyframes slideInRight {from { transform: translateX(20px); opacity: 0; }to { transform: translateX(0); opacity: 1; }}
-@media (max-width: 900px) { .watch-layout { flex-direction: column-reverse; } .sidebar-episodes { max-width: 100%; } }
+
+@media (max-width: 900px) { 
+    .watch-layout { flex-direction: column-reverse; } 
+    .sidebar-episodes { max-width: 100%; } 
+}
 </style>
 </head>
 <body>
@@ -48,16 +80,34 @@
 </header>
 
 <main>
-<h1 class="center-content" id="episodeTitle">Episode</h1>
+<h1 class="center-content" id="episodeTitle">Memuat Episode...</h1>
 <div class="watch-layout">
 <aside class="sidebar-episodes">
+    
+    <div class="filter-container">
+        <select id="filterSeri" class="search-input filter-select">
+            <option value="all">Semua Seri</option>
+            <option value="2005" selected>2005</option>
+            <option value="1979">1979</option>
+            <option value="Movie">Movie</option>
+            <option value="Short Movie">Short Movie</option>
+        </select>
+        <select id="filterRange" class="search-input filter-select">
+            <option value="all">Semua Episode</option>
+        </select>
+        <select id="filterUrut" class="search-input filter-select">
+            <option value="desc">Terbaru (Menurun)</option>
+            <option value="asc">Terlama (Menaik)</option>
+        </select>
+    </div>
+
     <div class="search-container" id="searchContainer">
-        <input type="text" id="searchInput" class="search-input" placeholder="🔍  Cari episode...">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Cari judul atau nomor ID...">
         <div id="searchResults" class="search-results"></div>
     </div>
+    
     <div class="episode-grid" id="episodeList">
-        <!-- Grid otomatis -->
-    </div>
+        </div>
 </aside>
 
 <section class="video-area">
@@ -81,17 +131,25 @@ Disclaimer: Ini adalah fansite non-komersial. Kami tidak berafiliasi dengan pemi
 fetch('data/episodes.json')
 .then(res => res.json())
 .then(episodes => {
+    let allEpisodes = episodes; // Simpan cache dari JSON
+    
     const episodeList = document.getElementById('episodeList');
     const titleEl = document.getElementById('episodeTitle');
     const descEl = document.getElementById('episodeDesc');
     const iframe = document.querySelector('.youtube-video');
     const searchInput = document.getElementById('searchInput');
     const searchResults = document.getElementById('searchResults');
+    
+    // Elemen Filter
+    const filterSeri = document.getElementById('filterSeri');
+    const filterRange = document.getElementById('filterRange');
+    const filterUrut = document.getElementById('filterUrut');
 
     const params = new URLSearchParams(window.location.search);
     let epId = Number(params.get('episode')) || 1;
     let currentEp = episodes.find(e => e.id === epId) || episodes[0];
 
+    // Fungsi Utama Muat Video
     function loadEpisode(ep){
         currentEp = ep;
         titleEl.textContent = ep.title;
@@ -101,59 +159,159 @@ fetch('data/episodes.json')
         iframe.src = `https://ok.ru/videoembed/${ep.videoId}`;
         iframe.setAttribute('allowfullscreen','');
 
-        // Update grid
+        // Update styling grid box
         episodeList.querySelectorAll('a').forEach(a=>{
             a.className = a.dataset.id == ep.id ? 'box button-link' : 'box';
-            a.style.animation = 'bounceIn 0.3s'; // animasi saat switch episode
+            if(a.dataset.id == ep.id) a.style.animation = 'bounceIn 0.3s';
         });
 
-        // Scroll ke episode aktif
-        const activeEl = episodeList.querySelector('a.button-link');
-        if(activeEl) activeEl.scrollIntoView({ behavior:'smooth', block:'center' });
+        // Scroll ke episode aktif dengan setTimeout agar render DOM selesai
+        setTimeout(() => {
+            const activeEl = episodeList.querySelector('a.button-link');
+            if(activeEl) activeEl.scrollIntoView({ behavior:'smooth', block:'center' });
+        }, 50);
     }
 
-    // Render grid
-    episodes.forEach(ep => {
-        const a = document.createElement('a');
-        a.textContent = ep.id;
-        a.dataset.searchText = ep.title;
-        a.dataset.id = ep.id;
-        a.href = `watch.html?episode=${ep.id}`;
-        a.className = ep.id === currentEp.id ? 'box button-link' : 'box';
-        a.addEventListener('click', e=>{
-            e.preventDefault();
-            loadEpisode(ep);
-        });
-        episodeList.appendChild(a);
-    });
+    // Fungsi Logika Range Option
+    function updateRangeOptions() {
+        const seri = filterSeri.value;
+        filterRange.innerHTML = '<option value="all">Semua Episode</option>';
+        filterRange.disabled = false;
 
+        if (seri === '2005') {
+            for(let i = 1; i <= 1000; i += 100) {
+                let end = i + 99;
+                filterRange.innerHTML += `<option value="${i}-${end}">${i}-${end}</option>`;
+            }
+        } else if (seri === '1979') {
+            for(let i = 1; i <= 1787; i += 100) {
+                let end = Math.min(i + 99, 1787);
+                filterRange.innerHTML += `<option value="${i}-${end}">${i}-${end}</option>`;
+            }
+        } else if (seri === 'Movie' || seri === 'Short Movie' || seri === 'all') {
+            filterRange.disabled = true; 
+        }
+    }
+
+    // Fungsi Menerapkan Filter & Search
+    function applyFilters() {
+        let filtered = allEpisodes;
+        const seri = filterSeri.value;
+        const range = filterRange.value;
+        const urut = filterUrut.value;
+        const query = searchInput.value.toLowerCase();
+
+        // 1. Filter Seri
+        if (seri !== 'all') {
+            filtered = filtered.filter(ep => ep.seri === seri);
+        }
+
+        // 2. Filter Range Episode
+        if (range !== 'all' && !filterRange.disabled) {
+            const [min, max] = range.split('-').map(Number);
+            filtered = filtered.filter(ep => ep.id >= min && ep.id <= max);
+        }
+
+        // 3. Search Title ATAU ID Episode (Overhaul Sesuai Permintaan)
+        if (query) {
+            filtered = filtered.filter(ep => 
+                ep.title.toLowerCase().includes(query) || 
+                ep.id.toString().includes(query)
+            );
+        }
+
+        // 4. Pengurutan 
+        filtered.sort((a, b) => {
+            if (urut === 'desc') return b.id - a.id; 
+            return a.id - b.id; 
+        });
+
+        renderGrid(filtered);
+    }
+
+    // Fungsi Render Ulang Grid di Sidebar
+    function renderGrid(data) {
+        episodeList.innerHTML = '';
+        
+        if(data.length === 0) {
+            episodeList.innerHTML = `<div style="grid-column: 1 / -1; text-align:center; padding: 20px;">Episode tidak ditemukan.</div>`;
+            return;
+        }
+
+        data.forEach(ep => {
+            const a = document.createElement('a');
+            a.textContent = ep.id;
+            a.dataset.searchText = ep.title;
+            a.dataset.id = ep.id;
+            a.href = `watch.html?episode=${ep.id}`;
+            a.className = ep.id === currentEp.id ? 'box button-link' : 'box';
+            
+            a.addEventListener('click', e=>{
+                e.preventDefault();
+                loadEpisode(ep);
+            });
+            
+            episodeList.appendChild(a);
+        });
+    }
+
+    // Inisialisasi Pertama
+    updateRangeOptions();
+    applyFilters();
     loadEpisode(currentEp);
 
-    // Search autocomplete
+    // Event Listeners Select Dropdown
+    filterSeri.addEventListener('change', () => {
+        updateRangeOptions();
+        applyFilters();
+    });
+    filterRange.addEventListener('change', applyFilters);
+    filterUrut.addEventListener('change', applyFilters);
+
+    // Search Autocomplete (Karakteristik asli dipertahankan, dan disinergikan dengan pencarian grid)
     searchInput.addEventListener('input', ()=>{
         const query = searchInput.value.toLowerCase();
+        
+        // Saring grid otomatis sesuai ketikan (Live Search)
+        applyFilters(); 
+
         searchResults.innerHTML = '';
         if(!query) return;
 
-        episodes.filter(ep => ep.title.toLowerCase().includes(query)).forEach(ep=>{
+        // Ambil data untuk dropdown autcomplete (dibatasi 5 teratas)
+        let dropdownMatches = allEpisodes.filter(ep => 
+            ep.title.toLowerCase().includes(query) || 
+            ep.id.toString().includes(query)
+        ).slice(0, 5);
+
+        dropdownMatches.forEach(ep=>{
             const div = document.createElement('div');
             div.className = 'search-item';
-            div.textContent = ep.title;
+            div.textContent = ep.title; // Memunculkan teks penuh dari judul
             div.addEventListener('click', ()=>{
                 loadEpisode(ep);
                 searchResults.innerHTML = '';
                 searchInput.value = '';
+                applyFilters(); // Reset kembali grid
             });
             searchResults.appendChild(div);
         });
     });
-});
+
+    // Menutup pop-up pencarian ketika menekan area di luarnya
+    document.addEventListener('click', (e) => {
+        if(!document.getElementById('searchContainer').contains(e.target)) {
+            searchResults.innerHTML = '';
+        }
+    });
+
+}).catch(err => console.error("Data episode gagal dimuat!", err));
 
 // Night mode toggle
 const nightBtn = document.getElementById('nightModeToggle');
 nightBtn.addEventListener('click', () => {
     document.body.classList.toggle('night');
-    nightBtn.classList.toggle('active'); // animasi balik ikon
+    nightBtn.classList.toggle('active');
 });
 </script>
 
