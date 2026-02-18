@@ -59,7 +59,6 @@
         }
     }
 </style>
-</style>
 </head>
 <body>
 <div id="container">
@@ -92,11 +91,12 @@
         
         <div class="filter-container">
            <select id="filterSeri" class="search-input filter-select">
-    <option value="all">Semua Seri</option>
-    <option value="2005" selected>2005</option> <option value="1979">1979</option>
-    <option value="Movie">Movie</option>
-    <option value="Short Movie">Short Movie</option>
-</select>
+                <option value="all">Semua Seri</option>
+                <option value="2005" selected>2005</option> 
+                <option value="1979">1979</option>
+                <option value="Movie">Movie</option>
+                <option value="Short Movie">Short Movie</option>
+            </select>
 
             <select id="filterRange" class="search-input filter-select">
                 <option value="all">Semua Episode</option>
@@ -176,7 +176,7 @@
             filtered = filtered.filter(ep => ep.title.toLowerCase().includes(query));
         }
 
-        // 4. Pengurutan (Terbaru/Menurun atau Terlama/Menaik bedasarkan ID)
+        // 4. Pengurutan
         filtered.sort((a, b) => {
             if (urut === 'desc') return b.id - a.id; 
             return a.id - b.id; 
@@ -195,24 +195,41 @@
         }
 
         data.forEach(ep => {
-            // Memisahkan Judul untuk dicetak miring (<i>) seperti format aslinya
             let formattedTitle = ep.title;
             const splitMatch = ep.title.match(/Episode \d+ - (.*)/);
             if (splitMatch) {
                 formattedTitle = `Episode ${ep.id} - <i>${splitMatch[1]}</i>`;
             }
 
+            // --- LOGIKA DETEKSI LINK OTOMATIS BERDASARKAN SERI ---
+            let finalLink;
+            if (ep.link) {
+                // Jika sudah ada field link di JSON, pakai itu (paling akurat)
+                finalLink = ep.link;
+            } else {
+                // Jika data lama, buat link berdasarkan seri agar tidak bentrok
+                if (ep.seri === "2005") {
+                    finalLink = `${ep.id}.html`;
+                } else if (ep.seri === "1979") {
+                    finalLink = `${ep.id}-1979.html`;
+                } else if (ep.seri === "Movie") {
+                    finalLink = `dtm${ep.id}.html`;
+                } else if (ep.seri === "Short Movie") {
+                    finalLink = `sm${ep.id}.html`;
+                } else {
+                    finalLink = `${ep.id}.html`;
+                }
+            }
+            // ----------------------------------------------------
+
             const box = document.createElement('div');
             box.className = 'box';
-            
-            // Animasi transisi yang ada di main.js bisa di-trigger di sini
             box.style.animation = 'fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) both';
             
             box.innerHTML = `
                 <h2>${formattedTitle}</h2>
-                <p></p>
                 <p><strong>Tanggal Rilis:</strong> ${ep.rilis}</p>
-                <a class="button-link" href="releases/${ep.id}.html">Download Sekarang</a>
+                <a class="button-link" href="releases/${finalLink}">Download Sekarang</a>
             `;
             episodeList.appendChild(box);
         });
@@ -228,7 +245,7 @@
         })
         .catch(err => {
             console.error('Gagal mengambil data episode:', err);
-            episodeList.innerHTML = `<div class="box empty-state">Gagal memuat data. Pastikan data_index.json tersedia.</div>`;
+            episodeList.innerHTML = `<div class="box empty-state">Gagal memuat data.</div>`;
         });
 
     // Pasang Event Listeners
