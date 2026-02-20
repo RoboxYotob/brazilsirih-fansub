@@ -8,481 +8,141 @@
   <link rel="stylesheet" href="../css/nightmode.css" />
   <link rel="icon" type="image/x-icon" href="../favicon.ico" />
   <style>
-    .episode-cover {
-      width: 100%;
-      max-width: 700px;
-      border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow);
-      margin: 20px auto;
-      display: block;
-    }
+    /* Mengadopsi style dari 870.html */
+    .episode-cover { width: 100%; max-width: 700px; border-radius: var(--border-radius); box-shadow: var(--box-shadow); margin: 20px auto; display: block; }
+    .info-box { margin: 20px 0; padding: 20px; background: white; border-radius: var(--border-radius); border: 1px solid var(--light-blue); box-shadow: var(--box-shadow); }
+    
+    /* SYNOPSIS BOX STYLING */
+    .synopsis-box { margin: 25px 0; padding: 25px; background: white; border-radius: var(--border-radius); border: 1px solid var(--light-blue); box-shadow: var(--box-shadow); position: relative; }
+    .synopsis-box::before { content: "❝"; font-size: 4rem; color: var(--accent-blue); opacity: 0.2; position: absolute; top: 10px; left: 20px; font-family: serif; }
+    
+    /* JUDUL SINOPSIS DENGAN GARIS BAWAH */
+    .synopsis-title { color: var(--dark-blue); margin-bottom: 20px; text-align: center; font-size: 1.5rem; position: relative; }
+    /* Ini yang membuat garis biru di bawah judul */
+    .synopsis-title::after { content: ''; display: block; width: 60px; height: 3px; background: var(--accent-blue); border-radius: 2px; margin: 10px auto; }
 
-    .episode-info {
-      margin-top: 20px;
-      text-align: center;
-      font-size: 1rem;
-    }
+    .synopsis-content { line-height: 1.7; text-align: justify; font-size: 1.05rem; color: #333; }
+    .synopsis-content p { margin-bottom: 15px; text-indent: 2em; } /* Indentasi paragraf */
+    
+    .synopsis-source { text-align: right; color: #666; font-size: 0.9rem; margin-top: 25px; padding-top: 15px; border-top: 1px dashed var(--light-blue); font-style: italic; }
 
-    .info-box {
-      margin: 20px 0;
-      padding: 20px;
-      background: white;
-      border-radius: var(--border-radius);
-      border: 1px solid var(--light-blue);
-      box-shadow: var(--box-shadow);
-    }
-
-    /* Styling untuk sinopsis */
-    .synopsis-box {
-      margin: 25px 0;
-      padding: 25px;
-      background: white;
-      border-radius: var(--border-radius);
-      border: 1px solid var(--light-blue);
-      box-shadow: var(--box-shadow);
-      position: relative;
-    }
-
-    .synopsis-box::before {
-      content: "❝";
-      font-size: 4rem;
-      color: var(--accent-blue);
-      opacity: 0.2;
-      position: absolute;
-      top: 10px;
-      left: 20px;
-      font-family: serif;
-    }
-
-    .synopsis-title {
-      color: var(--dark-blue);
-      margin-bottom: 20px;
-      text-align: center;
-      font-size: 1.5rem;
-      position: relative;
-    }
-
-    .synopsis-title::after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: 3px;
-      background: var(--accent-blue);
-      border-radius: 2px;
-      margin: 10px auto;
-    }
-
-    .synopsis-content {
-      line-height: 1.7;
-      text-align: justify;
-      font-size: 1.05rem;
-      color: #333;
-    }
-
-    .synopsis-content p {
-      margin-bottom: 15px;
-      text-indent: 2em;
-    }
-
-    .synopsis-italic {
-      font-style: italic;
-      color: #555;
-      text-align: right;
-      display: block;
-      margin-top: 5px;
-    }
-
-    .synopsis-source {
-      text-align: right;
-      color: #666;
-      font-size: 0.9rem;
-      margin-top: 25px;
-      padding-top: 15px;
-      border-top: 1px dashed var(--light-blue);
-      font-style: italic;
-    }
-
-    table.download-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-
-    .download-table th,
-    .download-table td {
-      padding: 12px;
-      border: 1px solid var(--light-blue);
-      text-align: center;
-    }
-
-    .download-table th {
-      background-color: var(--accent-blue);
-      color: white;
-    }
-
-    .download-table tr:nth-child(even) {
-      background-color: #f1f8ff;
-    }
-
-    .download-table a {
-      color: var(--primary-blue);
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    .download-table a:hover {
-      text-decoration: underline;
-    }
-
-    .password-box {
-      margin-top: 20px;
-      font-weight: bold;
-      color: var(--dark-blue);
-      text-align: center;
-      font-size: 1rem;
-    }
-
-    /* GROUPING STYLES - YANG BARU DITAMBAHKAN */
-    .content-group-1 {
-      margin-bottom: 40px;
-    }
-
-    /* Night mode styles untuk halaman episode */
-    body.night-mode .info-box {
-      background: var(--night-secondary);
-      border-color: var(--night-border);
-      color: var(--night-text);
-    }
-
-    body.night-mode .synopsis-box {
-      background: var(--night-secondary);
-      border-color: var(--night-border);
-      color: var(--night-text);
-    }
-
-    body.night-mode .synopsis-content {
-      color: var(--night-text);
-    }
-
-    body.night-mode .synopsis-italic {
-      color: #cccccc;
-    }
-
-    body.night-mode .synopsis-source {
-      color: #aaaaaa;
-      border-top-color: var(--night-border);
-    }
-
-    body.night-mode .download-table th {
-      background-color: var(--night-accent);
-    }
-
-    body.night-mode .download-table tr:nth-child(even) {
-      background-color: var(--night-primary);
-    }
-
-    body.night-mode .download-table a {
-      color: var(--night-accent);
-    }
-
-    body.night-mode .password-box {
-      color: var(--night-text);
-    }
-
-    body.night-mode .password-box code {
-      background: var(--night-primary);
-      color: var(--night-text);
-      padding: 2px 6px;
-      border-radius: 4px;
-    }
-
-    /* Night mode untuk grouping */
-    body.night-mode .content-group-1,
-    body.night-mode .content-group-2 {
-      background: transparent;
-    }
-
-    /* Responsive styles untuk halaman episode */
-    @media (max-width: 900px) {
-      .episode-cover {
-        max-width: 90%;
-        margin: 15px auto;
-      }
-      
-      .info-box, .synopsis-box {
-        padding: 18px;
-      }
-      
-      .synopsis-title {
-        font-size: 1.3rem;
-      }
-      
-      .synopsis-content {
-        font-size: 1rem;
-        text-align: left;
-      }
-      
-      .download-table th,
-      .download-table td {
-        padding: 10px;
-        font-size: 0.9rem;
-      }
-      
-      .content-group-1 {
-        margin-bottom: 30px;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .episode-cover {
-        max-width: 95%;
-        margin: 10px auto;
-      }
-      
-      .info-box, .synopsis-box {
-        padding: 15px;
-        margin: 15px 0;
-      }
-      
-      .synopsis-box::before {
-        font-size: 3rem;
-        top: 5px;
-        left: 15px;
-      }
-      
-      .synopsis-title {
-        font-size: 1.2rem;
-      }
-      
-      .synopsis-content {
-        font-size: 0.95rem;
-        line-height: 1.6;
-      }
-      
-      .synopsis-content p {
-        text-indent: 1.5em;
-      }
-      
-      .download-table th,
-      .download-table td {
-        padding: 8px;
-        font-size: 0.85rem;
-      }
-      
-      .password-box {
-        font-size: 0.9rem;
-      }
-      
-      .content-group-1 {
-        margin-bottom: 25px;
-      }
-    }
-
-    @media (max-width: 400px) {
-      .download-table {
-        font-size: 0.8rem;
-      }
-      
-      .download-table th,
-      .download-table td {
-        padding: 6px;
-      }
-      
-      .synopsis-box::before {
-        font-size: 2.5rem;
-      }
-    }
+    /* TABLE STYLING */
+    table.download-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    .download-table th, .download-table td { padding: 12px; border: 1px solid var(--light-blue); text-align: center; }
+    .download-table th { background-color: var(--accent-blue); color: white; }
+    .download-table tr:nth-child(even) { background-color: #f1f8ff; }
+    .download-table a { color: var(--primary-blue); font-weight: bold; text-decoration: none; }
+    
+    .content-group-1 { margin-bottom: 40px; }
   </style>
 </head>
 <body>
   <div id="container">
-    <!-- Navigasi Global dengan struktur baru -->
     <header id="headerArea">
       <nav id="navbar">
-        <div class="nav-left">
-          <a href="../home.html" class="logo-container">
-            <img src="../assets/logo.png" alt="Brazil Sirih FanSub Logo" class="logo">
-          </a>
-        </div>
-        
+        <div class="nav-left"><a href="../home.html" class="logo-container"><img src="../assets/logo.png" alt="Logo" class="logo"></a></div>
         <div class="nav-center">
           <ul>
-            <li><a href="../home.html">Home</a></li>
+            <li><a href="../beranda.html">Beranda</a></li>
             <li><a href="../info.html">Info</a></li>
-            <li><a href="../announcement.html">Announcement</a></li>
-            <li><a href="../anime.html" class="active">Anime</a></li>
-            <li><a href="../index.html#list">Index</a></li>
+            <li><a href="../pengumuman.html">Pengumuman</a></li>
+            <li><a href="../nonton.html" class="active">Nonton</a></li>
+            <li><a href="../indeks.html#list">Indeks</a></li>
           </ul>
         </div>
-        
-        <div class="nav-right">
-          <button id="nightModeToggle" aria-label="Toggle Night Mode">
-            <span class="toggle-icon">🌙</span>
-          </button>
-        </div>
+        <div class="nav-right"><button id="nightModeToggle"><span class="toggle-icon">🌙</span></button></div>
       </nav>
     </header>
 
     <main>
       <h1 class="center-content">Doraemon Episode 517</h1>
-
-      <!-- KELOMPOK 1: Gambar, Info, Sinopsis -->
+      
       <div class="content-group-1">
-        <img src="517.jpg" alt="Doraemon Episode 517" class="episode-cover" />
-
+        <img src="517.jpg" alt="Episode 517" class="episode-cover" />
+        
         <div class="info-box">
           <div class="episode-info">
             <p><strong>Judul:</strong> Biskuit Transformasi Hewan & Pistol Sinar Evolusi dan Devolusi<br>
             <strong>Tanggal Tayang:</strong> 13 April 2018<br>
             <strong>Jenis:</strong> Episode TV<br>
-            <strong>Sub:</strong> Indonesia & Inggris</p>
+            <strong>Sub:</strong> Indonesia</p>
           </div>
         </div>
 
-        <!-- Sinopsis Section A -->
+        <div class="info-box">
+          <h3>💻 Info Teknis</h3>
+          <table class="download-table">
+            <thead><tr><th>Parameter</th><th>Detail</th></tr></thead>
+            <tbody>
+              
+              <tr><td>Codec</td><td>AV1</td></tr>
+              
+              <tr><td>Encoder</td><td>SVT-AV1 PSY-EX</td></tr>
+              
+              <tr><td>Container</td><td>mkv</td></tr>
+              
+              <tr><td>Jenis Subtitle</td><td>Burn-in</td></tr>
+              
+              <tr><td>Resolusi</td><td>1920x1080p</td></tr>
+              
+              <tr><td>FPS</td><td>24</td></tr>
+              
+              <tr><td>Bitrate</td><td>~1200 kbps</td></tr>
+              
+              <tr><td>Durasi</td><td>21m 5s</td></tr>
+              
+              <tr><td>Ukuran File</td><td>215 MB</td></tr>
+              
+              <tr><td>Raw Provider</td><td>PandoraTV-raws</td></tr>
+              
+            </tbody>
+          </table>
+        </div>
+
+        
         <div class="synopsis-box">
-          <h2 class="synopsis-title">517A - Biskuit Transformasi Hewan</h2>
+          <h2 class="synopsis-title">Sinopsis 517A : Biskuit Transformasi Hewan</h2>
           <div class="synopsis-content">
-            <p>Nobita diminta Mama untuk membeli camilan untuk tamu. Saat mencari di kamarnya, ia menemukan kaleng biskuit berbentuk hewan. Tanpa sengaja, ia mencicipi biskuit berbentuk kucing dan singa, lalu berencana menyajikannya untuk tamu.</p>
             
-            <p>Namun, Mama marah karena menyuruh Nobita membeli camilan yang lebih pantas, sehingga ia terpaksa pergi berbelanja. Dalam perjalanan pulang, Nobita kaget melihat pantulannya di jendela — tubuhnya berubah menjadi seekor kucing!</p>
+              <p>Nobita tidak sengaja memakan "Biskuit Transformasi Hewan" yang bisa mengubah pemakannya menjadi hewan sesuai bentuk biskuit selama 5 menit. Kekacauan terjadi saat tamu ibunya malah memakan 5 buah biskuit tersebut! Nobita dan Doraemon pun harus bersusah payah menyembunyikan tamu yang mulai berubah menjadi hewan ke kamar mandi agar tidak ketahuan Ibu.</p>
             
-            <p>Ternyata, biskuit yang dimakan Nobita adalah alat rahasia bernama Biskuit Transformasi Hewan. Saat dimakan, ia akan berubah menjadi hewan sesuai bentuk biskuit selama sekitar lima menit.</p>
             
-            <p>Saat mereka pulang, tamu Mama ternyata sudah memakan lima biskuit itu dan mulai berubah menjadi kuda! Nobita dan Doraemon pun harus membawa tamu ke toilet tanpa ketahuan Mama…!</p>
-            <span class="synopsis-italic">(Diambil dari Tentōmushi Comics Doraemon Volume 1, “Biskuit Perubahan Wujud”)</span>
+            
+            <div class="synopsis-source">(Diambil dari "Tentomushi Comics "Doraemon" Volume 1 (Judul: Biskuit Transformasi)")</div>
+            
           </div>
         </div>
-
-        <!-- Sinopsis Section B -->
+        
         <div class="synopsis-box">
-          <h2 class="synopsis-title">517B Pistor SInar Evolusi dan Devolusi</h2>
+          <h2 class="synopsis-title">Sinopsis 517B : Pistol Sinar Evolusi dan Devolusi</h2>
           <div class="synopsis-content">
-            <p>Nobita meminta Papa membelikannya radio kaset baru, tapi Papa menolak karena menurutnya yang penting bisa mendengar suara saja. Kecewa, Nobita mendapat bantuan Doraemon yang mengeluarkan alat rahasia Pistol Sinar Evolusi dan Devolusi. Alat ini bisa membuat benda berkembang (evolusi) atau mundur (devolusi).</p>
-
-            <p>Doraemon menggunakannya untuk “meng-evolusi” radio kaset Nobita sekitar 20 tahun ke depan, hingga menjadi radio kaset masa depan berbentuk jam tangan yang bisa melakukan panggilan video, karaoke, dan bahkan membuat musik. Nobita sangat senang! Namun, saat dial diputar ke arah sebaliknya, radio itu malah “mundur” menjadi gramofon.</p>
             
-            <p>Nobita kemudian mencoba meng-evolusi semua benda di rumah, tapi dihentikan Doraemon. Ia pun mencoba meng-evolusi Papa menjadi manusia masa depan, tapi karena dial masih di mode devolusi, Papa malah berubah menjadi manusia purba! Panik, Nobita segera mengembalikan dial dan mencoba menguji alat itu pada seekor tikus…</p>
-            <span class="synopsis-italic">(Diambil dari Tentōmushi Comics Doraemon Volume 8, “Sumber Radiasi Evolusi-Devolusi”)</span>
+              <p>Kecewa karena tidak dibelikan radio kaset baru, Nobita menggunakan alat Doraemon yang bisa mengevolusi atau mendegenerasi benda. Setelah sukses mengubah radionya menjadi teknologi masa depan, Nobita mencoba mengevolusi ayahnya menjadi "Manusia Masa Depan". Namun, ia malah salah memutar tombol ke arah "Degenerasi" dan membuat ayahnya berubah menjadi manusia purba!</p>
+            
+            
+            
+            <div class="synopsis-source">(Diambil dari "Tentomushi Comics "Doraemon" Volume 8 (Judul: Sumber Radiasi Evolusi Degenerasi)")</div>
+            
           </div>
         </div>
+        
       </div>
 
-      <!-- KELOMPOK 2: Download dan Tonton Online - BERTUMPUK -->
-      <div class="content-group-2">
-        <div class="info-box">
-          <h3>🎬 Download</h3>
-          <table class="download-table">
-            <thead>
-              <tr>
-                <th>Jenis</th>
-                <th>MediaFire</th>
-                <th>TeraBox</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-              <td>Hardsub</td>
-              <td><a href="https://www.mediafire.com/file/opoh7ejl69wsyjn/MD#517HC.7z/file">Link</a></td>
-              <td><a href="https://1024terabox.com/s/1SFagxyQiz35VJ5Yj3nga6w">Link</a></td>
-             </tr>
-            <tr>
-              <td>Softsub</td>
-              <td><a href="https://www.mediafire.com/file/kvemv7gsm12fosa/MD#517.7z/file">Link</a></td>
-              <td><a href="https://1024terabox.com/s/1FiVX_dH9xdlexS7TnQcK1Q">Link</a></td>
-             </tr>
-            </tbody>
-          </table>
-
-          <div class="password-box">
-            🔐 Password Ekstrak: <code> brazilsirihfansub</code>
-          </div>
-        </div>
-
-        <div class="info-box">
-          <h3>📺 Tonton Online</h3>
-          <table class="download-table">
-            <thead>
-              <tr>
-                <th>Platform</th>
-                <th>Link</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>YouTube</td>
-                <td><a href="">Tidak ada</a></td>
-              </tr>
-              <tr>
-                <td>Bilibili.tv</td>
-                <td><a href="">Tonton</a></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <div class="info-box">
+        <h3>🎬 Download</h3>
+        <table class="download-table">
+          <thead><tr><th>Platform</th><th>Link</th></tr></thead>
+          <tbody>
+            <tr><td>MediaFire</td><td><a href="https://www.mediafire.com/file/c06uz8g92iam12a/Doraemon+(2005)+-+517+OLD+(1920x1080p+AV1+AAC).mkv/file">Download</a></td></tr>
+            <tr><td>TeraBox</td><td><a href="https://1024terabox.com/s/1HxEWU7HX20iKT1Sb1qXwjQ">Download</a></td></tr>
+          </tbody>
+        </table>
       </div>
     </main>
 
-    <footer id="footer">
-      Disclaimer: Ini adalah fansite non-komersial. Kami tidak berafiliasi dengan pemilik lisensi resmi.
-    </footer>
+    <footer id="footer">Disclaimer: Ini adalah fansite non-komersial. Kami tidak berafiliasi dengan pemilik lisensi resmi.</footer>
   </div>
-
-  <!-- JavaScript untuk Night Mode (standalone untuk halaman episode) -->
-  <script>
-    // Simple Night Mode implementation untuk halaman episode
-    class EpisodeNightMode {
-      constructor() {
-        this.toggleButton = document.getElementById('nightModeToggle');
-        this.isNightMode = localStorage.getItem('nightMode') === 'true';
-        this.init();
-      }
-
-      init() {
-        // Apply saved mode
-        if (this.isNightMode) {
-          this.enableNightMode();
-        }
-
-        // Add event listener
-        this.toggleButton.addEventListener('click', this.toggleMode.bind(this));
-      }
-
-      toggleMode() {
-        this.isNightMode = !this.isNightMode;
-        
-        if (this.isNightMode) {
-          this.enableNightMode();
-        } else {
-          this.disableNightMode();
-        }
-
-        // Save preference
-        localStorage.setItem('nightMode', this.isNightMode);
-      }
-
-      enableNightMode() {
-        document.body.classList.add('night-mode');
-        this.updateToggleIcon(true);
-      }
-
-      disableNightMode() {
-        document.body.classList.remove('night-mode');
-        this.updateToggleIcon(false);
-      }
-
-      updateToggleIcon(isNightMode) {
-        const icon = this.toggleButton.querySelector('.toggle-icon');
-        if (icon) {
-          icon.textContent = isNightMode ? '☀️' : '🌙';
-        }
-      }
-    }
-
-    // Initialize when DOM is loaded
-    document.addEventListener('DOMContentLoaded', () => {
-      new EpisodeNightMode();
-    });
-  </script>
+  <script type="module" src="../js/main.js"></script>
+</body>
 </body>
 </html>

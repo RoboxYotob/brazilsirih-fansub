@@ -8,479 +8,137 @@
   <link rel="stylesheet" href="../css/nightmode.css" />
   <link rel="icon" type="image/x-icon" href="../favicon.ico" />
   <style>
-    .episode-cover {
-      width: 100%;
-      max-width: 700px;
-      border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow);
-      margin: 20px auto;
-      display: block;
-    }
+    /* Mengadopsi style dari 870.html */
+    .episode-cover { width: 100%; max-width: 700px; border-radius: var(--border-radius); box-shadow: var(--box-shadow); margin: 20px auto; display: block; }
+    .info-box { margin: 20px 0; padding: 20px; background: white; border-radius: var(--border-radius); border: 1px solid var(--light-blue); box-shadow: var(--box-shadow); }
+    
+    /* SYNOPSIS BOX STYLING */
+    .synopsis-box { margin: 25px 0; padding: 25px; background: white; border-radius: var(--border-radius); border: 1px solid var(--light-blue); box-shadow: var(--box-shadow); position: relative; }
+    .synopsis-box::before { content: "❝"; font-size: 4rem; color: var(--accent-blue); opacity: 0.2; position: absolute; top: 10px; left: 20px; font-family: serif; }
+    
+    /* JUDUL SINOPSIS DENGAN GARIS BAWAH */
+    .synopsis-title { color: var(--dark-blue); margin-bottom: 20px; text-align: center; font-size: 1.5rem; position: relative; }
+    /* Ini yang membuat garis biru di bawah judul */
+    .synopsis-title::after { content: ''; display: block; width: 60px; height: 3px; background: var(--accent-blue); border-radius: 2px; margin: 10px auto; }
 
-    .episode-info {
-      margin-top: 20px;
-      text-align: center;
-      font-size: 1rem;
-    }
+    .synopsis-content { line-height: 1.7; text-align: justify; font-size: 1.05rem; color: #333; }
+    .synopsis-content p { margin-bottom: 15px; text-indent: 2em; } /* Indentasi paragraf */
+    
+    .synopsis-source { text-align: right; color: #666; font-size: 0.9rem; margin-top: 25px; padding-top: 15px; border-top: 1px dashed var(--light-blue); font-style: italic; }
 
-    .info-box {
-      margin: 20px 0;
-      padding: 20px;
-      background: white;
-      border-radius: var(--border-radius);
-      border: 1px solid var(--light-blue);
-      box-shadow: var(--box-shadow);
-    }
-
-    /* Styling untuk sinopsis */
-    .synopsis-box {
-      margin: 25px 0;
-      padding: 25px;
-      background: white;
-      border-radius: var(--border-radius);
-      border: 1px solid var(--light-blue);
-      box-shadow: var(--box-shadow);
-      position: relative;
-    }
-
-    .synopsis-box::before {
-      content: "❝";
-      font-size: 4rem;
-      color: var(--accent-blue);
-      opacity: 0.2;
-      position: absolute;
-      top: 10px;
-      left: 20px;
-      font-family: serif;
-    }
-
-    .synopsis-title {
-      color: var(--dark-blue);
-      margin-bottom: 20px;
-      text-align: center;
-      font-size: 1.5rem;
-      position: relative;
-    }
-
-    .synopsis-title::after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: 3px;
-      background: var(--accent-blue);
-      border-radius: 2px;
-      margin: 10px auto;
-    }
-
-    .synopsis-content {
-      line-height: 1.7;
-      text-align: justify;
-      font-size: 1.05rem;
-      color: #333;
-    }
-
-    .synopsis-content p {
-      margin-bottom: 15px;
-      text-indent: 2em;
-    }
-
-    .synopsis-italic {
-      font-style: italic;
-      color: #555;
-      text-align: right;
-      display: block;
-      margin-top: 5px;
-    }
-
-    .synopsis-source {
-      text-align: right;
-      color: #666;
-      font-size: 0.9rem;
-      margin-top: 25px;
-      padding-top: 15px;
-      border-top: 1px dashed var(--light-blue);
-      font-style: italic;
-    }
-
-    table.download-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-
-    .download-table th,
-    .download-table td {
-      padding: 12px;
-      border: 1px solid var(--light-blue);
-      text-align: center;
-    }
-
-    .download-table th {
-      background-color: var(--accent-blue);
-      color: white;
-    }
-
-    .download-table tr:nth-child(even) {
-      background-color: #f1f8ff;
-    }
-
-    .download-table a {
-      color: var(--primary-blue);
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    .download-table a:hover {
-      text-decoration: underline;
-    }
-
-    .password-box {
-      margin-top: 20px;
-      font-weight: bold;
-      color: var(--dark-blue);
-      text-align: center;
-      font-size: 1rem;
-    }
-
-    /* GROUPING STYLES - YANG BARU DITAMBAHKAN */
-    .content-group-1 {
-      margin-bottom: 40px;
-    }
-
-    /* Night mode styles untuk halaman episode */
-    body.night-mode .info-box {
-      background: var(--night-secondary);
-      border-color: var(--night-border);
-      color: var(--night-text);
-    }
-
-    body.night-mode .synopsis-box {
-      background: var(--night-secondary);
-      border-color: var(--night-border);
-      color: var(--night-text);
-    }
-
-    body.night-mode .synopsis-content {
-      color: var(--night-text);
-    }
-
-    body.night-mode .synopsis-italic {
-      color: #cccccc;
-    }
-
-    body.night-mode .synopsis-source {
-      color: #aaaaaa;
-      border-top-color: var(--night-border);
-    }
-
-    body.night-mode .download-table th {
-      background-color: var(--night-accent);
-    }
-
-    body.night-mode .download-table tr:nth-child(even) {
-      background-color: var(--night-primary);
-    }
-
-    body.night-mode .download-table a {
-      color: var(--night-accent);
-    }
-
-    body.night-mode .password-box {
-      color: var(--night-text);
-    }
-
-    body.night-mode .password-box code {
-      background: var(--night-primary);
-      color: var(--night-text);
-      padding: 2px 6px;
-      border-radius: 4px;
-    }
-
-    /* Night mode untuk grouping */
-    body.night-mode .content-group-1,
-    body.night-mode .content-group-2 {
-      background: transparent;
-    }
-
-    /* Responsive styles untuk halaman episode */
-    @media (max-width: 900px) {
-      .episode-cover {
-        max-width: 90%;
-        margin: 15px auto;
-      }
-      
-      .info-box, .synopsis-box {
-        padding: 18px;
-      }
-      
-      .synopsis-title {
-        font-size: 1.3rem;
-      }
-      
-      .synopsis-content {
-        font-size: 1rem;
-        text-align: left;
-      }
-      
-      .download-table th,
-      .download-table td {
-        padding: 10px;
-        font-size: 0.9rem;
-      }
-      
-      .content-group-1 {
-        margin-bottom: 30px;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .episode-cover {
-        max-width: 95%;
-        margin: 10px auto;
-      }
-      
-      .info-box, .synopsis-box {
-        padding: 15px;
-        margin: 15px 0;
-      }
-      
-      .synopsis-box::before {
-        font-size: 3rem;
-        top: 5px;
-        left: 15px;
-      }
-      
-      .synopsis-title {
-        font-size: 1.2rem;
-      }
-      
-      .synopsis-content {
-        font-size: 0.95rem;
-        line-height: 1.6;
-      }
-      
-      .synopsis-content p {
-        text-indent: 1.5em;
-      }
-      
-      .download-table th,
-      .download-table td {
-        padding: 8px;
-        font-size: 0.85rem;
-      }
-      
-      .password-box {
-        font-size: 0.9rem;
-      }
-      
-      .content-group-1 {
-        margin-bottom: 25px;
-      }
-    }
-
-    @media (max-width: 400px) {
-      .download-table {
-        font-size: 0.8rem;
-      }
-      
-      .download-table th,
-      .download-table td {
-        padding: 6px;
-      }
-      
-      .synopsis-box::before {
-        font-size: 2.5rem;
-      }
-    }
+    /* TABLE STYLING */
+    table.download-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    .download-table th, .download-table td { padding: 12px; border: 1px solid var(--light-blue); text-align: center; }
+    .download-table th { background-color: var(--accent-blue); color: white; }
+    .download-table tr:nth-child(even) { background-color: #f1f8ff; }
+    .download-table a { color: var(--primary-blue); font-weight: bold; text-decoration: none; }
+    
+    .content-group-1 { margin-bottom: 40px; }
   </style>
 </head>
 <body>
   <div id="container">
-    <!-- Navigasi Global dengan struktur baru -->
     <header id="headerArea">
       <nav id="navbar">
-        <div class="nav-left">
-          <a href="../home.html" class="logo-container">
-            <img src="../assets/logo.png" alt="Brazil Sirih FanSub Logo" class="logo">
-          </a>
-        </div>
-        
+        <div class="nav-left"><a href="../home.html" class="logo-container"><img src="../assets/logo.png" alt="Logo" class="logo"></a></div>
         <div class="nav-center">
           <ul>
-            <li><a href="../home.html">Home</a></li>
+            <li><a href="../beranda.html">Beranda</a></li>
             <li><a href="../info.html">Info</a></li>
-            <li><a href="../announcement.html">Announcement</a></li>
-            <li><a href="../anime.html" class="active">Anime</a></li>
-            <li><a href="../index.html#list">Index</a></li>
+            <li><a href="../pengumuman.html">Pengumuman</a></li>
+            <li><a href="../nonton.html" class="active">Nonton</a></li>
+            <li><a href="../indeks.html#list">Indeks</a></li>
           </ul>
         </div>
-        
-        <div class="nav-right">
-          <button id="nightModeToggle" aria-label="Toggle Night Mode">
-            <span class="toggle-icon">🌙</span>
-          </button>
-        </div>
+        <div class="nav-right"><button id="nightModeToggle"><span class="toggle-icon">🌙</span></button></div>
       </nav>
     </header>
 
     <main>
       <h1 class="center-content">Doraemon Episode 335</h1>
-
-      <!-- KELOMPOK 1: Gambar, Info, Sinopsis -->
+      
       <div class="content-group-1">
-        <img src="870.jpg" alt="Doraemon Episode 335" class="episode-cover" />
-
+        <img src="335.jpg" alt="Episode 335" class="episode-cover" />
+        
         <div class="info-box">
           <div class="episode-info">
             <p><strong>Judul:</strong> Cermin Dunia Terbalik & Terowongan Rahasia Nobita<br>
             <strong>Tanggal Tayang:</strong> 21 Juni 2013<br>
             <strong>Jenis:</strong> Episode TV<br>
-            <strong>Sub:</strong> Indonesia & Inggris</p>
+            <strong>Sub:</strong> Indonesia</p>
           </div>
         </div>
 
-        <!-- Sinopsis Section A -->
+        <div class="info-box">
+          <h3>💻 Info Teknis</h3>
+          <table class="download-table">
+            <thead><tr><th>Parameter</th><th>Detail</th></tr></thead>
+            <tbody>
+              
+              <tr><td>Codec</td><td>AV1</td></tr>
+              
+              <tr><td>Encoder</td><td>SVT-AV1 PSY-EX</td></tr>
+              
+              <tr><td>Container</td><td>mkv</td></tr>
+              
+              <tr><td>Jenis Subtitle</td><td>Burn-in</td></tr>
+              
+              <tr><td>Resolusi</td><td>1920x1080p</td></tr>
+              
+              <tr><td>FPS</td><td>24</td></tr>
+              
+              <tr><td>Bitrate</td><td>~1200 kbps</td></tr>
+              
+              <tr><td>Durasi</td><td>22m 38s</td></tr>
+              
+              <tr><td>Ukuran File</td><td>227 MB</td></tr>
+              
+              <tr><td>Raw Provider</td><td>PandoraTV-raws</td></tr>
+              
+            </tbody>
+          </table>
+        </div>
+
+        
         <div class="synopsis-box">
-          <h2 class="synopsis-title">335A - Cermin Dunia Terbalik</h2>
+          <h2 class="synopsis-title">Sinopsis 335A : Cermin Dunia Terbalik</h2>
           <div class="synopsis-content">
-            <p>Dipukuli habis-habisan oleh Gian, Nobita dihibur Shizuka yang berkata, “Tak perlu kuat berkelahi, kan?” Meski begitu, Nobita tetap merasa sangat kesal. Ia pun meminta Doraemon agar bisa menjadi kuat. Doraemon menjawab bahwa membuat Nobita kuat itu mustahil, tapi ia bisa memanggil Nobita yang kuat dari dunia lain.</p>
             
-            <p>Alat rahasia yang dikeluarkan adalah “Cermin Dunia Terbalik”, sebuah cermin yang bila diaktifkan, akan menciptakan dunia kebalikan di dalamnya. Saat Doraemon dan Nobita masuk, mereka mendapati segalanya benar-benar terbalik — dari kanan-kiri hingga kepribadian orang-orang.</p>
+              <p>Setelah dipukuli oleh Giant, Nobita merasa frustrasi meski telah dihibur Shizuka. Doraemon kemudian mengeluarkan "Cermin Dunia Terbalik", sebuah alat yang menciptakan dunia di dalam cermin di mana segala sesuatunya—termasuk kepribadian seseorang—menjadi kebalikannya. Di dunia tersebut, mereka bertemu Nobita versi tangguh dan pemarah. Saat mendengar Nobita asli diganggu, Nobita dari dunia cermin pun mengamuk dan keluar ke dunia nyata untuk memberi pelajaran pada Giant!</p>
             
-            <p>Di dunia terbalik itu, Nobita justru kuat berkelahi dan bersikap kasar. Begitu mendengar Nobita sering dibully Gian, ia pun murka dan berteriak, “Biar aku yang urus dia!” Lalu ia melompat keluar ke dunia asli Nobita dan mulai membuat kekacauan besar…!?</p>
+            
+            
           </div>
         </div>
-
-        <!-- Sinopsis Section B -->
+        
         <div class="synopsis-box">
-          <h2 class="synopsis-title">335B Terowongan Rahasia Nobita</h2>
+          <h2 class="synopsis-title">Sinopsis 335B : Terowongan Rahasia Nobita</h2>
           <div class="synopsis-content">
-            <p>Nobita yang baru membeli komik kesayangannya tiba-tiba dirampas oleh Gian. Ia pulang dengan murung, tapi nasib makin sial saat Mama memarahi dirinya karena kembali mendapat nilai nol di ujian.</p>
-
-            <p>Doraemon menyarankan, “Kalau tidak ingin dimarahi, jangan lakukan hal-hal yang membuatmu dimarahi.” Tapi Nobita menjawab, “Itu mustahil,” lalu meminta alat untuk membuat lubang rahasia agar bisa kabur saat dalam bahaya.</p>
             
-            <p>Akhirnya, Doraemon mengeluarkan alat berbentuk ulat robot bernama Space Eater, yang bisa memakan ruang dan membuat terowongan antar-ruangan. Nobita segera mencobanya, membuat terowongan dari pintu kamar menuju taman.</p>
+              <p>Nobita merasa terpojok setelah komik barunya direbut Giant dan ia dimarahi Ibu karena mendapat nilai nol. Ia meminta alat untuk membuat jalan keluar darurat agar bisa kabur saat dalam bahaya. Doraemon memberikan "Space Eater", robot berbentuk ulat yang bisa memakan ruang hampa untuk membuat lubang cacing. Nobita pun mulai membuat berbagai terowongan rahasia di rumahnya untuk menghindari kemarahan Ibu, namun kecerobohannya dalam membuat terlalu banyak lubang justru memicu masalah baru.</p>
             
-            <p>Ketika dengan sengaja ia berteriak bahwa nilai tes sebelumnya juga nol, Mama langsung naik ke lantai dua dengan marah. Namun Nobita dengan cepat kabur lewat terowongan ke taman, lalu kembali ke kamar sebelum Mama sampai. Ia pun sangat puas dengan hasilnya. Sayangnya, karena terlalu senang, Nobita membuat lebih banyak terowongan lagi…!?/p>
+            
+            
           </div>
         </div>
+        
       </div>
 
-      <!-- KELOMPOK 2: Download dan Tonton Online - BERTUMPUK -->
-      <div class="content-group-2">
-        <div class="info-box">
-          <h3>🎬 Download</h3>
-          <table class="download-table">
-            <thead>
-              <tr>
-                <th>Jenis</th>
-                <th>MediaFire</th>
-                <th>TeraBox</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-              <td>Hardsub</td>
-              <td><a href="https://www.mediafire.com/file/b361ybz1eeb91zj/MD%2523335HC.7z/file">Link</a></td>
-              <td><a href="https://1024terabox.com/s/1NWKUFkCu5urr6MWzGzq1kA">Link</a></td>
-            </tr>
-            <tr>
-              <td>Softsub</td>
-              <td><a href="https://www.mediafire.com/file/wg2igkref0v8xyi/MD#335R.7z/file">Link</a></td>
-              <td><a href="https://1024terabox.com/s/1WcoxoPKQGAmTCd-I7ksZ0Q">Link</a></td>
-            </tr>
-            </tbody>
-          </table>
-
-          <div class="password-box">
-            🔐 Password Ekstrak: <code> brazilsirihfansub</code>
-          </div>
-        </div>
-
-        <div class="info-box">
-          <h3>📺 Tonton Online</h3>
-          <table class="download-table">
-            <thead>
-              <tr>
-                <th>Platform</th>
-                <th>Link</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>YouTube</td>
-                <td><a href="">Tidak ada</a></td>
-              </tr>
-              <tr>
-                <td>Bilibili.tv</td>
-                <td><a href="">Tonton</a></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <div class="info-box">
+        <h3>🎬 Download</h3>
+        <table class="download-table">
+          <thead><tr><th>Platform</th><th>Link</th></tr></thead>
+          <tbody>
+            <tr><td>MediaFire</td><td><a href="https://www.mediafire.com/file/lw4yid474gsiyio/Ep+335+HC+Sub+Indo+AV1.mkv/file">Download</a></td></tr>
+            <tr><td>TeraBox</td><td><a href="https://1024terabox.com/s/1GjY7RejanrL1kUgdU-MIlg">Download</a></td></tr>
+          </tbody>
+        </table>
       </div>
     </main>
 
-    <footer id="footer">
-      Disclaimer: Ini adalah fansite non-komersial. Kami tidak berafiliasi dengan pemilik lisensi resmi.
-    </footer>
+    <footer id="footer">Disclaimer: Ini adalah fansite non-komersial. Kami tidak berafiliasi dengan pemilik lisensi resmi.</footer>
   </div>
-
-  <!-- JavaScript untuk Night Mode (standalone untuk halaman episode) -->
-  <script>
-    // Simple Night Mode implementation untuk halaman episode
-    class EpisodeNightMode {
-      constructor() {
-        this.toggleButton = document.getElementById('nightModeToggle');
-        this.isNightMode = localStorage.getItem('nightMode') === 'true';
-        this.init();
-      }
-
-      init() {
-        // Apply saved mode
-        if (this.isNightMode) {
-          this.enableNightMode();
-        }
-
-        // Add event listener
-        this.toggleButton.addEventListener('click', this.toggleMode.bind(this));
-      }
-
-      toggleMode() {
-        this.isNightMode = !this.isNightMode;
-        
-        if (this.isNightMode) {
-          this.enableNightMode();
-        } else {
-          this.disableNightMode();
-        }
-
-        // Save preference
-        localStorage.setItem('nightMode', this.isNightMode);
-      }
-
-      enableNightMode() {
-        document.body.classList.add('night-mode');
-        this.updateToggleIcon(true);
-      }
-
-      disableNightMode() {
-        document.body.classList.remove('night-mode');
-        this.updateToggleIcon(false);
-      }
-
-      updateToggleIcon(isNightMode) {
-        const icon = this.toggleButton.querySelector('.toggle-icon');
-        if (icon) {
-          icon.textContent = isNightMode ? '☀️' : '🌙';
-        }
-      }
-    }
-
-    // Initialize when DOM is loaded
-    document.addEventListener('DOMContentLoaded', () => {
-      new EpisodeNightMode();
-    });
-  </script>
+  <script type="module" src="../js/main.js"></script>
+</body>
 </body>
 </html>
