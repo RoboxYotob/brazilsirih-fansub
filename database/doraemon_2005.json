@@ -1,0 +1,80 @@
+{
+  "slug": "doraemon_2005",
+  "mode": "dynamic",
+  "type": "TV",
+  "title": "Doraemon (2005)",
+  "english": "Doraemon: Gadget Cat from the Future",
+  "indonesia": "Doraemon: Kucing Gadget dari Masa Depan",
+  "uploaded_here": "26-10-2026-22-26",
+  "synopsis": "<p><strong>Doraemon (2005)</strong> adalah seri anime terbaru yang diadaptasi dari manga karya Fujiko F. Fujio. Ini merupakan versi pembaruan dari seri tahun 1979, dengan peningkatan pada staf produksi, pengisi suara, desain karakter, dan suara.</p><p>Doraemon adalah robot berbentuk kucing dari abad ke-22 yang datang ke masa kini untuk membimbing Nobita, seorang anak laki-laki ceroboh, agar berada di jalan yang benar dan meraih masa depan yang lebih baik. Setiap episode menampilkan Doraemon yang memperkenalkan gadget canggih dari abad ke-22 untuk membantu Nobita mengatasi konflik dalam episode tersebut.</p>",
+  "metadata": {
+    "episodes": "Ongoing",
+    "status": "Ongoing",
+    "aired": "Apr 15, 2005 – present",
+    "studio": "Shin-Ei Animation",
+    "source": "Manga",
+    "producers": [
+      "TV Asahi",
+      "ADK Emotions",
+      "Shin-Ei Animation"
+    ],
+    "licensors": [
+      "Viz Media",
+      "LUK Internacional",
+      "Spacetoon India"
+    ],
+    "genres": [
+      "Comedy",
+      "Sci-Fi"
+    ],
+    "themes": [
+      "Anthropomorphic"
+    ],
+    "main_characters": [
+      {
+        "name": "Doraemon",
+        "role": "Protagonist"
+      },
+      {
+        "name": "Nobita Nobi",
+        "role": "Protagonist"
+      },
+      {
+        "name": "Shizuka Minamoto",
+        "role": "Main Heroine"
+      },
+      {
+        "name": "Takeshi Goda (Gian)",
+        "role": "Main"
+      },
+      {
+        "name": "Suneo Honekawa",
+        "role": "Main"
+      }
+    ]
+  },
+  "encoders": {
+    "720p": "Brazil Sirih FanSub",
+    "1080p": "Brazil Sirih FanSub"
+  },
+  "downloads": {
+    "anime_batch": [],
+    "anime_episode": [
+      {
+        "episode": 174,
+        "title": "Gadis yang Mencintai Nobita",
+        "720p": {
+          "size": "225MB",
+          "url": "https://ouo.io/2PIqtW"
+        },
+        "1080p": {
+          "size": "340MB",
+          "url": "https://ouo.io/zY28NsX"
+        }
+      }
+    ],
+    "music": []
+  },
+  "telegram_files": [],
+  "telegram_channel": "https://t.me/+-60OFX7c-EcxZmE1"
+}

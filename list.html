@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daftar Anime · Brazil Sirih FanSub</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- JSON-LD: Referensi ke entitas Brazil Sirih FanSub (didefinisikan penuh di indeks.html) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://brazilsirih-fansub.pages.dev/#organization",
+  "name": "Brazil Sirih FanSub",
+  "alternateName": ["BSFS", "Brazil Sirih"],
+  "url": "https://brazilsirih-fansub.pages.dev/",
+  "logo": "https://brazilsirih-fansub.pages.dev/favicon.ico"
+}
+</script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        brand: { blue: '#1a73e8', dark: '#0d47a1', deep: '#0b1a3a', light: '#e8f0fe', accent: '#4285f4' },
+                        navy: { 50: '#e8edf5', 100: '#c5d0e3', 200: '#9eb3cf', 300: '#7695bb', 400: '#4f77a7', 500: '#2a5a93', 600: '#1e4a7a', 700: '#143a61', 800: '#0b2a48', 900: '#051a30' }
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        /* ============================================================
+           BASE · Background biru lembut dengan radial glow
+           ============================================================ */
+        ::selection { background: #1a73e8; color: #fff; }
+        ::-moz-selection { background: #1a73e8; color: #fff; }
+
+        html, body { min-height: 100%; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #eef4ff;
+            background-image:
+                radial-gradient(circle at 12% 8%, rgba(26, 115, 232, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 88% 92%, rgba(66, 133, 244, 0.10) 0%, transparent 45%),
+                linear-gradient(180deg, #eaf2ff 0%, #dee9f8 100%);
+            background-attachment: fixed;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        html.dark body {
+            background-color: #071224;
+            background-image:
+                radial-gradient(circle at 12% 8%, rgba(66, 133, 244, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 88% 92%, rgba(26, 115, 232, 0.14) 0%, transparent 45%),
+                linear-gradient(180deg, #071224 0%, #0c1b36 100%);
+        }
+
+        /* ============================================================
+           HEADER · Glassmorphism biru
+           ============================================================ */
+        .glass-header {
+            background-color: rgba(235, 245, 255, 0.82);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(26, 115, 232, 0.12);
+            box-shadow: 0 4px 30px rgba(26, 115, 232, 0.06);
+            transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+        html.dark .glass-header {
+            background-color: rgba(10, 22, 45, 0.82);
+            border-bottom: 1px solid rgba(100, 181, 246, 0.14);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.35), 0 0 40px rgba(66, 133, 244, 0.05);
+        }
+
+        /* ============================================================
+           LOGO · Gradient biru
+           ============================================================ */
+        .logo-brazil {
+            background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+        }
+        html.dark .logo-brazil {
+            background: linear-gradient(135deg, #64b5f6 0%, #90caf9 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .logo-sirih {
+            color: #0f2747;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+        }
+        html.dark .logo-sirih { color: #e8f0fe; }
+
+        /* ============================================================
+           NAV LINK · Aksen biru
+           ============================================================ */
+        .nav-link {
+            position: relative;
+            font-weight: 700;
+            transition: all 0.2s;
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            color: #475569;
+        }
+        html.dark .nav-link { color: #cbd5e1; }
+        .nav-link:hover {
+            background-color: rgba(26, 115, 232, 0.08);
+            color: #1a73e8;
+        }
+        html.dark .nav-link:hover {
+            background-color: rgba(100, 181, 246, 0.12);
+            color: #90caf9;
+        }
+        .nav-link.active {
+            background: linear-gradient(135deg, rgba(26, 115, 232, 0.12), rgba(66, 133, 244, 0.10));
+            color: #1a73e8;
+            box-shadow: inset 0 0 0 1px rgba(26, 115, 232, 0.15);
+        }
+        html.dark .nav-link.active {
+            background: linear-gradient(135deg, rgba(100, 181, 246, 0.18), rgba(66, 133, 244, 0.14));
+            color: #90caf9;
+            box-shadow: inset 0 0 0 1px rgba(100, 181, 246, 0.2);
+        }
+
+        /* ============================================================
+           TITLE LINK · hover biru
+           ============================================================ */
+        .title-link {
+            transition: color 0.18s ease, transform 0.18s ease;
+        }
+        .title-link:hover {
+            color: #1a73e8 !important;
+            transform: translateX(3px);
+        }
+        html.dark .title-link:hover {
+            color: #64b5f6 !important;
+            transform: translateX(3px);
+        }
+
+        /* ============================================================
+           SORT SELECT · aksen biru penuh
+           ============================================================ */
+        .sort-select {
+            background-color: #ffffff;
+            border: 1.5px solid rgba(26, 115, 232, 0.25);
+            color: #0f2747;
+            font-weight: 700;
+            padding: 0.55rem 2.2rem 0.55rem 1rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231a73e8' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 10px;
+            cursor: pointer;
+            transition: all 0.25s;
+            box-shadow: 0 1px 3px rgba(26, 115, 232, 0.08);
+        }
+        .sort-select:hover {
+            background-color: #f5f9ff;
+            border-color: rgba(26, 115, 232, 0.45);
+        }
+        .sort-select:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.15);
+        }
+        html.dark .sort-select {
+            background-color: #0f1e3a;
+            border-color: rgba(100, 181, 246, 0.3);
+            color: #e8f0fe;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2390caf9' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+        }
+        html.dark .sort-select:hover {
+            background-color: #162a4f;
+            border-color: rgba(100, 181, 246, 0.5);
+        }
+        html.dark .sort-select:focus {
+            border-color: #64b5f6;
+            box-shadow: 0 0 0 4px rgba(100, 181, 246, 0.15);
+        }
+        html.dark .sort-select option {
+            background: #0f1e3a;
+            color: #e8f0fe;
+        }
+
+        /* ============================================================
+           ALPHABET PILLS · biru
+           ============================================================ */
+        .alpha-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 2.3rem;
+            height: 2.3rem;
+            padding: 0 0.4rem;
+            border-radius: 9999px;
+            font-weight: 800;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: 2px solid rgba(26, 115, 232, 0.12);
+            background-color: #ffffff;
+            color: #1a73e8;
+            box-shadow: 0 1px 3px rgba(26, 115, 232, 0.06);
+            text-decoration: none;
+            user-select: none;
+        }
+        .alpha-pill:hover {
+            background-color: rgba(26, 115, 232, 0.08);
+            border-color: rgba(26, 115, 232, 0.35);
+            transform: translateY(-2px);
+        }
+        .alpha-pill.active {
+            background: linear-gradient(135deg, #1a73e8, #4285f4);
+            color: #fff;
+            border-color: #1a73e8;
+            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+        }
+        .alpha-pill.disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        html.dark .alpha-pill {
+            background-color: #0f1e3a;
+            color: #90caf9;
+            border-color: rgba(100, 181, 246, 0.15);
+        }
+        html.dark .alpha-pill:hover {
+            background-color: rgba(100, 181, 246, 0.12);
+            border-color: rgba(100, 181, 246, 0.35);
+        }
+        html.dark .alpha-pill.active {
+            background: linear-gradient(135deg, #1a73e8, #4285f4);
+            color: #fff;
+            border-color: #64b5f6;
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+        }
+
+        /* ============================================================
+           ALPHABET FILTER CONTAINER
+           ============================================================ */
+        .alpha-container {
+            background-color: rgba(255, 255, 255, 0.7) !important;
+            border: 1px solid rgba(26, 115, 232, 0.14) !important;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(26, 115, 232, 0.06);
+        }
+        html.dark .alpha-container {
+            background-color: rgba(15, 30, 58, 0.75) !important;
+            border-color: rgba(100, 181, 246, 0.14) !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+        }
+        .alpha-container .alpha-divider {
+            background-color: rgba(26, 115, 232, 0.18);
+        }
+        html.dark .alpha-container .alpha-divider {
+            background-color: rgba(100, 181, 246, 0.18);
+        }
+
+        /* ============================================================
+           LIST PANEL CONTAINER
+           ============================================================ */
+        .list-panel {
+            background-color: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(26, 115, 232, 0.12);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 25px rgba(26, 115, 232, 0.05);
+        }
+        html.dark .list-panel {
+            background-color: rgba(15, 30, 58, 0.8);
+            border-color: rgba(100, 181, 246, 0.12);
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ============================================================
+           H1 · Gradient text untuk "Anime"
+           ============================================================ */
+        h1 span.text-brand-blue {
+            background: linear-gradient(135deg, #1a73e8 0%, #4285f4 55%, #64b5f6 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+        html.dark h1 span.text-brand-blue {
+            background: linear-gradient(135deg, #64b5f6 0%, #90caf9 55%, #bbdefb 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        /* ============================================================
+           FOOTER · border atas biru tipis
+           ============================================================ */
+        html body footer {
+            background-color: rgba(235, 245, 255, 0.6) !important;
+            border-top: 1px solid rgba(26, 115, 232, 0.12) !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        html.dark body footer {
+            background-color: rgba(7, 18, 36, 0.6) !important;
+            border-top: 1px solid rgba(100, 181, 246, 0.1) !important;
+        }
+
+        /* ============================================================
+           SIDEBAR MOBILE · gradient navy + glow biru
+           ============================================================ */
+        #mobileSidebar {
+            background: linear-gradient(180deg, #0a1a35 0%, #051025 55%, #0a1a35 100%) !important;
+            border-right: 1px solid rgba(100, 181, 246, 0.15) !important;
+            position: fixed;
+            overflow: hidden;
+        }
+        #mobileSidebar::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -40%;
+            width: 90%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(66, 133, 244, 0.25) 0%, transparent 65%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        #mobileSidebar > * { position: relative; z-index: 1; }
+
+        /* ============================================================
+           SCROLL TOP FLOATING BUTTON
+           ============================================================ */
+        .btn-scroll-top {
+            background: linear-gradient(135deg, #1a73e8, #4285f4);
+            box-shadow: 0 4px 16px rgba(26, 115, 232, 0.4);
+            transition: all 0.25s ease;
+        }
+        .btn-scroll-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(26, 115, 232, 0.55);
+        }
+
+        /* ============================================================
+           SCROLLBAR · biru
+           ============================================================ */
+        ::-webkit-scrollbar { width: 8px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #4285f4, #1a73e8);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #64b5f6, #4285f4);
+        }
+
+        /* ============================================================
+           ANIMASI
+           ============================================================ */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in { animation: fadeIn 0.3s ease-out forwards; }
+    </style>
+</head>
+
+<body class="text-gray-800 dark:text-slate-100 antialiased min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- ============================================================ -->
+    <!--  HEADER (Glassmorphism biru)                                 -->
+    <!-- ============================================================ -->
+    <header class="glass-header sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-18 md:h-20 gap-3">
+
+                <div class="flex items-center gap-4 lg:gap-6 min-w-0 flex-shrink">
+                    <button id="mobileMenuBtn" class="md:hidden p-2 text-slate-600 dark:text-slate-300 hover:text-brand-blue dark:hover:text-sky-400 rounded-lg hover:bg-brand-blue/10 dark:hover:bg-white/10 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+
+                    <a href="indeks.html" class="flex items-center gap-2 group flex-shrink-0">
+                        <span class="font-black text-2xl md:text-3xl tracking-tight">
+                            <span class="logo-brazil">Brazil</span><span class="logo-sirih">Sirih</span>
+                        </span>
+                        <span class="hidden sm:inline-block text-[9px] font-bold text-brand-blue dark:text-sky-300 bg-brand-blue/10 dark:bg-sky-400/10 px-2.5 py-0.5 rounded-full uppercase tracking-widest border border-brand-blue/20 dark:border-sky-400/20">FanSub</span>
+                    </a>
+
+                    <nav class="hidden md:flex items-center gap-0.5 lg:gap-1 ml-3 flex-shrink-0">
+                        <a href="indeks.html" class="nav-link text-sm">Beranda</a>
+                        <a href="list.html" class="nav-link active text-sm">Daftar Anime</a>
+                        <a href="faq.html" class="nav-link text-sm">FAQ</a>
+                        <a href="queue.html" class="nav-link text-sm">Antrian Proyek</a>
+                    </nav>
+                </div>
+
+                <div class="flex items-center gap-2 lg:gap-3 flex-shrink-0">
+                    <div class="hidden md:flex items-center bg-white/70 dark:bg-slate-800/60 backdrop-blur-md border border-brand-blue/15 dark:border-sky-400/15 rounded-full px-4 py-2 focus-within:bg-white dark:focus-within:bg-slate-800 focus-within:ring-2 focus-within:ring-brand-blue/30 transition-all">
+                        <svg class="w-4 h-4 text-brand-blue/70 dark:text-sky-300/80 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                        <input type="text" id="desktopSearch" placeholder="Cari anime..." class="bg-transparent border-none outline-none text-sm w-28 lg:w-44 text-gray-800 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 font-medium" />
+                    </div>
+
+                    <button id="mobileSearchBtn" class="md:hidden p-2.5 rounded-full text-slate-600 dark:text-slate-300 hover:text-brand-blue dark:hover:text-sky-400 hover:bg-brand-blue/10 dark:hover:bg-white/10 transition-colors" aria-label="Cari">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </button>
+
+                    <button id="themeToggle" class="p-2.5 rounded-full text-brand-blue dark:text-sky-300 hover:text-white bg-brand-blue/10 dark:bg-sky-400/10 border border-brand-blue/20 dark:border-sky-400/25 hover:bg-brand-blue dark:hover:bg-sky-500 hover:border-brand-blue dark:hover:border-sky-500 transition-all flex-shrink-0">
+                        <svg id="themeIconDark" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                        </svg>
+                        <svg id="themeIconLight" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" />
+                        </svg>
+                    </button>
+                </div>
+
+            </div>
+
+            <div id="mobileSearchContainer" class="hidden md:hidden pb-4 pt-1">
+                <div class="flex items-center bg-white/70 dark:bg-slate-800/60 backdrop-blur-md border border-brand-blue/15 dark:border-sky-400/15 rounded-full px-4 py-2.5 focus-within:bg-white dark:focus-within:bg-slate-800 focus-within:ring-2 focus-within:ring-brand-blue/30 transition-all">
+                    <svg class="w-5 h-5 text-brand-blue/70 dark:text-sky-300/80 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    <input type="text" id="mobileSearch" placeholder="Cari judul anime..." class="bg-transparent border-none outline-none text-sm w-full text-gray-800 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 font-medium" />
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!--  MOBILE SIDEBAR                                              -->
+    <!-- ============================================================ -->
+    <div id="mobileOverlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 hidden transition-opacity"></div>
+    <div id="mobileSidebar" class="fixed inset-y-0 left-0 w-72 z-50 transform -translate-x-full transition-transform duration-300 shadow-2xl flex flex-col">
+        <div class="p-5 border-b border-sky-400/15 flex justify-between items-center bg-white/5">
+            <span class="font-black text-xl text-white">Menu</span>
+            <button id="closeMobileMenu" class="text-white/60 hover:text-red-400 hover:bg-red-500/10 p-2 rounded-lg transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <div class="flex-1 overflow-y-auto p-6 space-y-6">
+            <nav class="space-y-1">
+                <a href="indeks.html" class="block px-4 py-3 text-white/70 hover:text-white hover:bg-white/10 rounded-lg font-bold transition-colors">🏠 Beranda</a>
+                <a href="list.html" class="block px-4 py-3 text-white bg-gradient-to-r from-brand-blue to-brand-accent rounded-lg font-bold transition-colors shadow-lg shadow-brand-blue/20">📺 Daftar Anime</a>
+                <a href="faq.html" class="block px-4 py-3 text-white/70 hover:text-white hover:bg-white/10 rounded-lg font-bold transition-colors">❓ FAQ</a>
+                <a href="queue.html" class="block px-4 py-3 text-white/70 hover:text-white hover:bg-white/10 rounded-lg font-bold transition-colors">🧾 Antrian Proyek/a>
+            </nav>
+            <hr class="border-sky-400/15" />
+            <div>
+                <p class="text-xs font-bold text-sky-300/60 uppercase tracking-wider mb-3">Catatan Penting</p>
+                <div class="space-y-2 pl-1">
+                    <span class="block text-sm font-semibold text-white/70">Tolong dukung rilisan resmi agar anime baru bisa memiliki dana yang cukup.</span>
+                </div>
+            </div>
+            <hr class="border-sky-400/15" />
+            <div class="pt-2">
+                <button id="sidebarThemeToggle" class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-sky-400/10 border border-sky-400/20 rounded-lg font-bold text-white hover:bg-sky-400/20 transition-colors">
+                    <span id="sidebarThemeIcon">🌙</span> <span id="sidebarThemeLabel">Mode Malam</span>
+                </button>
+            </div>
+        </div>
+        <div class="p-6 border-t border-sky-400/15 bg-white/5">
+            <p class="text-xs text-center text-white/40 font-medium">Brazil Sirih FanSub · Non-komersial</p>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!--  MAIN CONTENT                                                -->
+    <!-- ============================================================ -->
+    <main class="flex-grow max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+
+        <!-- Header Judul & Urutan -->
+        <div class="mb-6 border-b-2 border-brand-blue/20 dark:border-sky-400/15 pb-5 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+            <div>
+                <h1 class="text-3xl md:text-4xl font-black text-gray-800 dark:text-slate-100 tracking-tight">
+                    Daftar <span class="text-brand-blue">Anime</span>
+                    <span class="text-sm font-medium text-gray-400 dark:text-gray-500 ml-2">Teks A–Z</span>
+                </h1>
+                <p class="text-xs md:text-sm text-gray-500 dark:text-gray-400 mt-1 font-medium">
+                    Klik huruf indeks di bawah untuk melompat langsung ke segmen anime terkait.
+                </p>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap">
+                <select id="filterUrut" class="sort-select text-sm">
+                    <option value="az">⬆ A–Z</option>
+                    <option value="za">⬇ Z–A</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- ALPHABET INDEX BAR (Lompat langsung ke segmen tujuan) -->
+        <div class="alpha-container sticky top-20 md:top-24 z-30 flex flex-wrap items-center justify-center sm:justify-start gap-1.5 mb-8 p-3 rounded-2xl">
+            <a href="#seg-0-9" class="alpha-pill" data-letter="0-9">0-9</a>
+            <span class="alpha-divider w-px h-6 mx-0.5"></span>
+            <a href="#seg-A" class="alpha-pill" data-letter="A">A</a>
+            <a href="#seg-B" class="alpha-pill" data-letter="B">B</a>
+            <a href="#seg-C" class="alpha-pill" data-letter="C">C</a>
+            <a href="#seg-D" class="alpha-pill" data-letter="D">D</a>
+            <a href="#seg-E" class="alpha-pill" data-letter="E">E</a>
+            <a href="#seg-F" class="alpha-pill" data-letter="F">F</a>
+            <a href="#seg-G" class="alpha-pill" data-letter="G">G</a>
+            <a href="#seg-H" class="alpha-pill" data-letter="H">H</a>
+            <a href="#seg-I" class="alpha-pill" data-letter="I">I</a>
+            <a href="#seg-J" class="alpha-pill" data-letter="J">J</a>
+            <a href="#seg-K" class="alpha-pill" data-letter="K">K</a>
+            <a href="#seg-L" class="alpha-pill" data-letter="L">L</a>
+            <a href="#seg-M" class="alpha-pill" data-letter="M">M</a>
+            <a href="#seg-N" class="alpha-pill" data-letter="N">N</a>
+            <a href="#seg-O" class="alpha-pill" data-letter="O">O</a>
+            <a href="#seg-P" class="alpha-pill" data-letter="P">P</a>
+            <a href="#seg-Q" class="alpha-pill" data-letter="Q">Q</a>
+            <a href="#seg-R" class="alpha-pill" data-letter="R">R</a>
+            <a href="#seg-S" class="alpha-pill" data-letter="S">S</a>
+            <a href="#seg-T" class="alpha-pill" data-letter="T">T</a>
+            <a href="#seg-U" class="alpha-pill" data-letter="U">U</a>
+            <a href="#seg-V" class="alpha-pill" data-letter="V">V</a>
+            <a href="#seg-W" class="alpha-pill" data-letter="W">W</a>
+            <a href="#seg-X" class="alpha-pill" data-letter="X">X</a>
+            <a href="#seg-Y" class="alpha-pill" data-letter="Y">Y</a>
+            <a href="#seg-Z" class="alpha-pill" data-letter="Z">Z</a>
+        </div>
+
+        <!-- PANEL DAFTAR ANIME (Fokus teks tanpa gambar, 2 Kolom) -->
+        <div id="animeList" class="list-panel rounded-2xl p-6 sm:p-8 space-y-10 min-h-[300px]">
+            <!-- Segmen alfabet di-render oleh JS -->
+        </div>
+
+        <!-- Empty state jika pencarian tidak ada -->
+        <div id="emptyState" class="hidden rounded-2xl p-12 text-center mt-6 transition-colors bg-white/70 dark:bg-[#0f1e3a]/70 border border-brand-blue/12 dark:border-sky-400/12">
+            <div class="text-6xl mb-4">📭</div>
+            <h3 class="text-xl font-black text-gray-700 dark:text-gray-200 mb-2">Tidak ada anime yang cocok</h3>
+            <p class="text-gray-500 dark:text-gray-400 font-medium">Judul anime yang Anda cari tidak ditemukan.</p>
+        </div>
+
+        <!-- Loading shimmer state teks -->
+        <div id="loadingState" class="list-panel rounded-2xl p-6 sm:p-8 space-y-8">
+            <div class="space-y-3">
+                <div class="w-16 h-7 bg-brand-blue/20 dark:bg-sky-400/20 rounded animate-pulse"></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
+                    <div class="h-4 bg-gray-200 dark:bg-slate-700 rounded animate-pulse"></div>
+                    <div class="h-4 bg-gray-200 dark:bg-slate-700 rounded animate-pulse"></div>
+                    <div class="h-4 bg-gray-200 dark:bg-slate-700 rounded animate-pulse"></div>
+                    <div class="h-4 bg-gray-200 dark:bg-slate-700 rounded animate-pulse"></div>
+                </div>
+            </div>
+            <div class="space-y-3 pt-4 border-t border-brand-blue/10 dark:border-sky-400/10">
+                <div class="w-16 h-7 bg-brand-blue/20 dark:bg-sky-400/20 rounded animate-pulse"></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
+                    <div class="h-4 bg-gray-200 dark:bg-slate-700 rounded animate-pulse"></div>
+                    <div class="h-4 bg-gray-200 dark:bg-slate-700 rounded animate-pulse"></div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FLOATING SCROLL TO TOP BUTTON -->
+    <button id="scrollToTopBtn" aria-label="Ke Atas" class="btn-scroll-top fixed bottom-6 right-6 z-40 p-3 rounded-full text-white opacity-0 pointer-events-none transition-all duration-300">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </button>
+
+    <!-- ============================================================ -->
+    <!--  FOOTER                                                      -->
+    <!-- ============================================================ -->
+    <footer class="mt-auto transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 py-8 text-center">
+            <p class="text-sm text-brand-blue/70 dark:text-sky-300/70 font-medium">
+                ⚡ Non-komersial · Tidak terafiliasi dengan pemegang lisensi resmi.
+            </p>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!--  LOGIKA JAVASCRIPT: BERBASIS SEGMEN TEKS & ANCHOR JUMP       -->
+    <!-- ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ---- Daftar Segmen Alfabet Standar ----
+            const DEFAULT_SEGMENTS = ['0-9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+
+            // ---- DOM refs ----
+            const container = document.getElementById('animeList');
+            const emptyState = document.getElementById('emptyState');
+            const loadingState = document.getElementById('loadingState');
+
+            const filterUrut = document.getElementById('filterUrut');
+            const alphaPills = document.querySelectorAll('.alpha-pill');
+            const desktopSearch = document.getElementById('desktopSearch');
+            const mobileSearch = document.getElementById('mobileSearch');
+            const mobileSearchBtn = document.getElementById('mobileSearchBtn');
+            const mobileSearchContainer = document.getElementById('mobileSearchContainer');
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+            // ---- State ----
+            let allAnime = [];
+
+            // Helper URL detail
+            function getDetailUrl(item) {
+                return `anime.html?id=${encodeURIComponent(item.slug)}`;
+            }
+
+            // Normalisasi kategori huruf segmen
+            function getSegmentKey(item) {
+                const char = (item.r || '').trim().charAt(0).toUpperCase();
+                if (/^[0-9]/.test(char)) return '0-9';
+                if (/^[A-Z]/.test(char)) return char;
+                return '0-9'; // Karakter non-alfabet lainnya dimasukkan ke 0-9
+            }
+
+            // ---- Pencarian Pintar ----
+            function searchAnime(query, data) {
+                if (!query || query.trim() === '') return data;
+
+                const q = query.toLowerCase().trim();
+                const words = q.split(/\s+/).filter(w => w.length > 0);
+
+                if (words.length === 0) return data;
+
+                let results = data.filter(item => {
+                    const searchText = ((item.r || '') + ' ' + (item.e || '')).toLowerCase();
+                    return words.every(w => searchText.includes(w));
+                });
+
+                if (results.length > 0) return results;
+
+                const normalizedQuery = q.replace(/[\s\-_.,!?;:]/g, '');
+                if (normalizedQuery.length === 0) return data;
+
+                return data.filter(item => {
+                    const normalizedText = ((item.r || '') + ' ' + (item.e || '')).toLowerCase().replace(/[\s\-_.,!?;:]/g, '');
+                    return normalizedText.includes(normalizedQuery);
+                });
+            }
+
+            // ---- Render Berdasarkan Segmen Teks ----
+            function renderSegments(dataset) {
+                container.innerHTML = '';
+                emptyState.classList.add('hidden');
+
+                if (!dataset || dataset.length === 0) {
+                    emptyState.classList.remove('hidden');
+                    updatePillAvailability(new Set());
+                    return;
+                }
+
+                const isDescending = filterUrut.value === 'za';
+
+                // Kelompokkan anime per huruf
+                const grouped = {};
+                dataset.forEach(item => {
+                    const key = getSegmentKey(item);
+                    if (!grouped[key]) grouped[key] = [];
+                    grouped[key].push(item);
+                });
+
+                // Urutkan anime di dalam setiap segmen
+                Object.keys(grouped).forEach(k => {
+                    if (isDescending) {
+                        grouped[k].sort((a, b) => b.r.localeCompare(a.r));
+                    } else {
+                        grouped[k].sort((a, b) => a.r.localeCompare(b.r));
+                    }
+                });
+
+                // Tentukan urutan segmen
+                let segmentOrder = [...DEFAULT_SEGMENTS];
+                if (isDescending) {
+                    // Jika Z-A: urutkan Z -> A lalu 0-9 di akhir
+                    segmentOrder = segmentOrder.filter(s => s !== '0-9').reverse().concat(['0-9']);
+                }
+
+                const activeSegments = new Set(Object.keys(grouped));
+                updatePillAvailability(activeSegments);
+
+                const fragment = document.createDocumentFragment();
+
+                segmentOrder.forEach(segKey => {
+                    const items = grouped[segKey];
+                    if (!items || items.length === 0) return;
+
+                    const section = document.createElement('section');
+                    // scroll-mt disesuaikan dengan tinggi header + bar alfabet sticky
+                    section.id = `seg-${segKey}`;
+                    section.className = 'scroll-mt-48 md:scroll-mt-52 animate-fade-in';
+
+                    // Header huruf segmen (gaya Doronime)
+                    const header = document.createElement('div');
+                    header.className = 'flex items-baseline justify-between mb-3 pb-1 border-b border-brand-blue/15 dark:border-sky-400/15';
+                    header.innerHTML = `
+                        <h2 class="text-2xl font-black text-brand-blue dark:text-sky-400 tracking-wide">${segKey}</h2>
+                        <span class="text-xs font-bold text-slate-400 dark:text-slate-500">${items.length} Anime</span>
+                    `;
+                    section.appendChild(header);
+
+                    // Grid Teks 2 Kolom (Persis seperti referensi)
+                    const listGrid = document.createElement('div');
+                    listGrid.className = 'grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2';
+
+                    items.forEach(anime => {
+                        const link = document.createElement('a');
+                        link.href = getDetailUrl(anime);
+                        link.className = 'title-link text-[14.5px] md:text-[15px] font-semibold text-gray-800 dark:text-slate-200 py-1 truncate block';
+                        link.title = anime.r;
+                        link.textContent = anime.r;
+                        listGrid.appendChild(link);
+                    });
+
+                    section.appendChild(listGrid);
+                    fragment.appendChild(section);
+                });
+
+                container.appendChild(fragment);
+            }
+
+            // Perbarui tombol alfabet (beri efek redup jika segmen tidak ada datanya)
+            function updatePillAvailability(activeSegments) {
+                alphaPills.forEach(pill => {
+                    const letter = pill.dataset.letter;
+                    if (activeSegments.has(letter)) {
+                        pill.classList.remove('disabled');
+                    } else {
+                        pill.classList.add('disabled');
+                    }
+                });
+            }
+
+            // ---- Filter & Sort Controller ----
+            function applyDataUpdate() {
+                const query = (desktopSearch.value || mobileSearch.value || '').trim();
+                let filtered = [...allAnime];
+
+                if (query) {
+                    filtered = searchAnime(query, filtered);
+                }
+
+                renderSegments(filtered);
+            }
+
+            // ---- Smooth Scrolling Pill Handler ----
+            function setupAlphabetNavigation() {
+                alphaPills.forEach(pill => {
+                    pill.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const letter = this.dataset.letter;
+                        const target = document.getElementById(`seg-${letter}`);
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                            // Tanda visual aktif pada pill yang baru diklik
+                            alphaPills.forEach(p => p.classList.remove('active'));
+                            this.classList.add('active');
+                        }
+                    });
+                });
+            }
+
+            // ---- Floating Scroll To Top ----
+            function handleScrollToTop() {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 400) {
+                        scrollToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+                    } else {
+                        scrollToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+                    }
+                });
+
+                scrollToTopBtn.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            // ---- Theme Controller ----
+            function setTheme(dark) {
+                if (dark) {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('bs_theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('bs_theme', 'light');
+                }
+                updateThemeIcons();
+            }
+
+            function updateThemeIcons() {
+                const isDark = document.documentElement.classList.contains('dark');
+                const darkIcon = document.getElementById('themeIconDark');
+                const lightIcon = document.getElementById('themeIconLight');
+                const sidebarIcon = document.getElementById('sidebarThemeIcon');
+                const sidebarLabel = document.getElementById('sidebarThemeLabel');
+
+                if (isDark) {
+                    darkIcon.classList.remove('hidden');
+                    lightIcon.classList.add('hidden');
+                    if (sidebarIcon) sidebarIcon.textContent = '☀️';
+                    if (sidebarLabel) sidebarLabel.textContent = 'Mode Terang';
+                } else {
+                    darkIcon.classList.add('hidden');
+                    lightIcon.classList.remove('hidden');
+                    if (sidebarIcon) sidebarIcon.textContent = '🌙';
+                    if (sidebarLabel) sidebarLabel.textContent = 'Mode Malam';
+                }
+            }
+
+            function toggleTheme() {
+                setTheme(!document.documentElement.classList.contains('dark'));
+            }
+
+            // ---- Mobile Sidebar ----
+            function toggleSidebar(open) {
+                const sidebar = document.getElementById('mobileSidebar');
+                const overlay = document.getElementById('mobileOverlay');
+                const isOpen = !sidebar.classList.contains('-translate-x-full');
+                const shouldOpen = (open !== undefined) ? open : !isOpen;
+
+                if (shouldOpen) {
+                    sidebar.classList.remove('-translate-x-full');
+                    overlay.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    sidebar.classList.add('-translate-x-full');
+                    overlay.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }
+            }
+
+            function toggleMobileSearch() {
+                mobileSearchContainer.classList.toggle('hidden');
+                if (!mobileSearchContainer.classList.contains('hidden')) {
+                    mobileSearch.focus();
+                }
+            }
+
+            function debounce(fn, delay) {
+                let timer = null;
+                return function(...args) {
+                    clearTimeout(timer);
+                    timer = setTimeout(() => fn.apply(this, args), delay);
+                };
+            }
+
+            // ---- Load Data JSON ----
+            async function loadData() {
+                try {
+                    loadingState.classList.remove('hidden');
+                    container.classList.add('hidden');
+
+                    const res = await fetch('/database/anime.json');
+                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                    const raw = await res.json();
+                    if (!Array.isArray(raw)) throw new Error('Format data tidak sesuai');
+
+                    allAnime = raw.map(item => ({
+                        ...item,
+                        slug: item.r ? item.r.toLowerCase().replace(/\s+/g, '_') : 'unknown'
+                    }));
+
+                    loadingState.classList.add('hidden');
+                    container.classList.remove('hidden');
+
+                    applyDataUpdate();
+
+                } catch (err) {
+                    console.error('Gagal memuat database anime:', err);
+                    loadingState.classList.add('hidden');
+                    container.classList.remove('hidden');
+                    container.innerHTML = `
+                        <div class="text-center py-12 text-red-500 dark:text-red-400">
+                            <p class="text-lg font-bold">⚠️ Gagal memuat data</p>
+                            <p class="text-sm">Pastikan file <code>/database/anime.json</code> tersedia.</p>
+                            <p class="text-xs mt-2 text-gray-500">${err.message}</p>
+                        </div>
+                    `;
+                }
+            }
+
+            // ---- Inisialisasi ----
+            function init() {
+                const stored = localStorage.getItem('bs_theme');
+                if (stored === 'dark') setTheme(true);
+                else if (stored === 'light') setTheme(false);
+                else if (window.matchMedia('(prefers-color-scheme: dark)').matches) setTheme(true);
+                else setTheme(false);
+
+                setupAlphabetNavigation();
+                handleScrollToTop();
+                loadData();
+
+                filterUrut.addEventListener('change', applyDataUpdate);
+
+                const searchHandler = debounce(applyDataUpdate, 180);
+                desktopSearch.addEventListener('input', searchHandler);
+                mobileSearch.addEventListener('input', searchHandler);
+                mobileSearchBtn.addEventListener('click', toggleMobileSearch);
+
+                desktopSearch.addEventListener('input', () => {
+                    if (mobileSearch.value !== desktopSearch.value) mobileSearch.value = desktopSearch.value;
+                });
+                mobileSearch.addEventListener('input', () => {
+                    if (desktopSearch.value !== mobileSearch.value) desktopSearch.value = mobileSearch.value;
+                });
+
+                document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+                document.getElementById('sidebarThemeToggle').addEventListener('click', toggleTheme);
+                document.getElementById('mobileMenuBtn').addEventListener('click', () => toggleSidebar(true));
+                document.getElementById('closeMobileMenu').addEventListener('click', () => toggleSidebar(false));
+                document.getElementById('mobileOverlay').addEventListener('click', () => toggleSidebar(false));
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') toggleSidebar(false);
+                });
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+
+        })();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAQ · Brazil Sirih FanSub</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- JSON-LD: Referensi ke entitas Brazil Sirih FanSub (didefinisikan penuh di indeks.html) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://brazilsirih-fansub.pages.dev/#organization",
+  "name": "Brazil Sirih FanSub",
+  "alternateName": ["BSFS", "Brazil Sirih"],
+  "url": "https://brazilsirih-fansub.pages.dev/",
+  "logo": "https://brazilsirih-fansub.pages.dev/favicon.ico"
+}
+</script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        brand: { blue: '#1a73e8', dark: '#0d47a1', deep: '#0b1a3a', light: '#e8f0fe', accent: '#4285f4' },
+                        navy: { 50: '#e8edf5', 100: '#c5d0e3', 200: '#9eb3cf', 300: '#7695bb', 400: '#4f77a7', 500: '#2a5a93', 600: '#1e4a7a', 700: '#143a61', 800: '#0b2a48', 900: '#051a30' }
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        /* ============================================================
+           BASE · Background biru lembut dengan radial glow
+           ============================================================ */
+        ::selection { background: #1a73e8; color: #fff; }
+        ::-moz-selection { background: #1a73e8; color: #fff; }
+
+        html, body { min-height: 100%; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #eef4ff;
+            background-image:
+                radial-gradient(circle at 12% 8%, rgba(26, 115, 232, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 88% 92%, rgba(66, 133, 244, 0.10) 0%, transparent 45%),
+                linear-gradient(180deg, #eaf2ff 0%, #dee9f8 100%);
+            background-attachment: fixed;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        html.dark body {
+            background-color: #071224;
+            background-image:
+                radial-gradient(circle at 12% 8%, rgba(66, 133, 244, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 88% 92%, rgba(26, 115, 232, 0.14) 0%, transparent 45%),
+                linear-gradient(180deg, #071224 0%, #0c1b36 100%);
+        }
+
+        /* ============================================================
+           HEADER · Glassmorphism biru
+           ============================================================ */
+        .glass-header {
+            background-color: rgba(235, 245, 255, 0.82);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(26, 115, 232, 0.12);
+            box-shadow: 0 4px 30px rgba(26, 115, 232, 0.06);
+            transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+        html.dark .glass-header {
+            background-color: rgba(10, 22, 45, 0.82);
+            border-bottom: 1px solid rgba(100, 181, 246, 0.14);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.35), 0 0 40px rgba(66, 133, 244, 0.05);
+        }
+
+        /* ============================================================
+           LOGO · Gradient biru
+           ============================================================ */
+        .logo-brazil {
+            background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+        }
+        html.dark .logo-brazil {
+            background: linear-gradient(135deg, #64b5f6 0%, #90caf9 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .logo-sirih {
+            color: #0f2747;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+        }
+        html.dark .logo-sirih { color: #e8f0fe; }
+
+        /* ============================================================
+           NAV LINK · Aksen biru
+           ============================================================ */
+        .nav-link {
+            position: relative;
+            font-weight: 700;
+            transition: all 0.2s;
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            color: #475569;
+        }
+        html.dark .nav-link { color: #cbd5e1; }
+        .nav-link:hover {
+            background-color: rgba(26, 115, 232, 0.08);
+            color: #1a73e8;
+        }
+        html.dark .nav-link:hover {
+            background-color: rgba(100, 181, 246, 0.12);
+            color: #90caf9;
+        }
+        .nav-link.active {
+            background: linear-gradient(135deg, rgba(26, 115, 232, 0.12), rgba(66, 133, 244, 0.10));
+            color: #1a73e8;
+            box-shadow: inset 0 0 0 1px rgba(26, 115, 232, 0.15);
+        }
+        html.dark .nav-link.active {
+            background: linear-gradient(135deg, rgba(100, 181, 246, 0.18), rgba(66, 133, 244, 0.14));
+            color: #90caf9;
+            box-shadow: inset 0 0 0 1px rgba(100, 181, 246, 0.2);
+        }
+
+        #desktopSearch, #mobileSearch { caret-color: #1a73e8; }
+
+        /* ============================================================
+           CARD · Aksen bar biru di kiri + border biru tipis
+           ============================================================ */
+        .card-boxy {
+            border-radius: 12px;
+            background-image: linear-gradient(180deg, #1a73e8 0%, #4285f4 55%, #64b5f6 100%);
+            background-size: 4px 100%;
+            background-repeat: no-repeat;
+            background-position: left top;
+            transition: transform 0.25s ease, box-shadow 0.35s ease, background-color 0.3s, border-color 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        html body .card-boxy {
+            background-color: #ffffff;
+            border: 1px solid rgba(26, 115, 232, 0.12) !important;
+            box-shadow: 0 2px 12px rgba(26, 115, 232, 0.06);
+        }
+        html.dark body .card-boxy {
+            background-color: #0f1e3a;
+            border: 1px solid rgba(100, 181, 246, 0.12) !important;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+        }
+        .card-boxy:hover { transform: translateY(-3px); }
+        html body .card-boxy:hover {
+            box-shadow: 0 18px 38px -12px rgba(26, 115, 232, 0.28), 0 0 0 1px rgba(26, 115, 232, 0.08);
+        }
+        html.dark body .card-boxy:hover {
+            box-shadow: 0 18px 38px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(100, 181, 246, 0.18), 0 0 30px rgba(66, 133, 244, 0.08);
+        }
+
+        /* ============================================================
+           H1 · Gradient text untuk kata aksen
+           ============================================================ */
+        h1 span.text-brand-blue {
+            background: linear-gradient(135deg, #1a73e8 0%, #4285f4 55%, #64b5f6 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+        html.dark h1 span.text-brand-blue {
+            background: linear-gradient(135deg, #64b5f6 0%, #90caf9 55%, #bbdefb 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        /* ============================================================
+           FAQ NUMBER BADGE
+           ============================================================ */
+        .faq-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            font-weight: 900;
+            font-size: 0.9rem;
+            background: linear-gradient(135deg, #1a73e8, #4285f4);
+            color: #ffffff;
+            flex-shrink: 0;
+            box-shadow: 0 6px 16px -6px rgba(26, 115, 232, 0.55);
+        }
+        html.dark .faq-number {
+            background: linear-gradient(135deg, #4285f4, #64b5f6);
+            color: #04101f;
+            box-shadow: 0 6px 16px -6px rgba(66, 133, 244, 0.6);
+        }
+
+        /* ============================================================
+           BADGES
+           ============================================================ */
+        .badge-base {
+            font-size: 0.6rem;
+            font-weight: 800;
+            padding: 0.2rem 0.7rem;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            display: inline-block;
+            white-space: nowrap;
+        }
+        .badge-tip {
+            background: #fef9e7;
+            color: #7d5d0e;
+            border: 1px solid #f5d442;
+        }
+        html.dark .badge-tip {
+            background: #2a2410;
+            color: #f5d442;
+            border-color: #7d5d0e;
+        }
+        .badge-important {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+        }
+        html.dark .badge-important {
+            background: #3a1616;
+            color: #fca5a5;
+            border-color: #7f1d1d;
+        }
+        .badge-recommend {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #6ee7b7;
+        }
+        html.dark .badge-recommend {
+            background: #10312a;
+            color: #6ee7b7;
+            border-color: #2d6a4f;
+        }
+        .badge-ai {
+            background: #ede9fe;
+            color: #5b21b6;
+            border: 1px solid #c4b5fd;
+        }
+        html.dark .badge-ai {
+            background: #241a3f;
+            color: #c4b5fd;
+            border-color: #5b21b6;
+        }
+
+        /* ============================================================
+           CODEC / SOURCE TAGS
+           ============================================================ */
+        .codec-tag-sm {
+            display: inline-block;
+            font-weight: 800;
+            font-size: 0.65rem;
+            padding: 0.1rem 0.5rem;
+            border-radius: 5px;
+            background: rgba(26, 115, 232, 0.10);
+            color: #1a73e8;
+            border: 1px solid rgba(26, 115, 232, 0.18);
+            white-space: nowrap;
+        }
+        html.dark .codec-tag-sm {
+            background: rgba(100, 181, 246, 0.12);
+            color: #90caf9;
+            border-color: rgba(100, 181, 246, 0.2);
+        }
+        .codec-tag-sm.hevc {
+            background: rgba(16, 185, 129, 0.12);
+            color: #047857;
+            border-color: rgba(16, 185, 129, 0.25);
+        }
+        html.dark .codec-tag-sm.hevc {
+            background: rgba(52, 211, 153, 0.12);
+            color: #6ee7b7;
+            border-color: rgba(52, 211, 153, 0.22);
+        }
+        .codec-tag-sm.av1 {
+            background: rgba(245, 158, 11, 0.12);
+            color: #92400e;
+            border-color: rgba(245, 158, 11, 0.25);
+        }
+        html.dark .codec-tag-sm.av1 {
+            background: rgba(251, 191, 36, 0.12);
+            color: #fcd34d;
+            border-color: rgba(251, 191, 36, 0.22);
+        }
+        .codec-tag-sm.bd {
+            background: rgba(139, 92, 246, 0.12);
+            color: #6d28d9;
+            border-color: rgba(139, 92, 246, 0.25);
+        }
+        html.dark .codec-tag-sm.bd {
+            background: rgba(167, 139, 250, 0.12);
+            color: #c4b5fd;
+            border-color: rgba(167, 139, 250, 0.22);
+        }
+        .codec-tag-sm.web {
+            background: rgba(6, 182, 212, 0.12);
+            color: #0e7490;
+            border-color: rgba(6, 182, 212, 0.25);
+        }
+        html.dark .codec-tag-sm.web {
+            background: rgba(34, 211, 238, 0.12);
+            color: #67e8f9;
+            border-color: rgba(34, 211, 238, 0.22);
+        }
+        .codec-tag-sm.tv {
+            background: rgba(148, 163, 184, 0.16);
+            color: #475569;
+            border-color: rgba(148, 163, 184, 0.3);
+        }
+        html.dark .codec-tag-sm.tv {
+            background: rgba(148, 163, 184, 0.12);
+            color: #cbd5e1;
+            border-color: rgba(148, 163, 184, 0.22);
+        }
+
+        /* ============================================================
+           STEP LIST
+           ============================================================ */
+        .step-list {
+            list-style: none;
+            padding: 0;
+            margin: 0.6rem 0 0 0;
+        }
+        .step-list li {
+            padding: 0.32rem 0;
+            padding-left: 1.6rem;
+            position: relative;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #475569;
+        }
+        html.dark .step-list li { color: #cbd5e1; }
+        .step-list li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            font-weight: 900;
+            color: #1a73e8;
+            font-size: 1.05rem;
+        }
+        html.dark .step-list li::before { color: #64b5f6; }
+        .step-list li strong { color: #0f2747; font-weight: 800; }
+        html.dark .step-list li strong { color: #e8f0fe; }
+
+        /* ============================================================
+           CALLOUT BOX
+           ============================================================ */
+        .callout {
+            padding: 0.75rem 0.9rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            line-height: 1.55;
+            border: 1px solid transparent;
+        }
+        .callout-blue {
+            background: rgba(26, 115, 232, 0.06);
+            border-color: rgba(26, 115, 232, 0.16);
+            color: #1e3a63;
+        }
+        html.dark .callout-blue {
+            background: rgba(66, 133, 244, 0.10);
+            border-color: rgba(100, 181, 246, 0.18);
+            color: #cbd5e1;
+        }
+        .callout-amber {
+            background: rgba(245, 158, 11, 0.08);
+            border-color: rgba(245, 158, 11, 0.22);
+            color: #78350f;
+        }
+        html.dark .callout-amber {
+            background: rgba(245, 158, 11, 0.10);
+            border-color: rgba(245, 158, 11, 0.24);
+            color: #fcd34d;
+        }
+        .callout-red {
+            background: rgba(239, 68, 68, 0.07);
+            border-color: rgba(239, 68, 68, 0.2);
+            color: #991b1b;
+        }
+        html.dark .callout-red {
+            background: rgba(239, 68, 68, 0.10);
+            border-color: rgba(239, 68, 68, 0.24);
+            color: #fca5a5;
+        }
+        .callout-violet {
+            background: rgba(139, 92, 246, 0.07);
+            border-color: rgba(139, 92, 246, 0.2);
+            color: #4c1d95;
+        }
+        html.dark .callout-violet {
+            background: rgba(139, 92, 246, 0.12);
+            border-color: rgba(167, 139, 250, 0.22);
+            color: #ddd6fe;
+        }
+
+        code.inline-code {
+            background: rgba(26, 115, 232, 0.09);
+            color: #1a73e8;
+            padding: 0.08rem 0.42rem;
+            border-radius: 5px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.82em;
+            font-weight: 700;
+        }
+        html.dark code.inline-code {
+            background: rgba(100, 181, 246, 0.14);
+            color: #90caf9;
+        }
+
+        /* ============================================================
+           SEARCH RESULTS
+           ============================================================ */
+        #searchResultsWrapper {
+            background-color: rgba(235, 245, 255, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(26, 115, 232, 0.12);
+            box-shadow: 0 12px 34px -10px rgba(26, 115, 232, 0.20);
+            transition: all 0.3s ease;
+        }
+        html.dark #searchResultsWrapper {
+            background-color: rgba(10, 22, 45, 0.95);
+            border-bottom-color: rgba(100, 181, 246, 0.14);
+            box-shadow: 0 12px 34px -10px rgba(0, 0, 0, 0.6);
+        }
+        #searchResultsContainer {
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            opacity: 0;
+            transform: translateY(-6px);
+            pointer-events: none;
+            max-height: 0;
+            overflow: hidden;
+        }
+        #searchResultsContainer.open {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+            max-height: 460px;
+            overflow-y: auto;
+        }
+        #searchResultsContainer .result-item {
+            cursor: pointer;
+            transition: background-color 0.15s ease, border-color 0.15s ease;
+            border-radius: 8px;
+        }
+        #searchResultsContainer .result-item:hover {
+            background-color: rgba(26, 115, 232, 0.07);
+        }
+        html.dark #searchResultsContainer .result-item:hover {
+            background-color: rgba(100, 181, 246, 0.10);
+        }
+        #searchResultsContainer .result-item .arrow-icon {
+            opacity: 0;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        #searchResultsContainer .result-item:hover .arrow-icon {
+            opacity: 1;
+            transform: translateX(4px);
+        }
+        .result-highlight {
+            background: #fbbf24;
+            color: #0b1a3a;
+            font-weight: 800;
+            padding: 0 2px;
+            border-radius: 3px;
+        }
+        html.dark .result-highlight {
+            background: #f59e0b;
+            color: #0b1a3a;
+        }
+        #searchResultsContainer::-webkit-scrollbar { width: 4px; }
+        #searchResultsContainer::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #4285f4, #1a73e8);
+            border-radius: 10px;
+        }
+        .spinner {
+            border: 3px solid rgba(26, 115, 232, 0.15);
+            border-top-color: #1a73e8;
+            border-radius: 50%;
+            width: 26px;
+            height: 26px;
+            animation: spin 0.7s linear infinite;
+        }
+        html.dark .spinner {
+            border-color: rgba(100, 181, 246, 0.15);
+            border-top-color: #64b5f6;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ============================================================
+           SIDEBAR MOBILE
+           ============================================================ */
+        #mobileSidebar {
+            background: linear-gradient(180deg, #0a1a35 0%, #051025 55%, #0a1a35 100%);
+            border-right: 1px solid rgba(100, 181, 246, 0.15);
+            position: fixed;
+            overflow: hidden;
+        }
+        #mobileSidebar::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -40%;
+            width: 90%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(66, 133, 244, 0.25) 0%, transparent 65%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        #mobileSidebar > * { position: relative; z-index: 1; }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        html body footer {
+            background-color: rgba(235, 245, 255, 0.6) !important;
+            border-top: 1px solid rgba(26, 115, 232, 0.12) !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        html.dark body footer {
+            background-color: rgba(7, 18, 36, 0.6) !important;
+            border-top: 1px solid rgba(100, 181, 246, 0.1) !important;
+        }
+
+        /* ============================================================
+           SCROLLBAR
+           ============================================================ */
+        ::-webkit-scrollbar { width: 8px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #4285f4, #1a73e8);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #64b5f6, #4285f4);
+        }
+
+        /* ============================================================
+           ANIMASI
+           ============================================================ */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-up { animation: fadeUp 0.4s ease-out both; }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-slide-down { animation: slideDown 0.2s ease-out forwards; }
+
+        @media (max-width: 640px) {
+            .faq-number { width: 32px; height: 32px; font-size: 0.78rem; border-radius: 10px; }
+            .card-boxy { border-radius: 10px; }
+        }
+    </style>
+</head>
+
+<body class="text-gray-800 dark:text-slate-100 antialiased min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- ============================================================ -->
+    <!--  HEADER (Glassmorphism biru)                                 -->
+    <!-- ============================================================ -->
+    <header class="glass-header sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-18 md:h-20 gap-3">
+
+                <div class="flex items-center gap-4 lg:gap-6 min-w-0 flex-shrink">
+                    <button id="mobileMenuBtn" class="md:hidden p-2 text-slate-600 dark:text-slate-300 hover:text-brand-blue dark:hover:text-sky-400 rounded-lg hover:bg-brand-blue/10 dark:hover:bg-white/10 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+
+                    <a href="indeks.html" class="flex items-center gap-2 group flex-shrink-0">
+                        <span class="font-black text-2xl md:text-3xl tracking-tight">
+                            <span class="logo-brazil">Brazil</span><span class="logo-sirih">Sirih</span>
+                        </span>
+                        <span class="hidden sm:inline-block text-[9px] font-bold text-brand-blue dark:text-sky-300 bg-brand-blue/10 dark:bg-sky-400/10 px-2.5 py-0.5 rounded-full uppercase tracking-widest border border-brand-blue/20 dark:border-sky-400/20">FanSub</span>
+                    </a>
+
+                    <nav class="hidden md:flex items-center gap-0.5 lg:gap-1 ml-3 flex-shrink-0">
+                        <a href="indeks.html" class="nav-link text-sm">Beranda</a>
+                        <a href="list.html" class="nav-link text-sm">Daftar Anime</a>
+                        <a href="faq.html" class="nav-link active text-sm">FAQ</a>
+                        <a href="queue.html" class="nav-link text-sm">Antrian Proyek</a>
+                    </nav>
+                </div>
+
+                <div class="flex items-center gap-2 lg:gap-3 flex-shrink-0">
+                    <div class="hidden md:flex items-center bg-white/70 dark:bg-slate-800/60 backdrop-blur-md border border-brand-blue/15 dark:border-sky-400/15 rounded-full px-4 py-2 focus-within:bg-white dark:focus-within:bg-slate-800 focus-within:ring-2 focus-within:ring-brand-blue/30 transition-all">
+                        <svg class="w-4 h-4 text-brand-blue/70 dark:text-sky-300/80 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                        <input type="text" id="desktopSearch" placeholder="Cari anime..." class="bg-transparent border-none outline-none text-sm w-28 lg:w-44 text-gray-800 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 font-medium" autocomplete="off" />
+                    </div>
+
+                    <button id="mobileSearchBtn" class="md:hidden p-2.5 rounded-full text-slate-600 dark:text-slate-300 hover:text-brand-blue dark:hover:text-sky-400 hover:bg-brand-blue/10 dark:hover:bg-white/10 transition-colors" aria-label="Cari">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </button>
+
+                    <button id="themeToggle" class="p-2.5 rounded-full text-brand-blue dark:text-sky-300 hover:text-white bg-brand-blue/10 dark:bg-sky-400/10 border border-brand-blue/20 dark:border-sky-400/25 hover:bg-brand-blue dark:hover:bg-sky-500 hover:border-brand-blue dark:hover:border-sky-500 transition-all flex-shrink-0">
+                        <svg id="themeIconDark" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                        </svg>
+                        <svg id="themeIconLight" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" />
+                        </svg>
+                    </button>
+                </div>
+
+            </div>
+
+            <div id="mobileSearchContainer" class="hidden md:hidden pb-4 pt-1 animate-slide-down">
+                <div class="flex items-center bg-white/70 dark:bg-slate-800/60 backdrop-blur-md border border-brand-blue/15 dark:border-sky-400/15 rounded-full px-4 py-2.5 focus-within:bg-white dark:focus-within:bg-slate-800 focus-within:ring-2 focus-within:ring-brand-blue/30 transition-all">
+                    <svg class="w-5 h-5 text-brand-blue/70 dark:text-sky-300/80 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    <input type="text" id="mobileSearch" placeholder="Cari judul anime..." class="bg-transparent border-none outline-none text-sm w-full text-gray-800 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 font-medium" autocomplete="off" />
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!--  SEARCH RESULTS CONTAINER                                     -->
+    <!-- ============================================================ -->
+    <div id="searchResultsWrapper" class="sticky top-[72px] md:top-[80px] z-40 max-h-0 overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-0">
+            <div id="searchResultsContainer">
+                <div id="searchResultsInner" class="py-4 space-y-1.5"></div>
+                <div id="searchLoading" class="flex items-center justify-center py-6 hidden">
+                    <div class="spinner"></div>
+                    <span class="ml-3 text-sm font-semibold text-slate-500 dark:text-slate-400">Memuat data...</span>
+                </div>
+                <div id="searchEmpty" class="py-6 text-center text-sm font-medium text-slate-400 dark:text-slate-500 hidden">
+                    Tidak ada hasil untuk pencarian ini.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!--  MOBILE SIDEBAR                                              -->
+    <!-- ============================================================ -->
+    <div id="mobileOverlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 hidden transition-opacity"></div>
+    <div id="mobileSidebar" class="fixed inset-y-0 left-0 w-72 z-50 transform -translate-x-full transition-transform duration-300 shadow-2xl flex flex-col">
+        <div class="p-5 border-b border-sky-400/15 flex justify-between items-center bg-white/5">
+            <span class="font-black text-xl text-white">Menu</span>
+            <button id="closeMobileMenu" class="text-white/60 hover:text-red-400 hover:bg-red-500/10 p-2 rounded-lg transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <div class="flex-1 overflow-y-auto p-6 space-y-6">
+            <nav class="space-y-1">
+                <a href="indeks.html" class="block px-4 py-3 text-white/70 hover:text-white hover:bg-white/10 rounded-lg font-bold transition-colors">🏠 Beranda</a>
+                <a href="list.html" class="block px-4 py-3 text-white/70 hover:text-white hover:bg-white/10 rounded-lg font-bold transition-colors">📺 Daftar Anime</a>
+                <a href="faq.html" class="block px-4 py-3 text-white bg-gradient-to-r from-brand-blue to-brand-accent rounded-lg font-bold shadow-lg shadow-brand-blue/20">❓ FAQ</a>
+                <a href="queue.html" class="block px-4 py-3 text-white/70 hover:text-white hover:bg-white/10 rounded-lg font-bold transition-colors">🧾 Antrian Proyek</a>
+            </nav>
+            <hr class="border-sky-400/15" />
+            <div>
+                <p class="text-xs font-bold text-sky-300/60 uppercase tracking-wider mb-3">Catatan Penting</p>
+                <div class="space-y-2 pl-1">
+                    <span class="block text-sm font-semibold text-white/70">Tolong dukung rilisan resmi agar anime baru bisa memiliki dana yang cukup.</span>
+                </div>
+            </div>
+            <hr class="border-sky-400/15" />
+            <div class="pt-2">
+                <button id="sidebarThemeToggle" class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-sky-400/10 border border-sky-400/20 rounded-lg font-bold text-white hover:bg-sky-400/20 transition-colors">
+                    <span id="sidebarThemeIcon">🌙</span> <span id="sidebarThemeLabel">Mode Malam</span>
+                </button>
+            </div>
+        </div>
+        <div class="p-6 border-t border-sky-400/15 bg-white/5">
+            <p class="text-xs text-center text-white/40 font-medium">Brazil Sirih FanSub · Non-komersial</p>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!--  MAIN CONTENT — FAQ                                           -->
+    <!-- ============================================================ -->
+    <main class="flex-grow max-w-5xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+
+        <!-- Page header -->
+        <div class="mb-8 border-b-2 border-brand-blue/20 dark:border-sky-400/15 pb-5 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+            <h1 class="text-3xl md:text-4xl font-black text-gray-800 dark:text-slate-100 tracking-tight">
+                ❓ Pertanyaan <span class="text-brand-blue">Umum</span>
+            </h1>
+            <span class="text-sm font-semibold text-brand-blue dark:text-sky-300 bg-brand-blue/10 dark:bg-sky-400/10 border border-brand-blue/15 dark:border-sky-400/20 px-4 py-1.5 rounded-full">
+                9 pertanyaan
+            </span>
+        </div>
+
+        <!-- FAQ List -->
+        <div class="space-y-5">
+
+            <!-- 1. Player -->
+            <article class="card-boxy bg-white dark:bg-[#0f1e3a] p-5 md:p-7 flex items-start gap-4 animate-fade-up">
+                <span class="faq-number">1</span>
+                <div class="flex-1 min-w-0">
+                    <h3 class="text-lg md:text-xl font-black text-gray-800 dark:text-slate-100 flex items-center gap-2 flex-wrap">
+                        🎬 Player apa yang direkomendasikan?
+                        <span class="badge-base badge-tip">rekomendasi</span>
+                    </h3>
+                    <p class="mt-2 text-gray-600 dark:text-gray-300 leading-relaxed">
+                        Kami sangat merekomendasikan <strong class="text-brand-blue dark:text-sky-400">mpv player</strong> — pemutar video gratis, ringan, dan mendukung hampir semua format serta codec.
+                    </p>
+                    <ul class="step-list">
+                        <li><strong>mpv</strong> tersedia untuk <strong>Windows, Linux, macOS</strong>, serta <strong>Android</strong> (mpv-android) dan <strong>iOS</strong> (via AltStore / sideload).</li>
+                        <li>Menampilkan <strong>subtitle terpisah</strong> dengan rendering terbaik — font, ukuran, dan posisi teks sesuai desain.</li>
+                        <li>Dukungan penuh untuk <strong>HEVC (H.265)</strong> dan <strong>AV1</strong> tanpa perlu instalasi codec tambahan.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <!-- 2. HD / HD+ / WEB / BD + RealESRGAN -->
+            <article class="card-boxy bg-white dark:bg-[#0f1e3a] p-5 md:p-7 flex items-start gap-4 animate-fade-up" style="animation-delay:0.05s">
+                <span class="faq-number">2</span>
+                <div class="flex-1 min-w-0">
+                    <h3 class="text-lg md:text-xl font-black text-gray-800 dark:text-slate-100 flex items-center gap-2 flex-wrap">
+                        ⚡ Apa perbedaan <span class="text-brand-blue">HD,</span> HD+, WEB, dan BD?
+                        <span class="badge-base badge-important">kualitas</span>
+                    </h3>
+
+                    <div class="mt-3 space-y-3 text-gray-600 dark:text-gray-300 leading-relaxed">
+
+                        <!-- HD -->
+                        <div class="callout callout-blue">
+                            <p class="font-black text-brand-blue dark:text-sky-300 mb-1">
+                                <span class="codec-tag-sm">HD</span> — 1080p
+                            </p>
+                            <p class="text-sm">
+                                Video dengan kodec  <span class="badge-base badge-tip">AV1 </span> atau <span class="codec-tag-sm hevc">HEVC</span> atau <span class="codec-tag-sm">AVC</span>, ukuran file sedang (<strong>~4–6 GB per 12 episode</strong>). Kualitas sangat jernih dan cocok untuk sebagian besar perangkat.
+                            </p>
+                        </div>
+
+                        <!-- HD+ -->
+                        <div class="callout callout-blue">
+                            <p class="font-black text-brand-blue dark:text-sky-300 mb-1">
+                                <span class="codec-tag-sm">HD+</span> — 1080p High Bitrate
+                            </p>
+                            <p class="text-sm">
+                                Versi <strong>High Bitrate (HBR)</strong> dengan kodec <span class="codec-tag-sm hevc">HEVC</span> dan audio <strong>FLAC</strong> lossless. Ukuran file jauh lebih besar (<strong>&gt;15 GB per 12 episode</strong>), tetapi memberikan kualitas gambar dan suara tertinggi tanpa kompromi.
+                            </p>
+                        </div>
+
+                        <!-- WEB -->
+                        <div class="callout callout-blue">
+                            <p class="font-black text-brand-blue dark:text-sky-300 mb-1">
+                                <span class="codec-tag-sm web">WEB</span> — Web-DL
+                            </p>
+                            <p class="text-sm">
+                                Sumbernya diambil dari <strong>platform streaming resmi</strong> (Web-DL). Rilisnya paling cepat dan paling baru, tapi bitrate-nya lebih rendah dibanding BD sehingga detail gambar sedikit di bawahnya.
+                            </p>
+                        </div>
+
+                        <!-- BD -->
+                        <div class="callout callout-blue">
+                            <p class="font-black text-brand-blue dark:text-sky-300 mb-1">
+                                <span class="codec-tag-sm bd">BD</span> — Blu-ray
+                            </p>
+                            <p class="text-sm">
+                                Sumber master <strong>paling berkualitas</strong>. Bitrate tinggi, sudah melewati perbaikan dari tim produksi (banding hilang, tidak ada logo stasiun, tidak ada credit di tengah episode). Biasanya baru tersedia setelah season selesai.
+                            </p>
+                        </div>
+
+                        <!-- RealESRGAN -->
+                        <div class="callout callout-violet">
+                            <p class="font-black mb-1 flex items-center gap-2 flex-wrap">
+                                <span class="codec-tag-sm bd" style="background:rgba(139,92,246,.15);color:#6d28d9;border-color:rgba(139,92,246,.3);">HD RealESRGAN</span>
+                                <span class="badge-base badge-ai">AI Restorasi</span>
+                            </p>
+                            <p class="text-sm">
+                                Label <strong>RealESRGAN</strong> di samping tulisan HD menandakan bahwa <strong>master file aslinya terlalu buruk</strong> — resolusi rendah, blur, penuh kompresi, atau hasil rip lama — sehingga harus <strong>direstorasi dengan AI</strong> terlebih dahulu.
+                            </p>
+                            <p class="text-sm mt-2">
+                                <strong>Real-ESRGAN</strong> menggunakan pendekatan <strong>Generative Adversarial Network (GAN)</strong>, yaitu dua model AI yang saling bekerja sama: satu model bertugas <em>merekonstruksi</em> detail gambar, model lainnya bertugas <em>menilai</em> apakah hasilnya sudah terlihat nyata. Keduanya beradu terus sampai hasil akhirnya semirip mungkin dengan sumber berkualitas tinggi.
+                            </p>
+                            <p class="text-[13px] mt-2 opacity-80">
+                                Hasilnya memang bukan keajaiban — detail yang hilang tidak bisa kembali 100%. Tapi untuk seri langka dengan master buruk, ini satu-satunya jalan agar layak ditonton di layar modern.
+                            </p>
+                        </div>
+
+                        <div class="callout callout-amber">
+                            <span class="font-black">💡 Intinya:</span>
+                            <span class="text-sm"> <strong>TV</strong> &lt; <strong>WEB</strong> &lt; <strong>HD</strong> &lt; <strong>BD</strong>, dan <strong>HD+</strong> adalah versi bitrate tertinggi. Label <strong>RealESRGAN</strong> hanya muncul untuk seri yang master aslinya perlu diselamatkan dulu.</span>
+                        </div>
+
+                    </div>
+                </div>
+            </article>
+
+            <!-- 3. Telegram -->
+            <article class="card-boxy bg-white dark:bg-[#0f1e3a] p-5 md:p-7 flex items-start gap-4 animate-fade-up" style="animation-delay:0.10s">
+                <span class="faq-number">3</span>
+                <div class="flex-1 min-w-0">
+                    <h3 class="text-lg md:text-xl font-black text-gray-800 dark:text-slate-100 flex items-center gap-2 flex-wrap">
+                        ✈️ Bagaimana cara memakai Telegram untuk unduh?
+                        <span class="badge-base badge-tip">panduan</span>
+                    </h3>
+                    <div class="mt-2 space-y-3 text-gray-600 dark:text-gray-300 leading-relaxed">
+                        <p>
+                            Di setiap halaman <strong>detail episode (landing page)</strong>, kami mencantumkan <strong>nama file</strong> yang harus kamu cari di channel Telegram kami.
+                        </p>
+                        <ul class="step-list">
+                            <li><strong>Buka Telegram</strong> dan masuk ke channel resmi Brazil Sirih FanSub.</li>
+                            <li>Gunakan fitur <strong>pencarian</strong> di dalam channel (ikon 🔍) dan ketikkan <strong>nama file</strong> yang tertera di halaman download.</li>
+                            <li>Klik hasil pencarian, lalu <strong>unduh</strong> file tersebut.</li>
+                            <li>Jika file dipecah menjadi beberapa bagian (<code class="inline-code">.001</code>, <code class="inline-code">.002</code>, dst.), unduh <strong>semua bagian</strong> ke folder yang sama.</li>
+                        </ul>
+                        <div class="callout callout-amber">
+                            <span class="font-bold">🔑 Nama file selalu tersedia di landing page, jadi perhatikan dengan saksama.</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 4. Ekstrak -->
+            <article class="card-boxy bg-white dark:bg-[#0f1e3a] p-5 md:p-7 flex items-start gap-4 animate-fade-up" style="animation-delay:0.15s">
+                <span class="faq-number">4</span>
+                <div class="flex-1 min-w-0">
+                    <h3 class="text-lg md:text-xl font-black text-gray-800 dark:text-slate-100 flex items-center gap-2 flex-wrap">
+                        📦 Bagaimana cara ekstrak file-nya?
+                        <span class="badge-base badge-important">wajib baca</span>
+                    </h3>
+                    <div class="mt-2 space-y-3 text-gray-600 dark:text-gray-300 leading-relaxed">
+                        <p>
+                            Gunakan <strong>7-Zip</strong> (PC) atau <strong>ZArchiver</strong> (Android) untuk mengekstrak. <strong>Password</strong> yang benar harus dimasukkan.
+                        </p>
+                        <ul class="step-list">
+                            <li><strong>Password:</strong> <code class="inline-code">brazilsirihfansub</code> (semua file menggunakan password yang sama).</li>
+                            <li>Jika file berbentuk <code class="inline-code">.001</code>, <code class="inline-code">.002</code>, dst., pastikan <strong>semua part</strong> berada di <strong>folder yang sama</strong>.</li>
+                            <li>Buka file <strong><code class="inline-code">.001</code></strong> dengan 7-Zip / ZArchiver, lalu ekstrak seperti biasa.</li>
+                            <li>Aplikasi akan secara otomatis menggabungkan seluruh part menjadi satu file utuh.</li>
+                        </ul>
+                        <div class="callout callout-red">
+                            <span class="font-bold">⚠️ Pastikan password diketik dengan tepat (case-sensitive).</span>
+                        </div>
+                        <div class="callout callout-blue">
+                            <span class="font-black">📌 Catatan:</span> file <code class="inline-code">.001</code> / <code class="inline-code">.002</code> adalah <strong>7-Zip chunk</strong> — file besar dipecah maksimal <strong>4 GB</strong> per bagian agar bisa diunggah ke Telegram. Jangan ekstrak <code class="inline-code">.002</code> atau lainnya, cukup buka <code class="inline-code">.001</code>.
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 5. BD > WEB > TV -->
+            <article class="card-boxy bg-white dark:bg-[#0f1e3a] p-5 md:p-7 flex items-start gap-4 animate-fade-up" style="animation-delay:0.20s">
+                <span class="faq-number">5</span>
+                <div class="flex-1 min-w-0">
+                    <h3 class="text-lg md:text-xl font-black text-gray-800 dark:text-slate-100 flex items-center gap-2 flex-wrap">
+                        🥇 Sebaiknya pilih <span class="text-brand-blue">BD</span>, WEB, atau TV?
+                        <span class="badge-base badge-recommend">prioritas</span>
+                    </h3>
+                    <div class="mt-2 space-y-3 text-gray-600 dark:text-gray-300 leading-relaxed">
+                        <p>
+                            Urutan prioritas kami jelas: <strong>BD &gt; WEB &gt; TV</strong>. Kalau seri yang kamu incar punya versi BD, <strong>selalu ambil BD</strong>.
+                        </p>
+
+                        <div class="callout callout-violet">
+                            <p class="font-black mb-1"><span class="codec-tag-sm bd">BD</span> — pilihan utama</p>
+                            <p class="text-sm">Sumber master terbaik. Bitrate tinggi, warna dan gradasi lebih halus, tidak ada logo stasiun, tidak ada credit maupun preview episode berikutnya, dan audio biasanya lossless. Kekurangannya cuma satu: rilisnya lebih lama karena menunggu Blu-ray keluar.</p>
+                        </div>
+
+                        <div class="callout callout-blue">
+                            <p class="font-black mb-1"><span class="codec-tag-sm web">WEB</span> — pilihan kedua</p>
+                            <p class="text-sm">Diambil dari platform streaming resmi, jadi relatif cepat tersedia dan gambarnya sudah bersih tanpa logo TV. Bitrate lebih rendah dari BD, tapi masih sangat layak dan sering jadi satu-satunya opsi untuk seri yang belum pernah dibundel ke Blu-ray.</p>
+                        </div>
+
+                        <div class="callout callout-amber">
+                            <p class="font-black mb-1"><span class="codec-tag-sm tv">TV</span> — pilihan terakhir</p>
+                            <p class="text-sm">Hasil rekaman siaran. Biasanya ada logo stasiun, teks credit di tengah adegan, preview episode berikutnya, dan kadang efek sensor cahaya. Tetap berguna untuk seri yang belum ada WEB/BD-nya sama sekali, atau untuk yang ingin nonton secepat mungkin setelah tayang.</p>
+                        </div>
+
+                        <div class="callout callout-blue">
+                            <span class="font-black text-brand-blue dark:text-sky-400">💡 Kesimpulan:</span>
+                            <span class="text-sm"> Kalau ada BD, pakai BD. Kalau belum ada, WEB sudah lebih dari cukup. TV hanya untuk yang mendesak atau seri yang memang tidak punya rilis lain.</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 6. Kenapa softsub -->
+            <article class="card-boxy bg-white dark:bg-[#0f1e3a] p-5 md:p-7 flex items-start gap-4 animate-fade-up" style="animation-delay:0.25s">
+                <span class="faq-number">6</span>
+                <div class="flex-1 min-w-0">
+                    <h3 class="text-lg md:text-xl font-black text-gray-800 dark:text-slate-100 flex items-center gap-2 flex-wrap">
+                        🈁 Kenapa semua rilisan menggunakan softsub?
+                        <span class="badge-base badge-tip">alasan</span>
+                    </h3>
+                    <div class="mt-2 space-y-3 text-gray-600 dark:text-gray-300 leading-relaxed">
+                        <p>
+                            Jawaban singkatnya: <strong>karena kami bukan encoder</strong>. Fokus kami ada di penerjemahan dan penyuntingan teks, bukan di mengolah ulang video.
+                        </p>
+                        <ul class="step-list">
+                            <li>Encoder profesional seperti <strong>Ironclad</strong>, <strong>FLAV1N</strong>, dan nama-nama besar lainnya menghasilkan encode yang <strong>jauh lebih baik</strong> daripada hasil encode kami sendiri — dari sisi detail, banding, hingga efisiensi ukuran file.</li>
+                            <li>Meng-encode sendiri juga <strong>memakan waktu yang sangat banyak</strong>: satu seri bisa menghabiskan berjam-jam hingga berhari-hari hanya untuk proses kompresi, belum termasuk uji kualitas berulang.</li>
+                            <li>Daripada membuang waktu ke hal yang sudah dikerjakan lebih baik oleh orang lain, kami memilih memakai video hasil encode mereka dan <strong>mengalokasikan waktu ke terjemahan</strong> — bagian yang justru jadi nilai utama fansub.</li>
+                        </ul>
+                        <div class="callout callout-blue">
+                            <span class="font-black text-brand-blue dark:text-sky-400">📌 Pengecualian:</span>
+                            <span class="text-sm"> untuk beberapa <strong>seri langka</strong> — misalnya <strong>Doraemon</strong> — yang tidak punya rilis layak dari encoder mana pun, kami terpaksa melakukan <strong>encode sendiri</strong>. Jadi kalau kamu menemukan rilisan dengan kualitas berbeda pada seri-seri seperti itu, itulah alasannya.</span>
+                        </div>
+                        <div class="callout callout-amber">
+                            <span class="font-bold text-sm">🎯 Bonusnya untuk kamu:</span>
+                            <span class="text-sm"> teks terjemahan bisa diaktifkan/dinonaktifkan, ukuran dan fontnya bisa diubah sesuai selera, dan kamu bebas memilih sumber video mana yang ingin dipasangkan.</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 7. Website utama -->
+            <article class="card-boxy bg-white dark:bg-[#0f1e3a] p-5 md:p-7 flex items-start gap-4 animate-fade-up" style="animation-delay:0.30s">
+                <span class="faq-number">7</span>
+                <div class="flex-1 min-w-0">
+                    <h3 class="text-lg md:text-xl font-black text-gray-800 dark:text-slate-100 flex items-center gap-2 flex-wrap">
+                        🌐 Apakah website ini adalah tempat rilisan utama?
+                        <span class="badge-base badge-recommend">resmi</span>
+                    </h3>
+                    <p class="mt-2 text-gray-600 dark:text-gray-300 leading-relaxed">
+                        <strong>Ya, benar.</strong> Website ini adalah <strong>tempat rilisan utama</strong> dari Brazil Sirih FanSub. Semua episode terbaru, informasi, dan link unduhan <strong>pertama kali</strong> diunggah di sini.
+                    </p>
+                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                        🔔 Saluran Telegram dan platform lainnya hanya sebagai <strong>alternatif distribusi</strong> untuk memudahkan akses. Namun, <strong>rilisan resmi selalu dimulai dari website ini</strong>.
+                    </p>
+                </div>
+            </article>
+
+            <!-- 8. Rekomendasi akhir -->
+            <article class="card-boxy bg-white dark:bg-[#0f1e3a] p-5 md:p-7 flex items-start gap-4 animate-fade-up" style="animation-delay:0.35s; border-color: rgba(26,115,232,0.35) !important;">
+                <span class="faq-number">⭐</span>
+                <div class="flex-1 min-w-0">
+                    <h3 class="text-lg md:text-xl font-black text-gray-800 dark:text-slate-100 flex items-center gap-2 flex-wrap">
+                        🏆 Apa yang paling direkomendasikan?
+                        <span class="badge-base badge-recommend">pilihan terbaik</span>
+                    </h3>
+                    <div class="mt-2 space-y-3 text-gray-600 dark:text-gray-300 leading-relaxed">
+                        <p>
+                            Kami sangat merekomendasikan <strong class="text-brand-blue dark:text-sky-400">1080p HD berbasis BD</strong> dengan kodec <span class="codec-tag-sm hevc">HEVC</span> atau <span class="codec-tag-sm av1">AV1</span>.
+                        </p>
+                        <ul class="step-list">
+                            <li><strong>Sumbernya BD</strong> — kualitas gambar paling bersih, tanpa logo stasiun dan tanpa gangguan credit.</li>
+                            <li><strong>Ukuran file tidak terlalu besar</strong> — nyaman untuk diunduh dan disimpan.</li>
+                            <li><strong>Kualitas gambar sangat jernih</strong> — hampir setara dengan Blu-ray asli.</li>
+                        </ul>
+                        <div class="callout callout-amber">
+                            <span class="font-bold">⚡ Catatan:</span> karena menggunakan <strong>HEVC</strong> atau <strong>AV1</strong>, pastikan perangkat kamu <strong>mendukung</strong> codec tersebut (kebanyakan perangkat modern sudah mendukung). Jika tidak, gunakan pemutar seperti <strong>mpv</strong> yang sudah memiliki dukungan bawaan.
+                        </div>
+                        <div class="callout callout-blue">
+                            <span class="text-sm">📌 <strong>HD+ HBR</strong> direkomendasikan hanya jika kamu menginginkan kualitas <strong>terbaik absolut</strong> dan tidak mempermasalahkan ukuran file yang besar. Sedangkan <strong>WEB</strong> jadi pilihan realistis kalau versi BD belum tersedia.</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+                        <!-- 8. EPUB & CBZ reader -->
+            <article class="card-boxy bg-white dark:bg-[#0f1e3a] p-5 md:p-7 flex items-start gap-4 animate-fade-up" style="animation-delay:0.32s">
+                <span class="faq-number">8</span>
+                <div class="flex-1 min-w-0">
+                    <h3 class="text-lg md:text-xl font-black text-gray-800 dark:text-slate-100 flex items-center gap-2 flex-wrap">
+                        📖 Bagaimana cara membuka file <span class="text-brand-blue">.epub</span> dan <span class="text-brand-blue">.cbz</span>?
+                        <span class="badge-base badge-tip">panduan</span>
+                    </h3>
+                    <div class="mt-2 space-y-3 text-gray-600 dark:text-gray-300 leading-relaxed">
+                        <p>
+                            File <code class="inline-code">.epub</code> dan <code class="inline-code">.cbz</code> <strong>tidak perlu diekstrak</strong> — keduanya sudah berupa paket siap baca (EPUB untuk light novel / e-book, CBZ untuk manga / komik). Cukup buka dengan aplikasi pembaca yang tepat.
+                        </p>
+
+                        <div class="callout callout-blue">
+                            <p class="font-black text-brand-blue dark:text-sky-300 mb-1 flex items-center gap-2 flex-wrap">
+                                <span class="codec-tag-sm">Readest</span>
+                                <span class="badge-base badge-recommend">semua platform</span>
+                            </p>
+                            <p class="text-sm">
+                                <strong>Readest</strong> tersedia untuk <strong>Windows, macOS, Linux, Android, dan iOS</strong>, serta mendukung <code class="inline-code">.epub</code> maupun <code class="inline-code">.cbz</code> secara native. Antarmukanya modern, ringan, dan punya mode gelap yang nyaman untuk sesi baca panjang.
+                            </p>
+                        </div>
+
+                        <div class="callout callout-violet">
+                            <p class="font-black mb-1 flex items-center gap-2 flex-wrap">
+                                <span class="codec-tag-sm bd">Foliate</span>
+                                <span class="badge-base badge-ai">khusus Linux</span>
+                            </p>
+                            <p class="text-sm">
+                                Kalau kamu pengguna <strong>Linux</strong>, <strong>Foliate</strong> adalah pilihan yang sangat direkomendasikan — GTK-native, ringan, dan mendukung <code class="inline-code">.epub</code>, <code class="inline-code">.cbz</code>, serta format komik lain. Cocok dipadukan dengan desktop GNOME maupun distro lain.
+                            </p>
+                        </div>
+
+                        <ul class="step-list">
+                            <li><strong>Unduh</strong> file <code class="inline-code">.epub</code> / <code class="inline-code">.cbz</code> seperti biasa (Telegram atau link unduhan).</li>
+                            <li><strong>Buka langsung</strong> file tersebut dengan Readest atau Foliate — tidak perlu diekstrak sama sekali.</li>
+                            <li>Kedua aplikasi akan menampilkan isi buku secara otomatis beserta navigasi bab / halaman.</li>
+                        </ul>
+
+                        <div class="callout callout-amber">
+                            <span class="font-bold text-sm">💡 Catatan:</span>
+                            <span class="text-sm"> jangan ekstrak file <code class="inline-code">.epub</code> / <code class="inline-code">.cbz</code> dengan 7-Zip untuk dibaca — strukturnya bisa rusak atau gambar/teks tidak tampil. Buka langsung lewat aplikasi pembaca di atas.</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+        <!-- Penutup -->
+        <div class="mt-10 text-center text-sm text-gray-400 dark:text-gray-500 border-t border-brand-blue/15 dark:border-sky-400/15 pt-6">
+            <p>💬 Masih ada pertanyaan atau laporan kesalahan? Jangan ragu untuk bertanya di email<strong class="text-brand-blue dark:text-sky-400"> contact.brazilsirih@gmail.com</strong> atau <strong class="text-brand-blue dark:text-sky-400">komentar</strong> di channel bstation.</p>
+        </div>
+
+    </main>
+
+    <!-- ============================================================ -->
+    <!--  FOOTER                                                      -->
+    <!-- ============================================================ -->
+    <footer class="mt-auto transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 py-8 text-center">
+            <p class="text-sm text-brand-blue/70 dark:text-sky-300/70 font-medium">
+                ⚡ Non-komersial · Tidak terafiliasi dengan pemegang lisensi resmi.
+            </p>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!--  JAVASCRIPT                                                  -->
+    <!-- ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            /* ---------------- Theme ---------------- */
+            function setTheme(dark) {
+                if (dark) {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('bs_theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('bs_theme', 'light');
+                }
+                updateThemeIcons();
+            }
+
+            function updateThemeIcons() {
+                const isDark = document.documentElement.classList.contains('dark');
+                const darkIcon = document.getElementById('themeIconDark');
+                const lightIcon = document.getElementById('themeIconLight');
+                const sidebarIcon = document.getElementById('sidebarThemeIcon');
+                const sidebarLabel = document.getElementById('sidebarThemeLabel');
+
+                if (darkIcon && lightIcon) {
+                    if (isDark) {
+                        darkIcon.classList.remove('hidden');
+                        lightIcon.classList.add('hidden');
+                    } else {
+                        darkIcon.classList.add('hidden');
+                        lightIcon.classList.remove('hidden');
+                    }
+                }
+                if (sidebarIcon) sidebarIcon.textContent = isDark ? '☀️' : '🌙';
+                if (sidebarLabel) sidebarLabel.textContent = isDark ? 'Mode Terang' : 'Mode Malam';
+            }
+
+            function toggleTheme() {
+                setTheme(!document.documentElement.classList.contains('dark'));
+            }
+
+            /* ---------------- Sidebar ---------------- */
+            function toggleSidebar(open) {
+                const sidebar = document.getElementById('mobileSidebar');
+                const overlay = document.getElementById('mobileOverlay');
+                if (!sidebar || !overlay) return;
+                const isOpen = !sidebar.classList.contains('-translate-x-full');
+                const shouldOpen = (open !== undefined) ? open : !isOpen;
+
+                if (shouldOpen) {
+                    sidebar.classList.remove('-translate-x-full');
+                    overlay.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    sidebar.classList.add('-translate-x-full');
+                    overlay.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }
+            }
+
+            /* ---------------- Mobile search ---------------- */
+            function toggleMobileSearch() {
+                const container = document.getElementById('mobileSearchContainer');
+                if (!container) return;
+                container.classList.toggle('hidden');
+                if (!container.classList.contains('hidden')) {
+                    document.getElementById('mobileSearch').focus();
+                }
+            }
+
+            /* ================================================================
+               SEARCH ENGINE — fetch database/anime.json, prefix + fuzzy
+               ================================================================ */
+            let animeData = [];
+            let dataLoaded = false;
+            let searchTimeout = null;
+
+            const desktopInput = document.getElementById('desktopSearch');
+            const mobileInput = document.getElementById('mobileSearch');
+            const resultsWrapper = document.getElementById('searchResultsWrapper');
+            const resultsContainer = document.getElementById('searchResultsContainer');
+            const resultsInner = document.getElementById('searchResultsInner');
+            const loadingEl = document.getElementById('searchLoading');
+            const emptyEl = document.getElementById('searchEmpty');
+
+            async function loadAnimeData() {
+                if (dataLoaded) return true;
+                loadingEl.classList.remove('hidden');
+                try {
+                    const resp = await fetch('database/anime.json');
+                    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+                    animeData = await resp.json();
+                    dataLoaded = true;
+                    loadingEl.classList.add('hidden');
+                    return true;
+                } catch (err) {
+                    console.error('Gagal memuat data anime:', err);
+                    loadingEl.classList.add('hidden');
+                    emptyEl.classList.remove('hidden');
+                    emptyEl.textContent = '⚠️ Gagal memuat data anime. Coba refresh halaman.';
+                    return false;
+                }
+            }
+
+            function fuzzyScore(text, query) {
+                const t = text.toLowerCase();
+                const q = query.toLowerCase();
+                let score = 0;
+                let idx = 0;
+                for (const ch of q) {
+                    const pos = t.indexOf(ch, idx);
+                    if (pos >= idx) {
+                        score++;
+                        idx = pos + 1;
+                    }
+                }
+                const norm = q.length > 0 ? score / q.length : 0;
+                const lenBonus = 1 - Math.abs(t.length - q.length) / Math.max(t.length, q.length, 1);
+                return norm * 0.85 + lenBonus * 0.15;
+            }
+
+            function highlightText(text, query) {
+                const q = query.toLowerCase().trim();
+                if (!q) return text;
+                const lower = text.toLowerCase();
+                const idx = lower.indexOf(q);
+                if (idx === -1) return text;
+                const before = text.slice(0, idx);
+                const matched = text.slice(idx, idx + q.length);
+                const after = text.slice(idx + q.length);
+                return before + '<span class="result-highlight">' + matched + '</span>' + after;
+            }
+
+            function performSearch(query) {
+                const q = query.trim();
+
+                if (!q) {
+                    closeResults();
+                    return;
+                }
+
+                if (!dataLoaded) {
+                    loadAnimeData().then(() => {
+                        if (dataLoaded) performSearch(q);
+                    });
+                    return;
+                }
+
+                const qLower = q.toLowerCase();
+                const prefixMatches = [];
+                const fuzzyCandidates = [];
+
+                for (const item of animeData) {
+                    const jp = (item.r || '').toLowerCase();
+                    const en = (item.e || '').toLowerCase();
+
+                    if (jp.startsWith(qLower) || en.startsWith(qLower)) {
+                        prefixMatches.push(item);
+                    } else {
+                        fuzzyCandidates.push(item);
+                    }
+                }
+
+                if (prefixMatches.length > 0) {
+                    renderResults(prefixMatches, q, 'prefix');
+                    return;
+                }
+
+                const scored = [];
+                for (const item of fuzzyCandidates) {
+                    const jp = (item.r || '').toLowerCase();
+                    const en = (item.e || '').toLowerCase();
+                    const best = Math.max(fuzzyScore(jp, qLower), fuzzyScore(en, qLower));
+                    if (best > 0.25) scored.push({ item, score: best });
+                }
+
+                scored.sort((a, b) => b.score - a.score);
+                const top = scored.slice(0, 50).map(s => s.item);
+
+                if (top.length === 0) {
+                    emptyEl.classList.remove('hidden');
+                    emptyEl.textContent = 'Tidak ditemukan anime yang cocok. Coba kata kunci lain.';
+                    resultsInner.innerHTML = '';
+                    openResults();
+                    return;
+                }
+
+                renderResults(top, q, 'fuzzy');
+            }
+
+            function renderResults(items, query, mode) {
+                emptyEl.classList.add('hidden');
+
+                let html = '';
+                const count = items.length;
+                const modeLabel = mode === 'prefix' ? 'Pencocokan tepat' : 'Hasil terdekat';
+
+                html += `<div class="flex items-center justify-between px-1 pb-2 border-b border-brand-blue/10 dark:border-sky-400/10 mb-2">
+                            <span class="text-[11px] font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-wider">${modeLabel} · ${count} hasil</span>
+                         </div>`;
+
+                for (const item of items) {
+                    const jpTitle = item.r || '';
+                    const enTitle = item.e || '';
+                    const type = item.t || '—';
+                    const year = item.d ? item.d.slice(0, 4) : '—';
+                    const studio = item.st || '—';
+                    const genres = Array.isArray(item.g) ? item.g.slice(0, 3).join(', ') : '';
+
+                    const jpHl = highlightText(jpTitle, query);
+                    const enHl = enTitle ? highlightText(enTitle, query) : '';
+                    const slug = jpTitle.replace(/\s+/g, '_');
+
+                    html += `
+                        <div class="result-item px-3 py-2.5 flex items-center justify-between group border border-transparent hover:border-brand-blue/25 dark:hover:border-sky-400/25" data-slug="${slug}">
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-2 flex-wrap">
+                                    <span class="font-extrabold text-gray-800 dark:text-slate-100 text-sm md:text-base">${jpHl}</span>
+                                    ${enTitle ? `<span class="text-xs text-slate-400 dark:text-slate-500 font-medium truncate max-w-[200px]">${enHl}</span>` : ''}
+                                </div>
+                                <div class="flex items-center gap-3 mt-0.5 text-xs text-slate-400 dark:text-slate-500 flex-wrap">
+                                    <span>${type}</span>
+                                    <span>•</span>
+                                    <span>${year}</span>
+                                    ${genres ? `<span>•</span><span>${genres}</span>` : ''}
+                                    <span>•</span>
+                                    <span class="truncate max-w-[120px]">${studio}</span>
+                                </div>
+                            </div>
+                            <div class="arrow-icon ml-3 text-brand-blue dark:text-sky-400 flex-shrink-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </div>
+                        </div>`;
+                }
+
+                resultsInner.innerHTML = html;
+
+                resultsInner.querySelectorAll('.result-item').forEach(el => {
+                    el.addEventListener('click', function() {
+                        const slug = this.dataset.slug;
+                        if (slug) {
+                            window.location.href = 'anime.html?id=' + encodeURIComponent(slug);
+                        }
+                    });
+                });
+
+                openResults();
+            }
+
+            function openResults() {
+                resultsWrapper.classList.remove('max-h-0');
+                resultsWrapper.classList.add('max-h-[500px]');
+                resultsContainer.classList.add('open');
+            }
+
+            function closeResults() {
+                resultsWrapper.classList.add('max-h-0');
+                resultsWrapper.classList.remove('max-h-[500px]');
+                resultsContainer.classList.remove('open');
+                if (resultsInner) resultsInner.innerHTML = '';
+                if (emptyEl) emptyEl.classList.add('hidden');
+            }
+
+            function handleSearchInput(e) {
+                const val = e.target.value;
+                if (e.target === desktopInput && mobileInput) mobileInput.value = val;
+                else if (e.target === mobileInput && desktopInput) desktopInput.value = val;
+
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => performSearch(val), 180);
+            }
+
+            function initSearch() {
+                loadAnimeData();
+
+                if (desktopInput) {
+                    desktopInput.addEventListener('input', handleSearchInput);
+                    desktopInput.addEventListener('focus', function() {
+                        if (this.value.trim()) performSearch(this.value);
+                    });
+                    desktopInput.addEventListener('blur', function() {
+                        setTimeout(() => {
+                            const hovered = resultsInner.querySelector('.result-item:hover');
+                            if (!hovered && document.activeElement !== mobileInput) closeResults();
+                        }, 200);
+                    });
+                }
+
+                if (mobileInput) {
+                    mobileInput.addEventListener('input', handleSearchInput);
+                    mobileInput.addEventListener('focus', function() {
+                        if (this.value.trim()) performSearch(this.value);
+                    });
+                    mobileInput.addEventListener('blur', function() {
+                        setTimeout(() => {
+                            const hovered = resultsInner.querySelector('.result-item:hover');
+                            if (!hovered && document.activeElement !== desktopInput) closeResults();
+                        }, 200);
+                    });
+                }
+
+                document.addEventListener('click', function(e) {
+                    const isSearch = e.target.closest('#desktopSearch') ||
+                        e.target.closest('#mobileSearch') ||
+                        e.target.closest('#searchResultsWrapper');
+                    if (!isSearch) closeResults();
+                });
+
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') {
+                        closeResults();
+                        if (desktopInput) desktopInput.blur();
+                        if (mobileInput) mobileInput.blur();
+                    }
+                });
+            }
+
+            /* ---------------- Init ---------------- */
+            function init() {
+                const stored = localStorage.getItem('bs_theme');
+                if (stored === 'dark') setTheme(true);
+                else if (stored === 'light') setTheme(false);
+                else if (window.matchMedia('(prefers-color-scheme: dark)').matches) setTheme(true);
+                else setTheme(false);
+
+                document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+                document.getElementById('sidebarThemeToggle').addEventListener('click', toggleTheme);
+
+                document.getElementById('mobileMenuBtn').addEventListener('click', () => toggleSidebar(true));
+                document.getElementById('closeMobileMenu').addEventListener('click', () => toggleSidebar(false));
+                document.getElementById('mobileOverlay').addEventListener('click', () => toggleSidebar(false));
+
+                document.getElementById('mobileSearchBtn').addEventListener('click', toggleMobileSearch);
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') toggleSidebar(false);
+                });
+
+                initSearch();
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+
+        })();
+    </script>
+
+</body>
+</html>

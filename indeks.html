@@ -1,261 +1,506 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Indeks Anime - Brazil Sirih FanSub</title>
-    <link href="css/style.css" rel="stylesheet"/>
-    <link href="css/search.css" rel="stylesheet"/>
-    <link href="css/nightmode.css" rel="stylesheet"/>
-    <link href="favicon.ico" rel="icon" type="image/x-icon"/>
-<style>
-    /* Mengadopsi struktur .nav-center dari style.css yang sudah teruji */
-    .filter-container {
-        display: flex;
-        justify-content: center; /* Alignment Center */
-        gap: 10px;
-        margin-bottom: 20px;
-        
-        /* Logika Scroll dari Navigasi */
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scroll-behavior: smooth;
-        padding-bottom: 8px; /* Ruang untuk indikator garis */
-        flex-wrap: nowrap;
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anime Terbaru · Brazil Sirih FanSub</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <!-- JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://brazilsirih-fansub.pages.dev/#organization",
+      "name": "Brazil Sirih FanSub",
+      "alternateName": ["BSFS", "Brazil Sirih", "BrazilSirih"],
+      "url": "https://brazilsirih-fansub.pages.dev/",
+      "logo": "https://brazilsirih-fansub.pages.dev/favicon.ico"
     }
+  ]
+}
+</script>
 
-    /* Indikator Scroll Abu-abu (Mengikuti gaya scrollbar navigasi) */
-    .filter-container::-webkit-scrollbar {
-        height: 4px; /* Tinggi indikator seperti di style.css */
-    }
-
-    .filter-container::-webkit-scrollbar-track {
-        background: rgba(0, 0, 0, 0.05); /* Dasar transparan */
-        border-radius: 2px;
-    }
-
-    .filter-container::-webkit-scrollbar-thumb {
-        background: #cccccc; /* Abu-abu untuk indikator posisi */
-        border-radius: 2px;
-    }
-
-    .filter-container::-webkit-scrollbar-thumb:hover {
-        background: #999999;
-    }
-
-    .filter-select {
-        flex-shrink: 0; /* Mencegah select gepeng di mobile */
-        width: auto;
-        min-width: 150px;
-        cursor: pointer;
-    }
-
-    /* Penyesuaian Mobile agar tidak terpotong saat di-scroll */
-    @media (max-width: 900px) {
-        .filter-container {
-            justify-content: flex-start; 
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-    }
-</style>
-</head>
-<body>
-<div id="container">
-    <header id="headerArea">
-        <nav id="navbar">
-            <div class="nav-left">
-                <a class="logo-container" href="home.html">
-                    <img alt="Brazil Sirih FanSub Logo" class="logo" src="assets/logo.png"/>
-                </a>
-            </div>
-            <div class="nav-center">
-                <ul>
-                    <li><a href="beranda.html">Beranda</a></li>
-                    <li><a href="info.html">Info</a></li>
-                    <li><a href="pengumuman.html">Pengumuman</a></li>
-                    <li><a href="nonton.html">Nonton</a></li>
-                    <li><a class="active" href="indeks.html#list">Indeks</a></li>
-                </ul>
-            </div>
-            <div class="nav-right">
-                <button aria-label="Toggle Night Mode" id="nightModeToggle">
-                    <span class="toggle-icon">🌙</span>
-                </button>
-            </div>
-        </nav>
-    </header>
-
-    <main>
-        <h1 class="center-content">Indeks Rilisan</h1>
-        
-        <div class="filter-container">
-           <select id="filterSeri" class="search-input filter-select">
-                <option value="all">Semua Seri</option>
-                <option value="2005" selected>2005</option> 
-                <option value="1979">1979</option>
-                <option value="Movie">Movie</option>
-                <option value="Short Movie">Short Movie</option>
-            </select>
-
-            <select id="filterRange" class="search-input filter-select">
-                <option value="all">Semua Episode</option>
-            </select>
-
-            <select id="filterUrut" class="search-input filter-select">
-                <option value="desc">Terbaru (Menurun)</option>
-                <option value="asc">Terlama (Menaik)</option>
-            </select>
-        </div>
-
-        <div class="search-container" id="searchContainer">
-            <input class="search-input" id="searchInput" placeholder="🔎 Cari judul episode..." type="text"/>
-        </div>
-
-        <div id="episodeList">
-            </div>
-    </main>
-
-    <footer id="footer">
-        Disclaimer: Ini adalah fansite non-komersial. Kami tidak berafiliasi dengan pemilik lisensi resmi.
-    </footer>
-</div>
-
-<script src="js/main.js" type="module"></script>
-<script type="module">
-    let allEpisodes = [];
-
-    const filterSeri = document.getElementById('filterSeri');
-    const filterRange = document.getElementById('filterRange');
-    const filterUrut = document.getElementById('filterUrut');
-    const searchInput = document.getElementById('searchInput');
-    const episodeList = document.getElementById('episodeList');
-
-    // Mengatur Opsi Range Episode bedasarkan Seri yang dipilih
-    function updateRangeOptions() {
-        const seri = filterSeri.value;
-        filterRange.innerHTML = '<option value="all">Semua Episode</option>';
-        filterRange.disabled = false;
-
-        if (seri === '2005') {
-            for(let i = 1; i <= 1000; i += 100) {
-                let end = i + 99;
-                filterRange.innerHTML += `<option value="${i}-${end}">${i}-${end}</option>`;
-            }
-        } else if (seri === '1979') {
-            for(let i = 1; i <= 1787; i += 100) {
-                let end = Math.min(i + 99, 1787);
-                filterRange.innerHTML += `<option value="${i}-${end}">${i}-${end}</option>`;
-            }
-        } else if (seri === 'Movie' || seri === 'Short Movie' || seri === 'all') {
-            filterRange.disabled = true; 
-        }
-    }
-
-    // Menerapkan Filter, Search, dan Urutan
-    function applyFilters() {
-        let filtered = allEpisodes;
-        const seri = filterSeri.value;
-        const range = filterRange.value;
-        const urut = filterUrut.value;
-        const query = searchInput.value.toLowerCase();
-
-        // 1. Filter Seri
-        if (seri !== 'all') {
-            filtered = filtered.filter(ep => ep.seri === seri);
-        }
-
-        // 2. Filter Range Episode
-        if (range !== 'all' && !filterRange.disabled) {
-            const [min, max] = range.split('-').map(Number);
-            filtered = filtered.filter(ep => ep.id >= min && ep.id <= max);
-        }
-
-        // 3. Search Title (Pencarian Json)
-        if (query) {
-            filtered = filtered.filter(ep => ep.title.toLowerCase().includes(query));
-        }
-
-        // 4. Pengurutan
-        filtered.sort((a, b) => {
-            if (urut === 'desc') return b.id - a.id; 
-            return a.id - b.id; 
-        });
-
-        renderEpisodes(filtered);
-    }
-
-    // Menampilkan ke HTML
-    function renderEpisodes(data) {
-        episodeList.innerHTML = '';
-
-        if(data.length === 0) {
-            episodeList.innerHTML = `<div class="box empty-state">Episode tidak ditemukan.</div>`;
-            return;
-        }
-
-        data.forEach(ep => {
-            let formattedTitle = ep.title;
-            const splitMatch = ep.title.match(/Episode \d+ - (.*)/);
-            if (splitMatch) {
-                formattedTitle = `Episode ${ep.id} - <i>${splitMatch[1]}</i>`;
-            }
-
-            // --- LOGIKA DETEKSI LINK OTOMATIS BERDASARKAN SERI ---
-            let finalLink;
-            if (ep.link) {
-                // Jika sudah ada field link di JSON, pakai itu (paling akurat)
-                finalLink = ep.link;
-            } else {
-                // Jika data lama, buat link berdasarkan seri agar tidak bentrok
-                if (ep.seri === "2005") {
-                    finalLink = `${ep.id}.html`;
-                } else if (ep.seri === "1979") {
-                    finalLink = `${ep.id}-1979.html`;
-                } else if (ep.seri === "Movie") {
-                    finalLink = `dtm${ep.id}.html`;
-                } else if (ep.seri === "Short Movie") {
-                    finalLink = `sm${ep.id}.html`;
-                } else {
-                    finalLink = `${ep.id}.html`;
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        brand: { blue: '#1a73e8', dark: '#0d47a1', deep: '#0b1a3a', light: '#e8f0fe', accent: '#4285f4' },
+                        navy: { 50: '#e8edf5', 900: '#051a30' }
+                    }
                 }
             }
-            // ----------------------------------------------------
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
 
-            const box = document.createElement('div');
-            box.className = 'box';
-            box.style.animation = 'fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) both';
+    <style>
+        /* ============================================================
+           BASE · Estetika Asli Lo (Biru Lembut & Radial Glow)
+           ============================================================ */
+        ::selection { background: #1a73e8; color: #fff; }
+        html, body { min-height: 100%; }
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #eef4ff;
+            background-image:
+                radial-gradient(circle at 12% 8%, rgba(26, 115, 232, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 88% 92%, rgba(66, 133, 244, 0.10) 0%, transparent 45%),
+                linear-gradient(180deg, #eaf2ff 0%, #dee9f8 100%);
+            background-attachment: fixed;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        html.dark body {
+            background-color: #071224;
+            background-image:
+                radial-gradient(circle at 12% 8%, rgba(66, 133, 244, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 88% 92%, rgba(26, 115, 232, 0.14) 0%, transparent 45%),
+                linear-gradient(180deg, #071224 0%, #0c1b36 100%);
+        }
+
+        /* HEADER */
+        .glass-header {
+            background-color: rgba(235, 245, 255, 0.82);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(26, 115, 232, 0.12);
+            box-shadow: 0 4px 30px rgba(26, 115, 232, 0.06);
+            transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+        html.dark .glass-header {
+            background-color: rgba(10, 22, 45, 0.82);
+            border-bottom: 1px solid rgba(100, 181, 246, 0.14);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.35), 0 0 40px rgba(66, 133, 244, 0.05);
+        }
+
+        .logo-brazil { background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; letter-spacing: -0.02em; }
+        html.dark .logo-brazil { background: linear-gradient(135deg, #64b5f6 0%, #90caf9 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .logo-sirih { color: #0f2747; font-weight: 900; letter-spacing: -0.02em; }
+        html.dark .logo-sirih { color: #e8f0fe; }
+
+        .nav-link {
+            font-weight: 700; transition: all 0.2s; border-radius: 10px; padding: 0.5rem 1rem; color: #475569;
+        }
+        html.dark .nav-link { color: #cbd5e1; }
+        .nav-link:hover { background-color: rgba(26, 115, 232, 0.08); color: #1a73e8; }
+        html.dark .nav-link:hover { background-color: rgba(100, 181, 246, 0.12); color: #90caf9; }
+        .nav-link.active {
+            background: linear-gradient(135deg, rgba(26, 115, 232, 0.12), rgba(66, 133, 244, 0.10));
+            color: #1a73e8; box-shadow: inset 0 0 0 1px rgba(26, 115, 232, 0.15);
+        }
+        html.dark .nav-link.active { background: linear-gradient(135deg, rgba(100, 181, 246, 0.18), rgba(66, 133, 244, 0.14)); color: #90caf9; box-shadow: inset 0 0 0 1px rgba(100, 181, 246, 0.2); }
+
+        /* PANEL KACA (Untuk Bikin Rame & Rapi) */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(26, 115, 232, 0.15);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(26, 115, 232, 0.05);
+            transition: background 0.3s, border 0.3s;
+        }
+        html.dark .glass-panel {
+            background: rgba(15, 30, 58, 0.7);
+            border-color: rgba(100, 181, 246, 0.15);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* KARTU ANIME (16:9 Landscape) */
+        .card-boxy {
+            border-radius: 12px; background-image: linear-gradient(180deg, #1a73e8 0%, #4285f4 55%, #64b5f6 100%);
+            background-size: 4px 100%; background-repeat: no-repeat; background-position: left top;
+            transition: transform 0.25s ease, box-shadow 0.35s ease, background-color 0.3s, border-color 0.3s;
+        }
+        html body .card-boxy {
+            background-color: #ffffff; border: 1px solid rgba(26, 115, 232, 0.12) !important; box-shadow: 0 2px 12px rgba(26, 115, 232, 0.06);
+        }
+        html.dark body .card-boxy {
+            background-color: #0f1e3a; border: 1px solid rgba(100, 181, 246, 0.12) !important; box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+        }
+        .card-boxy:hover { transform: translateY(-2px); }
+        html body .card-boxy:hover { box-shadow: 0 12px 24px -8px rgba(26, 115, 232, 0.25), 0 0 0 1px rgba(26, 115, 232, 0.08); }
+        html.dark body .card-boxy:hover { box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(100, 181, 246, 0.18); }
+
+        /* GAMBAR 16:9 */
+        .thumb-16-9 {
+            width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; display: block;
+            background-color: rgba(26, 115, 232, 0.08);
+        }
+        html.dark .thumb-16-9 { background-color: rgba(30, 58, 95, 0.5); }
+
+        /* BADGES FITUR TAMBAHAN (OST/LN) */
+        .badge-feature { font-size: 0.6rem; font-weight: 800; padding: 0.15rem 0.45rem; border-radius: 4px; display: inline-flex; align-items: center; gap: 0.2rem; text-transform: uppercase; }
+        .badge-ost { background: rgba(236, 72, 153, 0.1); color: #db2777; border: 1px solid rgba(236, 72, 153, 0.2); }
+        html.dark .badge-ost { background: rgba(236, 72, 153, 0.2); color: #f472b6; border-color: rgba(236, 72, 153, 0.4); }
+        .badge-ln { background: rgba(16, 185, 129, 0.1); color: #059669; border: 1px solid rgba(16, 185, 129, 0.2); }
+        html.dark .badge-ln { background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: rgba(16, 185, 129, 0.4); }
+
+        /* FOOTER */
+        html body footer { background-color: rgba(235, 245, 255, 0.6) !important; border-top: 1px solid rgba(26, 115, 232, 0.12) !important; backdrop-filter: blur(10px); }
+        html.dark body footer { background-color: rgba(7, 18, 36, 0.6) !important; border-top: 1px solid rgba(100, 181, 246, 0.1) !important; }
+
+        /* SCROLLBAR */
+        ::-webkit-scrollbar { width: 8px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #4285f4, #1a73e8); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #64b5f6, #4285f4); }
+
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-up { animation: fadeUp 0.4s ease-out both; }
+    </style>
+</head>
+
+<body class="text-gray-800 dark:text-slate-100 antialiased min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- HEADER -->
+    <header class="glass-header sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-18 md:h-20 gap-3">
+                <div class="flex items-center gap-4 lg:gap-6 min-w-0 flex-shrink">
+                    <button id="mobileMenuBtn" class="md:hidden p-2 text-slate-600 dark:text-slate-300 hover:text-brand-blue dark:hover:text-sky-400 rounded-lg hover:bg-brand-blue/10 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" /></svg>
+                    </button>
+                    <a href="indeks.html" class="flex items-center gap-2 group flex-shrink-0">
+                        <span class="font-black text-2xl md:text-3xl tracking-tight"><span class="logo-brazil">Brazil</span><span class="logo-sirih">Sirih</span></span>
+                        <span class="hidden sm:inline-block text-[9px] font-bold text-brand-blue dark:text-sky-300 bg-brand-blue/10 dark:bg-sky-400/10 px-2.5 py-0.5 rounded-full uppercase tracking-widest border border-brand-blue/20 dark:border-sky-400/20">FanSub</span>
+                    </a>
+                    <nav class="hidden md:flex items-center gap-0.5 lg:gap-1 ml-3 flex-shrink-0">
+                        <a href="indeks.html" class="nav-link active text-sm">Beranda</a>
+                        <a href="list.html" class="nav-link text-sm">Daftar Anime</a>
+                        <a href="faq.html" class="nav-link text-sm">FAQ</a>
+                        <a href="queue.html" class="nav-link text-sm">Antrian Proyek</a>
+                    </nav>
+                </div>
+                <div class="flex items-center gap-2 lg:gap-3 flex-shrink-0">
+                    <div class="hidden md:flex items-center bg-white/70 dark:bg-slate-800/60 backdrop-blur-md border border-brand-blue/15 dark:border-sky-400/15 rounded-full px-4 py-2 focus-within:ring-2 focus-within:ring-brand-blue/30 transition-all">
+                        <svg class="w-4 h-4 text-brand-blue/70 dark:text-sky-300/80 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                        <input type="text" id="desktopSearch" placeholder="Cari anime..." class="bg-transparent border-none outline-none text-sm w-28 lg:w-44 text-gray-800 dark:text-white placeholder-slate-400 font-medium" />
+                    </div>
+                    <button id="mobileSearchBtn" class="md:hidden p-2.5 rounded-full text-slate-600 dark:text-slate-300 hover:bg-brand-blue/10 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                    </button>
+                    <button id="themeToggle" class="p-2.5 rounded-full text-brand-blue dark:text-sky-300 hover:text-white bg-brand-blue/10 dark:bg-sky-400/10 border border-brand-blue/20 dark:border-sky-400/25 hover:bg-brand-blue transition-all flex-shrink-0">
+                        <svg id="themeIconDark" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" /></svg>
+                        <svg id="themeIconLight" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" /></svg>
+                    </button>
+                </div>
+            </div>
+            <div id="mobileSearchContainer" class="hidden md:hidden pb-4 pt-1 animate-slide-down">
+                <div class="flex items-center bg-white/70 dark:bg-slate-800/60 backdrop-blur-md border border-brand-blue/15 rounded-full px-4 py-2.5">
+                    <svg class="w-5 h-5 text-brand-blue/70 dark:text-sky-300/80 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                    <input type="text" id="mobileSearch" placeholder="Cari judul anime..." class="bg-transparent border-none outline-none text-sm w-full text-gray-800 dark:text-white" />
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE SIDEBAR -->
+    <div id="mobileOverlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 hidden"></div>
+    <div id="mobileSidebar" class="fixed inset-y-0 left-0 w-72 z-50 transform -translate-x-full transition-transform duration-300 shadow-2xl flex flex-col bg-[#0a1a35]">
+        <div class="p-5 border-b border-sky-400/15 flex justify-between items-center bg-white/5">
+            <span class="font-black text-xl text-white">Menu</span>
+            <button id="closeMobileMenu" class="text-white/60 hover:text-red-400 p-2 rounded-lg"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" /></svg></button>
+        </div>
+        <div class="flex-1 overflow-y-auto p-6 space-y-6">
+            <nav class="space-y-1">
+                <a href="indeks.html" class="block px-4 py-3 text-white bg-gradient-to-r from-brand-blue to-brand-accent rounded-lg font-bold shadow-lg shadow-brand-blue/20">🏠 Beranda</a>
+                <a href="list.html" class="block px-4 py-3 text-white/70 hover:text-white hover:bg-white/10 rounded-lg font-bold">📺 Daftar Anime</a>
+                <a href="faq.html" class="block px-4 py-3 text-white/70 hover:text-white hover:bg-white/10 rounded-lg font-bold">❓ FAQ</a>
+                <a href="queue.html" class="block px-4 py-3 text-white/70 hover:text-white hover:bg-white/10 rounded-lg font-bold">🧾 Antrian Proyek</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT (2 Kolom) -->
+    <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Top Info Header -->
+        <div class="glass-panel p-4 md:p-5 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-fade-up">
+            <div>
+                <h1 class="text-xl md:text-2xl font-black text-gray-800 dark:text-white flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-brand-blue animate-pulse"></span>
+                    Anime Keluaran Terbaru
+                </h1>
+                <p class="text-xs md:text-sm text-slate-500 dark:text-slate-400 font-medium mt-1">
+                    Pantau terus rilisan anime softsub terbaru dari Brazil Sirih FanSub.
+                </p>
+            </div>
+            <div class="flex items-center gap-3">
+                <span id="showingCount" class="text-xs font-bold text-slate-500 bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700">0 Judul</span>
+                <select id="filterUrut" class="sort-select text-sm border-brand-blue/20">
+                    <option value="desc">⬇ Terbaru</option>
+                    <option value="asc">⬆ Terlama</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-6">
             
-            box.innerHTML = `
-                <h2>${formattedTitle}</h2>
-                <p><strong>Tanggal Rilis:</strong> ${ep.rilis}</p>
-                <a class="button-link" href="releases/${finalLink}">Download Sekarang</a>
-            `;
-            episodeList.appendChild(box);
-        });
-    }
+            <!-- KIRI: LIST ANIME -->
+            <div class="w-full lg:w-3/4">
+                <div id="episodeList" class="space-y-4">
+                    <!-- Cards injected here -->
+                </div>
 
-    // Ambil Data dari JSON
-    fetch('data/data_index.json')
-        .then(res => res.json())
-        .then(data => {
-            allEpisodes = data;
-            updateRangeOptions();
-            applyFilters();
-        })
-        .catch(err => {
-            console.error('Gagal mengambil data episode:', err);
-            episodeList.innerHTML = `<div class="box empty-state">Gagal memuat data.</div>`;
-        });
+                <div id="emptyState" class="hidden glass-panel p-12 text-center mt-4">
+                    <div class="text-5xl mb-3">🔍</div>
+                    <h3 class="text-lg font-black text-gray-700 dark:text-gray-200">Tidak ditemukan</h3>
+                    <p class="text-sm text-gray-500">Coba kata kunci lain.</p>
+                </div>
 
-    // Pasang Event Listeners
-    filterSeri.addEventListener('change', () => {
-        updateRangeOptions();
-        applyFilters();
-    });
-    filterRange.addEventListener('change', applyFilters);
-    filterUrut.addEventListener('change', applyFilters);
-    searchInput.addEventListener('input', applyFilters);
-</script>
+                <div id="loadingState" class="glass-panel p-12 text-center">
+                    <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-brand-blue border-t-transparent"></div>
+                    <p class="mt-3 text-sm font-bold text-slate-500">Memuat data anime...</p>
+                </div>
+            </div>
+
+            <!-- KANAN: SIDEBAR (Bikin Rame) -->
+            <aside class="w-full lg:w-1/4 space-y-5 animate-fade-up" style="animation-delay: 0.1s;">
+                <!-- Card Info Singkat -->
+                <div class="glass-panel p-5">
+                    <h3 class="font-black text-sm text-gray-800 dark:text-white mb-3 pb-2 border-b border-brand-blue/10 dark:border-sky-400/10 flex items-center gap-2">
+                        <svg class="w-4 h-4 text-brand-blue dark:text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        Info Fansub
+                    </h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+                        Semua rilisan menggunakan format <strong>Softsub (MKV)</strong> dengan subtitle Bahasa Indonesia. Kami menyediakan kualitas HD hingga FHD+ HBR.
+                    </p>
+                </div>
+
+                <!-- Card Telegram -->
+                <div class="glass-panel p-5 text-center bg-gradient-to-b from-brand-blue/5 to-transparent dark:from-sky-400/5">
+                    <svg class="w-10 h-10 mx-auto mb-2 text-[#0088cc]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.19.19 0 00-.07-.2c-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.24.35-.49.96-.75 3.78-1.65 6.3-2.74 7.56-3.27 3.6-1.5 4.35-1.76 4.84-1.77.11 0 .35.03.51.14.13.09.17.22.18.34 0 .07.02.21.01.28z"/></svg>
+                    <h3 class="font-black text-sm text-gray-800 dark:text-white mb-1">Join Telegram</h3>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 mb-3">Dapatkan notifikasi rilis & link alternatif.</p>
+                    <a href="https://t.me/brazilsirihfansub" target="_blank" class="inline-block w-full py-2 bg-[#0088cc] hover:bg-[#0077b3] text-white text-xs font-bold rounded-lg transition-colors shadow-md">Buka Channel</a>
+                </div>
+
+                <!-- Card Antrian -->
+                <div class="glass-panel p-5">
+                    <h3 class="font-black text-sm text-gray-800 dark:text-white mb-2 flex items-center gap-2">
+                        <span class="text-lg">🧾</span> Proyek Berjalan
+                    </h3>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 font-medium mb-3">Cek progress pengerjaan anime yang sedang di-encode.</p>
+                    <a href="queue.html" class="inline-flex items-center justify-center w-full py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold rounded-lg transition-colors">Lihat Antrian &rarr;</a>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- FOOTER (FIX) -->
+    <footer class="mt-auto transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 py-8 text-center">
+            <p class="text-sm text-brand-blue/70 dark:text-sky-300/70 font-medium">
+                ⚡ Non-komersial · Tidak terafiliasi dengan pemegang lisensi resmi.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        (function() {
+            'use strict';
+
+            const list = document.getElementById('episodeList');
+            const emptyState = document.getElementById('emptyState');
+            const loadingState = document.getElementById('loadingState');
+
+            const filterUrut = document.getElementById('filterUrut');
+            const desktopSearch = document.getElementById('desktopSearch');
+            const mobileSearch = document.getElementById('mobileSearch');
+            
+            let allAnime = [];
+            let fuseInstance = null;
+
+            function getAnimeId(anime) {
+                const raw = anime.r || anime.e || 'unknown';
+                return raw.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_,]/g, '');
+            }
+
+            function formatDate(dateStr) {
+                if (!dateStr) return 'TBA';
+                const d = new Date(dateStr);
+                if (isNaN(d.getTime())) return dateStr;
+                return d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+            }
+
+            function renderAnime(listData) {
+                list.innerHTML = '';
+                emptyState.classList.add('hidden');
+
+                const countEl = document.getElementById('showingCount');
+                if (countEl) countEl.textContent = `${(listData || []).length} Judul`;
+
+                if (!listData || listData.length === 0) {
+                    emptyState.classList.remove('hidden');
+                    return;
+                }
+
+                listData.forEach((anime, idx) => {
+                    const animeId = getAnimeId(anime);
+                    const landingUrl = `anime.html?id=${animeId}`;
+                    const imageUrl = `/images/${animeId}.webp`;
+
+                    const mainTitle = anime.r || anime.e || 'Judul tidak tersedia';
+                    const subTitle = (anime.e && anime.r !== anime.e) ? anime.e : '';
+                    const type = anime.t || 'TV';
+                    const studio = anime.st || 'Unknown Studio';
+
+                    // FITUR BADGE OST/LN
+                    const hasMusic = anime.has_music === true || (anime.downloads && anime.downloads.music);
+                    const hasLN = anime.has_ln === true || (anime.downloads && anime.downloads.light_novel);
+
+                    const card = document.createElement('div');
+                    card.className = 'card-boxy flex flex-col sm:flex-row gap-4 p-3 md:p-4 animate-fade-up';
+                    card.style.animationDelay = (idx * 0.04) + 's';
+
+                    card.innerHTML = `
+                        <!-- KIRI: GAMBAR 16:9 -->
+                        <a href="${landingUrl}" class="flex-shrink-0 w-full sm:w-56 md:w-64 group">
+                            <div class="relative w-full overflow-hidden rounded-lg">
+                                <img src="${imageUrl}" alt="${mainTitle}" class="thumb-16-9 group-hover:scale-105 transition-transform duration-300" loading="lazy" onerror="this.style.display='none';">
+                                <div class="absolute top-2 left-2 flex gap-1 z-10">
+                                    <span class="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-black/75 text-white backdrop-blur-sm">${type}</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- KANAN: INFO -->
+                        <div class="flex flex-col justify-between flex-1 min-w-0 py-0.5">
+                            <div>
+                                <a href="${landingUrl}" class="font-black text-sm md:text-base text-gray-800 dark:text-slate-100 hover:text-brand-blue dark:hover:text-sky-400 transition-colors line-clamp-2 leading-tight">${mainTitle}</a>
+                                ${subTitle ? `<div class="text-xs text-gray-500 dark:text-gray-400 line-clamp-1 mt-1 font-medium">${subTitle}</div>` : ''}
+                                
+                                <div class="flex items-center flex-wrap gap-x-3 gap-y-1 mt-2 text-[11px] text-slate-500 dark:text-slate-400 font-medium">
+                                    <span class="flex items-center gap-1">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                        ${formatDate(anime.d)}
+                                    </span>
+                                    <span class="flex items-center gap-1 truncate">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                                        ${studio}
+                                    </span>
+                                    <span class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">${anime.src || 'BD'}</span>
+                                </div>
+                            </div>
+
+                            <!-- GENRE & BADGE OST/LN -->
+                            <div class="mt-3 flex items-end justify-between flex-wrap gap-2 pt-3 border-t border-brand-blue/10 dark:border-sky-400/10">
+                                <div class="flex flex-wrap gap-1">
+                                    ${(anime.g || []).slice(0, 3).map(g => `<span class="px-1.5 py-0.5 bg-brand-blue/5 dark:bg-sky-400/5 text-brand-blue dark:text-sky-300 text-[10px] font-bold rounded">${g}</span>`).join('')}
+                                </div>
+                                <div class="flex gap-1.5">
+                                    ${hasMusic ? `<span class="badge-feature badge-ost" title="Tersedia Download OST / BGM">🎵 OST</span>` : ''}
+                                    ${hasLN ? `<span class="badge-feature badge-ln" title="Tersedia Light Novel (ID/EN)">📚 LN</span>` : ''}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    list.appendChild(card);
+                });
+            }
+
+            function performSearch(query) {
+                if (!query || query.trim() === '') return [...allAnime];
+                const q = query.toLowerCase().trim();
+                const exactMatches = allAnime.filter(item => {
+                    return (item.r || '').toLowerCase().includes(q) || (item.e || '').toLowerCase().includes(q);
+                });
+                if (exactMatches.length > 0) return exactMatches;
+                if (fuseInstance) return fuseInstance.search(q).map(res => res.item);
+                return [];
+            }
+
+            function applyFiltersAndRender() {
+                const query = (desktopSearch.value || mobileSearch.value || '').trim();
+                const urut = filterUrut.value;
+
+                let filtered = performSearch(query);
+
+                filtered.sort((a, b) => {
+                    const da = a.d ? new Date(a.d).getTime() : 0;
+                    const db = b.d ? new Date(b.d).getTime() : 0;
+                    return urut === 'desc' ? db - da : da - db;
+                });
+
+                renderAnime(filtered);
+            }
+
+            async function init() {
+                try {
+                    loadingState.classList.remove('hidden');
+                    list.innerHTML = '';
+
+                    const response = await fetch('database/anime.json');
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                    const data = await response.json();
+                    if (!Array.isArray(data)) throw new Error('Data bukan array');
+
+                    allAnime = data;
+                    if (typeof Fuse !== 'undefined') {
+                        fuseInstance = new Fuse(allAnime, { keys: ['r', 'e'], threshold: 0.4, distance: 100, minMatchCharLength: 2 });
+                    }
+
+                    loadingState.classList.add('hidden');
+                    applyFiltersAndRender();
+
+                    filterUrut.addEventListener('change', applyFiltersAndRender);
+                    desktopSearch.addEventListener('input', applyFiltersAndRender);
+                    mobileSearch.addEventListener('input', applyFiltersAndRender);
+                    
+                    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+                    document.getElementById('mobileMenuBtn').addEventListener('click', () => toggleSidebar(true));
+                    document.getElementById('closeMobileMenu').addEventListener('click', () => toggleSidebar(false));
+                    document.getElementById('mobileOverlay').addEventListener('click', () => toggleSidebar(false));
+                    
+                    document.getElementById('mobileSearchBtn').addEventListener('click', () => {
+                        document.getElementById('mobileSearchContainer').classList.toggle('hidden');
+                    });
+
+                    desktopSearch.addEventListener('input', () => { mobileSearch.value = desktopSearch.value; });
+                    mobileSearch.addEventListener('input', () => { desktopSearch.value = mobileSearch.value; });
+
+                } catch (err) {
+                    console.error('Gagal memuat data:', err);
+                    loadingState.innerHTML = `<div class="text-red-500 font-bold p-4">Gagal memuat database. Pastikan file JSON tersedia.</div>`;
+                }
+            }
+
+            // --- UI UTILS ---
+            function setTheme(dark) {
+                if (dark) { document.documentElement.classList.add('dark'); localStorage.setItem('bs_theme', 'dark'); }
+                else { document.documentElement.classList.remove('dark'); localStorage.setItem('bs_theme', 'light'); }
+                updateThemeIcons();
+            }
+            function updateThemeIcons() {
+                const isDark = document.documentElement.classList.contains('dark');
+                document.getElementById('themeIconDark').classList.toggle('hidden', !isDark);
+                document.getElementById('themeIconLight').classList.toggle('hidden', isDark);
+            }
+            function toggleTheme() { setTheme(!document.documentElement.classList.contains('dark')); }
+            
+            function toggleSidebar(open) {
+                const sidebar = document.getElementById('mobileSidebar');
+                const overlay = document.getElementById('mobileOverlay');
+                if (open) { sidebar.classList.remove('-translate-x-full'); overlay.classList.remove('hidden'); }
+                else { sidebar.classList.add('-translate-x-full'); overlay.classList.add('hidden'); }
+            }
+
+            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+            else init();
+
+            (function initTheme() {
+                const stored = localStorage.getItem('bs_theme');
+                if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) setTheme(true);
+                else setTheme(false);
+            })();
+        })();
+    </script>
 </body>
 </html>

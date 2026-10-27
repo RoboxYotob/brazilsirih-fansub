@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="pageTitle">Anime · Brazil Sirih FanSub</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />\
+    <link rel="canonical" id="canonicalLink" href="" />
+    <!-- JSON-LD: Referensi entitas brand -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://brazilsirih-fansub.pages.dev/#organization",
+  "name": "Brazil Sirih FanSub",
+  "alternateName": ["BSFS", "Brazil Sirih"],
+  "url": "https://brazilsirih-fansub.pages.dev/",
+  "logo": "https://brazilsirih-fansub.pages.dev/favicon.ico"
+}
+</script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        brand: { blue: '#1a73e8', dark: '#0d47a1', deep: '#0b1a3a', light: '#e8f0fe', accent: '#4285f4' },
+                        navy: { 50: '#e8edf5', 100: '#c5d0e3', 200: '#9eb3cf', 300: '#7695bb', 400: '#4f77a7', 500: '#2a5a93', 600: '#1e4a7a', 700: '#143a61', 800: '#0b2a48', 900: '#051a30' }
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        ::selection { background: #1a73e8; color: #fff; }
+        ::-moz-selection { background: #1a73e8; color: #fff; }
+        html, body { min-height: 100%; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #eef4ff;
+            background-image:
+                radial-gradient(circle at 12% 8%, rgba(26, 115, 232, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 88% 92%, rgba(66, 133, 244, 0.10) 0%, transparent 45%),
+                linear-gradient(180deg, #eaf2ff 0%, #dee9f8 100%);
+            background-attachment: fixed;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        html.dark body {
+            background-color: #071224;
+            background-image:
+                radial-gradient(circle at 12% 8%, rgba(66, 133, 244, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 88% 92%, rgba(26, 115, 232, 0.14) 0%, transparent 45%),
+                linear-gradient(180deg, #071224 0%, #0c1b36 100%);
+        }
+
+        .card-boxy { border-radius: 10px; transition: transform 0.25s ease, box-shadow 0.3s ease, background-color 0.3s; }
+        .card-boxy:hover { transform: translateY(-3px); box-shadow: 0 12px 32px -8px rgba(26, 115, 232, 0.18); }
+
+        ::-webkit-scrollbar { width: 8px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #4285f4, #1a73e8); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #64b5f6, #4285f4); }
+
+        .glass-header {
+            background-color: rgba(235, 245, 255, 0.82);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(26, 115, 232, 0.12);
+            box-shadow: 0 4px 30px rgba(26, 115, 232, 0.06);
+            transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+        html.dark .glass-header {
+            background-color: rgba(10, 22, 45, 0.82);
+            border-bottom: 1px solid rgba(100, 181, 246, 0.14);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.35), 0 0 40px rgba(66, 133, 244, 0.05);
+        }
+
+        .logo-brazil { background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; letter-spacing: -0.02em; }
+        html.dark .logo-brazil { background: linear-gradient(135deg, #64b5f6 0%, #90caf9 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        .logo-sirih { color: #0f2747; font-weight: 900; letter-spacing: -0.02em; }
+        html.dark .logo-sirih { color: #e8f0fe; }
+
+        .nav-link { position: relative; font-weight: 700; transition: all 0.2s; border-radius: 10px; padding: 0.5rem 1rem; color: #475569; }
+        html.dark .nav-link { color: #cbd5e1; }
+        .nav-link:hover { background-color: rgba(26, 115, 232, 0.08); color: #1a73e8; }
+        html.dark .nav-link:hover { background-color: rgba(100, 181, 246, 0.12); color: #90caf9; }
+        .nav-link.active { background: linear-gradient(135deg, rgba(26, 115, 232, 0.12), rgba(66, 133, 244, 0.10)); color: #1a73e8; box-shadow: inset 0 0 0 1px rgba(26, 115, 232, 0.15); }
+        html.dark .nav-link.active { background: linear-gradient(135deg, rgba(100, 181, 246, 0.18), rgba(66, 133, 244, 0.14)); color: #90caf9; box-shadow: inset 0 0 0 1px rgba(100, 181, 246, 0.2); }
+
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-up { animation: fadeUp 0.4s ease-out both; }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-slide-down { animation: slideDown 0.2s ease-out forwards; }
+
+        .poster-shadow { box-shadow: 0 12px 48px rgba(26, 115, 232, 0.12); }
+        html.dark .poster-shadow { box-shadow: 0 12px 48px rgba(0, 0, 0, 0.50); }
+
+        .download-item { border-radius: 10px; transition: background 0.2s, border-color 0.2s; }
+        .download-item:hover { background: rgba(26, 115, 232, 0.04); }
+        html.dark .download-item:hover { background: rgba(30, 58, 95, 0.35); }
+
+        /* BADGE RESOLUSI */
+        .badge-res { display: inline-flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.65rem; padding: 0.2rem 0.7rem; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap; }
+        .badge-res.hd { background: linear-gradient(135deg, #e2e8f0, #cbd5e1); color: #475569; border: 1px solid #94a3b8; }
+        html.dark .badge-res.hd { background: linear-gradient(135deg, #1e3350, #2a4570); color: #94a3b8; border-color: #475569; }
+        .badge-res.fhd { background: linear-gradient(135deg, #fef3c7, #fde68a); color: #7d5d0e; border: 1px solid #f5c842; box-shadow: 0 0 12px rgba(212, 160, 23, 0.30); }
+        html.dark .badge-res.fhd { background: linear-gradient(135deg, #3a2a1a, #5a3a1a); color: #f5d442; border-color: #b8860b; box-shadow: 0 0 20px rgba(245, 200, 66, 0.25); }
+        .badge-res.fhdplus { background: linear-gradient(135deg, #f5d442, #d4a017, #f5d442, #d4a017, #f5d442); background-size: 300% 300%; color: #5a3a00; border: 1px solid #d4a017; box-shadow: 0 0 16px rgba(212, 160, 23, 0.40); animation: shimmerGoldBg 3s ease-in-out infinite; }
+        html.dark .badge-res.fhdplus { background: linear-gradient(135deg, #f5d442, #b8860b, #f5d442, #b8860b, #f5d442); background-size: 300% 300%; color: #1a1200; border-color: #f5c842; box-shadow: 0 0 24px rgba(245, 200, 66, 0.45); }
+        @keyframes shimmerGoldBg { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+        /* BADGE CODEC */
+        .badge-codec { display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.6rem; padding: 0.2rem 0.6rem; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap; }
+        .badge-codec.avc { background: #e9edf2; color: #475569; border: 1px solid #cbd5e1; }
+        html.dark .badge-codec.avc { background: #1e3350; color: #94a3b8; border-color: #2a4570; }
+        .badge-codec.hevc { background: linear-gradient(135deg, #dbeafe, #bfdbfe); color: #1e40af; border: 1px solid #60a5fa; box-shadow: 0 0 10px rgba(59, 130, 246, 0.20); }
+        html.dark .badge-codec.hevc { background: linear-gradient(135deg, #1a2a5a, #1e3a8a); color: #93c5fd; border-color: #3b82f6; box-shadow: 0 0 14px rgba(59, 130, 246, 0.25); }
+        .badge-codec.av1 { background: linear-gradient(135deg, #fef3c7, #fcd34d); color: #7c4a03; border: 1px solid #f5c842; box-shadow: 0 0 10px rgba(245, 200, 66, 0.30); }
+        html.dark .badge-codec.av1 { background: linear-gradient(135deg, #3a2a1a, #5a3a1a); color: #fcd34d; border-color: #b8860b; box-shadow: 0 0 14px rgba(245, 200, 66, 0.25); }
+        .badge-codec.mp3 { background: linear-gradient(135deg, #dbeafe, #93c5fd); color: #1a3a8a; border: 1px solid #4285f4; box-shadow: 0 0 10px rgba(26, 115, 232, 0.30); }
+        html.dark .badge-codec.mp3 { background: linear-gradient(135deg, #1a2a5a, #1e40af); color: #bfdbfe; border-color: #4285f4; box-shadow: 0 0 14px rgba(26, 115, 232, 0.35); }
+
+        /* BADGE KHUSUS MODE BARU */
+        .badge-music, .badge-range, .badge-vol {
+            display: inline-flex; align-items: center; justify-content: center;
+            font-weight: 900; font-size: 0.63rem; padding: 0.2rem 0.65rem;
+            border-radius: 6px; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap;
+        }
+        .badge-music { background: linear-gradient(135deg, #fce7f3, #fbcfe8); color: #9d174d; border: 1px solid #f9a8d4; }
+        html.dark .badge-music { background: linear-gradient(135deg, #3a1a2a, #5a2a42); color: #f9a8d4; border-color: #9d174d; }
+        .badge-range { background: linear-gradient(135deg, #d1fae5, #a7f3d0); color: #065f46; border: 1px solid #6ee7b7; }
+        html.dark .badge-range { background: linear-gradient(135deg, #0a3a2a, #0a5a3a); color: #6ee7b7; border-color: #10b981; }
+        .badge-vol { background: linear-gradient(135deg, #ede9fe, #ddd6fe); color: #5b21b6; border: 1px solid #c4b5fd; }
+        html.dark .badge-vol { background: linear-gradient(135deg, #2a1a5a, #3a2a7a); color: #c4b5fd; border-color: #7c3aed; }
+
+        .provider-btn { display: inline-flex; align-items: center; gap: 4px; font-weight: 700; font-size: 0.7rem; padding: 0.35rem 0.9rem; border-radius: 8px; transition: all 0.2s; border: 1px solid rgba(26, 115, 232, 0.18); background: #ffffff; color: #1e293b; text-decoration: none; box-shadow: 0 1px 3px rgba(26, 115, 232, 0.06); }
+        .provider-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(26, 115, 232, 0.12); border-color: #1a73e8; background: #f0f7ff; }
+        html.dark .provider-btn { background: #1e3350; border-color: #2a4570; color: #e8edf5; }
+        html.dark .provider-btn:hover { background: #2a4570; border-color: #64b5f6; box-shadow: 0 6px 16px rgba(26, 115, 232, 0.20); }
+        .provider-btn.mediafire { border-color: #ff6600; }
+        .provider-btn.mediafire:hover { background: #fff5eb; border-color: #ff6600; }
+        html.dark .provider-btn.mediafire:hover { background: #3a1f0a; }
+        .provider-btn.telegram { border-color: #0088cc; color: #006699; }
+        .provider-btn.telegram:hover { background: #e6f7ff; border-color: #0088cc; }
+        html.dark .provider-btn.telegram { color: #64b5f6; }
+        html.dark .provider-btn.telegram:hover { background: #0a2a3a; }
+        .provider-btn.mini { font-size: 0.62rem; padding: 0.22rem 0.55rem; }
+
+        /* MODE BADGE */
+        .mode-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 0.68rem; font-weight: 800; padding: 0.28rem 0.8rem; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.06em; }
+        .mode-badge.single { background: linear-gradient(135deg, #dbeafe, #bfdbfe); color: #1e40af; border: 1px solid #60a5fa; }
+        html.dark .mode-badge.single { background: linear-gradient(135deg, #1a2a5a, #1e3a8a); color: #93c5fd; border-color: #3b82f6; }
+        .mode-badge.dynamic { background: linear-gradient(135deg, #dcfce7, #bbf7d0); color: #166534; border: 1px solid #4ade80; }
+        html.dark .mode-badge.dynamic { background: linear-gradient(135deg, #0a2a1a, #0a3a2a); color: #86efac; border-color: #22c55e; }
+
+        /* LN LANGUAGE TABS */
+        .ln-tab { padding: 0.4rem 1rem; font-size: 0.78rem; font-weight: 700; border-radius: 8px; border: 1px solid rgba(26, 115, 232, 0.18); background: #ffffff; color: #475569; cursor: pointer; transition: all 0.2s; }
+        html.dark .ln-tab { background: #1e3350; border-color: #2a4570; color: #cbd5e1; }
+        .ln-tab.active { background: linear-gradient(135deg, #1a73e8, #4285f4); color: #ffffff; border-color: #1a73e8; box-shadow: 0 3px 10px rgba(26, 115, 232, 0.25); }
+        html.dark .ln-tab.active { background: linear-gradient(135deg, #1a73e8, #4285f4); color: #ffffff; border-color: #64b5f6; }
+
+        .badge-kosong { font-size: 0.6rem; font-weight: 800; padding: 0.25rem 0.75rem; border-radius: 6px; background: rgba(26, 115, 232, 0.06); color: #94a3b8; text-transform: uppercase; letter-spacing: 0.04em; }
+        html.dark .badge-kosong { background: #1e3350; color: #64748b; }
+
+        .stat-box { padding: 0.7rem 0.95rem; border-radius: 12px; background: rgba(26, 115, 232, 0.04); border: 1px solid rgba(26, 115, 232, 0.10); transition: background 0.2s, border-color 0.2s; }
+        html.dark .stat-box { background: #142033; border-color: rgba(100, 181, 246, 0.12); }
+        .stat-label { display: block; font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #94a3b8; margin-bottom: 2px; }
+        html.dark .stat-label { color: #64748b; }
+        .stat-value { display: block; font-size: 0.85rem; font-weight: 800; color: #0b1a3a; line-height: 1.3; }
+        html.dark .stat-value { color: #e8edf5; }
+
+        .genre-tag { display: inline-block; font-weight: 700; font-size: 0.7rem; padding: 0.25rem 0.7rem; border-radius: 999px; background: rgba(26, 115, 232, 0.08); color: #1a73e8; border: 1px solid rgba(26, 115, 232, 0.15); transition: all 0.2s; }
+        .genre-tag:hover { transform: translateY(-1px); box-shadow: 0 3px 10px rgba(26,115,232,0.15); }
+        html.dark .genre-tag { background: rgba(100, 181, 246, 0.12); color: #90caf9; border-color: rgba(100, 181, 246, 0.20); }
+        .theme-tag { display: inline-block; font-weight: 700; font-size: 0.7rem; padding: 0.25rem 0.7rem; border-radius: 999px; background: rgba(168, 85, 247, 0.08); color: #9333ea; border: 1px solid rgba(168, 85, 247, 0.15); transition: all 0.2s; }
+        .theme-tag:hover { transform: translateY(-1px); box-shadow: 0 3px 10px rgba(168,85,247,0.15); }
+        html.dark .theme-tag { background: rgba(168, 85, 247, 0.15); color: #c084fc; border-color: rgba(168, 85, 247, 0.25); }
+
+        .character-item { padding: 0.55rem 0.85rem; border-radius: 10px; background: rgba(26, 115, 232, 0.04); border: 1px solid rgba(26, 115, 232, 0.10); transition: background 0.2s, border-color 0.2s; }
+        html.dark .character-item { background: rgba(100, 181, 246, 0.06); border-color: rgba(100, 181, 246, 0.12); }
+        .char-name { display: block; font-weight: 800; font-size: 0.82rem; color: #0b1a3a; }
+        html.dark .char-name { color: #e8edf5; }
+        .char-role { display: block; font-size: 0.68rem; font-weight: 600; color: #64748b; margin-top: 1px; }
+        html.dark .char-role { color: #94a3b8; }
+
+        .producer-pill { display: inline-block; font-size: 0.7rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 6px; background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
+        html.dark .producer-pill { background: #1e3350; color: #cbd5e1; border-color: #2a4570; }
+
+        .telegram-files-card { border-radius: 14px; background: linear-gradient(145deg, #f0f7fe, #e3eefb); border: 1px solid rgba(0, 136, 204, 0.20); transition: all 0.3s; }
+        html.dark .telegram-files-card { background: linear-gradient(145deg, #0f1f3a, #0a1628); border-color: rgba(0, 136, 204, 0.25); }
+        .telegram-files-card:hover { box-shadow: 0 8px 30px rgba(0, 136, 204, 0.10); border-color: rgba(0, 136, 204, 0.40); }
+        html.dark .telegram-files-card:hover { box-shadow: 0 8px 30px rgba(0, 136, 204, 0.15); }
+        .telegram-file-item { display: flex; align-items: center; gap: 0.65rem; padding: 0.65rem 1rem; border-radius: 10px; background: rgba(255, 255, 255, 0.50); transition: background 0.2s; border: 1px solid rgba(255, 255, 255, 0.60); flex-wrap: wrap; }
+        html.dark .telegram-file-item { background: rgba(20, 40, 70, 0.50); border-color: rgba(255, 255, 255, 0.06); }
+        .telegram-file-item:hover { background: rgba(255, 255, 255, 0.80); }
+        html.dark .telegram-file-item:hover { background: rgba(30, 60, 100, 0.50); }
+        .telegram-file-item .file-name { font-weight: 600; font-size: 0.82rem; color: #0b1a3a; font-family: 'Courier New', monospace; word-break: break-all; letter-spacing: 0.02em; flex: 1 1 auto; min-width: 120px; }
+        html.dark .telegram-file-item .file-name { color: #d4e4ff; }
+        .telegram-file-item .size-text { font-size: 0.7rem; font-weight: 700; color: #64748b; white-space: nowrap; }
+        html.dark .telegram-file-item .size-text { color: #94a3b8; }
+        .telegram-file-item .copy-btn { padding: 0.22rem 0.65rem; font-size: 0.62rem; font-weight: 700; border-radius: 6px; background: rgba(0, 136, 204, 0.10); color: #0088cc; border: 1px solid rgba(0, 136, 204, 0.20); cursor: pointer; transition: all 0.2s; flex-shrink: 0; white-space: nowrap; }
+        .telegram-file-item .copy-btn:hover { background: rgba(0, 136, 204, 0.20); transform: scale(1.02); }
+        html.dark .telegram-file-item .copy-btn { background: rgba(0, 136, 204, 0.15); color: #64b5f6; border-color: rgba(0, 136, 204, 0.25); }
+        .telegram-channel-link { display: inline-flex; align-items: center; gap: 6px; font-weight: 800; font-size: 0.85rem; color: #0088cc; text-decoration: none; padding: 0.35rem 1rem; border-radius: 8px; background: rgba(0, 136, 204, 0.08); border: 1px solid rgba(0, 136, 204, 0.15); transition: all 0.2s; }
+        .telegram-channel-link:hover { background: rgba(0, 136, 204, 0.15); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0, 136, 204, 0.15); }
+        html.dark .telegram-channel-link { color: #64b5f6; background: rgba(0, 136, 204, 0.10); }
+
+        @media (max-width: 640px) {
+            .card-boxy { border-radius: 8px; }
+            .provider-btn { font-size: 0.65rem; padding: 0.25rem 0.65rem; }
+            .telegram-file-item { padding: 0.5rem 0.75rem; gap: 0.4rem; }
+            .telegram-file-item .file-name { font-size: 0.72rem; flex: 1 1 100%; order: 3; }
+            .telegram-file-item .copy-btn { margin-left: auto; }
+        }
+
+        .pass-highlight { background: #fef9e7; border: 1px dashed #d4a017; border-radius: 10px; padding: 0.6rem 1.2rem; display: inline-block; font-weight: 800; font-size: 0.9rem; color: #7d5d0e; font-family: 'Courier New', monospace; letter-spacing: 0.04em; }
+        html.dark .pass-highlight { background: #1f2a3a; border-color: #f5c842; color: #f5d442; }
+
+        .info-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+        @media (min-width: 768px) { .info-grid { grid-template-columns: 1fr 1fr; } }
+        .info-card { border-radius: 12px; padding: 1.25rem 1.5rem; background: rgba(26, 115, 232, 0.04); border: 1px solid rgba(26, 115, 232, 0.10); transition: background 0.2s, border-color 0.2s; }
+        html.dark .info-card { background: #142033; border-color: rgba(100, 181, 246, 0.12); }
+        .info-card h4 { font-weight: 800; font-size: 0.95rem; margin-bottom: 0.5rem; color: #0b1a3a; display: flex; align-items: center; gap: 0.5rem; }
+        html.dark .info-card h4 { color: #e8edf5; }
+        .info-card p, .info-card li { font-size: 0.88rem; line-height: 1.6; color: #334155; }
+        html.dark .info-card p, html.dark .info-card li { color: #cbd5e1; }
+        .info-card ul { list-style: none; padding: 0; margin: 0.25rem 0 0 0; }
+        .info-card ul li { padding: 0.2rem 0; padding-left: 1.4rem; position: relative; }
+        .info-card ul li::before { content: "›"; position: absolute; left: 0; font-weight: 900; color: #1a73e8; }
+
+        .codec-tag { display: inline-block; font-weight: 700; font-size: 0.7rem; padding: 0.15rem 0.6rem; border-radius: 4px; background: #e9edf2; color: #1e293b; margin-right: 0.25rem; }
+        html.dark .codec-tag { background: #1e3350; color: #e8edf5; }
+        .codec-tag.avc { background: #e9edf2; color: #475569; }
+        html.dark .codec-tag.avc { background: #1e3350; color: #94a3b8; }
+        .codec-tag.hevc { background: #dbeafe; color: #1e40af; }
+        html.dark .codec-tag.hevc { background: #1a2a5a; color: #93c5fd; }
+        .codec-tag.av1 { background: #fef3c7; color: #7c4a03; }
+        html.dark .codec-tag.av1 { background: #3a2a1a; color: #fcd34d; }
+
+        .section-divider { border: 0; height: 2px; background: linear-gradient(90deg, transparent, #1a73e8, transparent); opacity: 0.15; margin: 1.5rem 0; }
+        html.dark .section-divider { opacity: 0.25; }
+
+        #searchResultsContainer { transition: opacity 0.25s ease, transform 0.25s ease; opacity: 0; transform: translateY(-6px); pointer-events: none; max-height: 0; overflow: hidden; }
+        #searchResultsContainer.open { opacity: 1; transform: translateY(0); pointer-events: auto; max-height: 600px; overflow-y: auto; }
+        #searchResultsContainer .result-item { cursor: pointer; transition: background-color 0.15s ease; border-radius: 8px; }
+        #searchResultsContainer .result-item:hover { background-color: rgba(26, 115, 232, 0.06); }
+        html.dark #searchResultsContainer .result-item:hover { background-color: rgba(100, 181, 246, 0.10); }
+        #searchResultsContainer .result-item .arrow-icon { opacity: 0; transition: opacity 0.2s, transform 0.2s; }
+        #searchResultsContainer .result-item:hover .arrow-icon { opacity: 1; transform: translateX(4px); }
+        .result-highlight { background: #fbbf24; color: #0b1a3a; font-weight: 700; padding: 0 2px; border-radius: 2px; }
+        html.dark .result-highlight { background: #f59e0b; color: #0b1a3a; }
+        #searchResultsContainer::-webkit-scrollbar { width: 4px; }
+        #searchResultsContainer::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 10px; }
+        html.dark #searchResultsContainer::-webkit-scrollbar-thumb { background: #475569; }
+
+        .spinner { border: 3px solid rgba(26, 115, 232, 0.2); border-top-color: #1a73e8; border-radius: 50%; width: 28px; height: 28px; animation: spin 0.7s linear infinite; }
+        html.dark .spinner { border-color: rgba(100, 181, 246, 0.15); border-top-color: #64b5f6; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        #mobileSidebar { background: linear-gradient(180deg, #0a1a35 0%, #051025 55%, #0a1a35 100%); border-right: 1px solid rgba(100, 181, 246, 0.15); position: fixed; overflow: hidden; }
+        #mobileSidebar::before { content: ''; position: absolute; top: -20%; right: -40%; width: 90%; height: 60%; background: radial-gradient(circle, rgba(66, 133, 244, 0.25) 0%, transparent 65%); pointer-events: none; z-index: 0; }
+        #mobileSidebar > * { position: relative; z-index: 1; }
+
+        html body footer { background-color: rgba(235, 245, 255, 0.6) !important; border-top: 1px solid rgba(26, 115, 232, 0.12) !important; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+        html.dark body footer { background-color: rgba(7, 18, 36, 0.6) !important; border-top: 1px solid rgba(100, 181, 246, 0.1) !important; }
+
+        html.dark .bg-white { background-color: #142033 !important; }
+        html.dark .bg-gray-50 { background-color: #0f1e3a !important; }
+        html.dark .bg-gray-100 { background-color: #162a4f !important; }
+        html.dark .border-gray-200 { border-color: rgba(100, 181, 246, 0.12) !important; }
+        html.dark .text-gray-600, html.dark .text-gray-700, html.dark .text-gray-800 { color: #e8edf5 !important; }
+        html.dark .text-gray-500 { color: #94a3b8 !important; }
+        html.dark .text-gray-400 { color: #64748b !important; }
+        html.dark .shadow-md { box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5); }
+        html.dark .shadow-lg { box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); }
+        html.dark .hover\:bg-gray-50:hover { background-color: #1e3350 !important; }
+        html.dark .hover\:bg-gray-100:hover { background-color: #1e3350 !important; }
+
+        /* Episode list scrollable */
+        .ep-scroll { max-height: 22rem; overflow-y: auto; }
+        .ep-scroll::-webkit-scrollbar { width: 4px; }
+        .ep-scroll::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 10px; }
+        html.dark .ep-scroll::-webkit-scrollbar-thumb { background: #475569; }
+    </style>
+</head>
+
+<body class="text-gray-800 dark:text-slate-100 antialiased min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="glass-header sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-18 md:h-20 gap-3">
+                <div class="flex items-center gap-4 lg:gap-6 min-w-0 flex-shrink">
+                    <button id="mobileMenuBtn" class="md:hidden p-2 text-slate-600 dark:text-slate-300 hover:text-brand-blue dark:hover:text-sky-400 rounded-lg hover:bg-brand-blue/10 dark:hover:bg-white/10 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" /></svg>
+                    </button>
+                    <a href="indeks.html" class="flex items-center gap-2 group flex-shrink-0">
+                        <span class="font-black text-2xl md:text-3xl tracking-tight"><span class="logo-brazil">Brazil</span><span class="logo-sirih">Sirih</span></span>
+                        <span class="hidden sm:inline-block text-[9px] font-bold text-brand-blue dark:text-sky-300 bg-brand-blue/10 dark:bg-sky-400/10 px-2.5 py-0.5 rounded-full uppercase tracking-widest border border-brand-blue/20 dark:border-sky-400/20">FanSub</span>
+                    </a>
+                    <nav class="hidden md:flex items-center gap-0.5 lg:gap-1 ml-3 flex-shrink-0">
+                        <a href="indeks.html" class="nav-link text-sm">Beranda</a>
+                        <a href="list.html" class="nav-link text-sm">Daftar Anime</a>
+                        <a href="faq.html" class="nav-link text-sm">FAQ</a>
+                        <a href="queue.html" class="nav-link text-sm">Antrian Proyek</a>
+                    </nav>
+                </div>
+                <div class="flex items-center gap-2 lg:gap-3 flex-shrink-0">
+                    <div class="hidden md:flex items-center bg-white/70 dark:bg-slate-800/60 backdrop-blur-md border border-brand-blue/15 dark:border-sky-400/15 rounded-full px-4 py-2 focus-within:bg-white dark:focus-within:bg-slate-800 focus-within:ring-2 focus-within:ring-brand-blue/30 transition-all">
+                        <svg class="w-4 h-4 text-brand-blue/70 dark:text-sky-300/80 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                        <input type="text" id="desktopSearch" placeholder="Cari anime..." class="bg-transparent border-none outline-none text-sm w-28 lg:w-44 text-gray-800 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 font-medium" autocomplete="off" />
+                    </div>
+                    <button id="mobileSearchBtn" class="md:hidden p-2.5 rounded-full text-slate-600 dark:text-slate-300 hover:text-brand-blue dark:hover:text-sky-400 hover:bg-brand-blue/10 dark:hover:bg-white/10 transition-colors" aria-label="Cari">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                    </button>
+                    <button id="themeToggle" class="p-2.5 rounded-full text-brand-blue dark:text-sky-300 hover:text-white bg-brand-blue/10 dark:bg-sky-400/10 border border-brand-blue/20 dark:border-sky-400/25 hover:bg-brand-blue dark:hover:bg-sky-500 hover:border-brand-blue dark:hover:border-sky-500 transition-all flex-shrink-0">
+                        <svg id="themeIconDark" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" /></svg>
+                        <svg id="themeIconLight" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" /></svg>
+                    </button>
+                </div>
+            </div>
+            <div id="mobileSearchContainer" class="hidden md:hidden pb-4 pt-1 animate-slide-down">
+                <div class="flex items-center bg-white/70 dark:bg-slate-800/60 backdrop-blur-md border border-brand-blue/15 dark:border-sky-400/15 rounded-full px-4 py-2.5 focus-within:bg-white dark:focus-within:bg-slate-800 focus-within:ring-2 focus-within:ring-brand-blue/30 transition-all">
+                    <svg class="w-5 h-5 text-brand-blue/70 dark:text-sky-300/80 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                    <input type="text" id="mobileSearch" placeholder="Cari judul anime..." class="bg-transparent border-none outline-none text-sm w-full text-gray-800 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 font-medium" autocomplete="off" />
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SEARCH RESULTS -->
+    <div id="searchResultsWrapper" class="sticky top-[72px] md:top-[80px] z-40 bg-white/95 dark:bg-[#071224]/95 backdrop-blur-md border-b border-brand-blue/15 dark:border-sky-400/15 shadow-lg transition-all duration-300 max-h-0 overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-0">
+            <div id="searchResultsContainer" class="transition-all duration-300 overflow-y-auto" style="max-height:0; opacity:0;">
+                <div id="searchResultsInner" class="py-4 space-y-1.5"></div>
+                <div id="searchLoading" class="flex items-center justify-center py-6 hidden"><div class="spinner"></div><span class="ml-3 text-sm font-semibold text-gray-500 dark:text-gray-400">Memuat data...</span></div>
+                <div id="searchEmpty" class="py-6 text-center text-sm font-medium text-gray-400 dark:text-gray-500 hidden">Tidak ada hasil untuk pencarian ini.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MOBILE SIDEBAR -->
+    <div id="mobileOverlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 hidden transition-opacity"></div>
+    <div id="mobileSidebar" class="fixed inset-y-0 left-0 w-72 z-50 transform -translate-x-full transition-transform duration-300 shadow-2xl flex flex-col">
+        <div class="p-5 border-b border-sky-400/15 flex justify-between items-center bg-white/5">
+            <span class="font-black text-xl text-white">Menu</span>
+            <button id="closeMobileMenu" class="text-white/60 hover:text-red-400 hover:bg-red-500/10 p-2 rounded-lg transition-colors"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" /></svg></button>
+        </div>
+        <div class="flex-1 overflow-y-auto p-6 space-y-6">
+            <nav class="space-y-1">
+                <a href="indeks.html" class="block px-4 py-3 text-white/70 hover:text-white hover:bg-white/10 rounded-lg font-bold transition-colors">🏠 Beranda</a>
+                <a href="list.html" class="block px-4 py-3 text-white/70 hover:text-white hover:bg-white/10 rounded-lg font-bold transition-colors">📺 Daftar Anime</a>
+                <a href="faq.html" class="block px-4 py-3 text-white/70 hover:text-white hover:bg-white/10 rounded-lg font-bold transition-colors">❓ FAQ</a>
+                <a href="queue.html" class="block px-4 py-3 text-white/70 hover:text-white hover:bg-white/10 rounded-lg font-bold transition-colors">🧾 Antrian Proyek</a>
+            </nav>
+            <hr class="border-sky-400/15" />
+            <div><p class="text-xs font-bold text-sky-300/60 uppercase tracking-wider mb-3">Catatan Penting</p><div class="space-y-2 pl-1"><span class="block text-sm font-semibold text-white/70">Tolong dukung rilisan resmi agar anime baru bisa memiliki dana yang cukup.</span></div></div>
+            <hr class="border-sky-400/15" />
+            <div class="pt-2"><button id="sidebarThemeToggle" class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-sky-400/10 border border-sky-400/20 rounded-lg font-bold text-white hover:bg-sky-400/20 transition-colors"><span id="sidebarThemeIcon">🌙</span> <span id="sidebarThemeLabel">Mode Malam</span></button></div>
+        </div>
+        <div class="p-6 border-t border-sky-400/15 bg-white/5"><p class="text-xs text-center text-white/40 font-medium">Brazil Sirih FanSub · Non-komersial</p></div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <div id="animeContainer">
+            <div class="text-center py-20">
+                <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-brand-blue border-t-transparent"></div>
+                <p class="mt-4 text-gray-500 dark:text-gray-400">Memuat data anime...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="mt-auto transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 py-8 text-center"><p class="text-sm text-brand-blue/70 dark:text-sky-300/70 font-medium">⚡ Non-komersial · Tidak terafiliasi dengan pemegang lisensi resmi.</p></div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        (function() {
+            'use strict';
+
+            function setTheme(dark) {
+                if (dark) { document.documentElement.classList.add('dark'); localStorage.setItem('bs_theme', 'dark'); }
+                else { document.documentElement.classList.remove('dark'); localStorage.setItem('bs_theme', 'light'); }
+                updateThemeIcons();
+            }
+            function updateThemeIcons() {
+                const isDark = document.documentElement.classList.contains('dark');
+                const darkIcon = document.getElementById('themeIconDark');
+                const lightIcon = document.getElementById('themeIconLight');
+                const sidebarIcon = document.getElementById('sidebarThemeIcon');
+                const sidebarLabel = document.getElementById('sidebarThemeLabel');
+                if (isDark) { darkIcon.classList.remove('hidden'); lightIcon.classList.add('hidden'); if (sidebarIcon) sidebarIcon.textContent = '☀️'; if (sidebarLabel) sidebarLabel.textContent = 'Mode Terang'; }
+                else { darkIcon.classList.add('hidden'); lightIcon.classList.remove('hidden'); if (sidebarIcon) sidebarIcon.textContent = '🌙'; if (sidebarLabel) sidebarLabel.textContent = 'Mode Malam'; }
+            }
+            function toggleTheme() { setTheme(!document.documentElement.classList.contains('dark')); }
+            function toggleSidebar(open) {
+                const sidebar = document.getElementById('mobileSidebar');
+                const overlay = document.getElementById('mobileOverlay');
+                const isOpen = !sidebar.classList.contains('-translate-x-full');
+                const shouldOpen = (open !== undefined) ? open : !isOpen;
+                if (shouldOpen) { sidebar.classList.remove('-translate-x-full'); overlay.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
+                else { sidebar.classList.add('-translate-x-full'); overlay.classList.add('hidden'); document.body.style.overflow = ''; }
+            }
+            function toggleMobileSearch() {
+                const container = document.getElementById('mobileSearchContainer');
+                container.classList.toggle('hidden');
+                if (!container.classList.contains('hidden')) document.getElementById('mobileSearch').focus();
+            }
+
+            /* ========== SEARCH ========== */
+            let animeData = []; let dataLoaded = false; let searchTimeout = null;
+            const desktopInput = document.getElementById('desktopSearch');
+            const mobileInput = document.getElementById('mobileSearch');
+            const resultsWrapper = document.getElementById('searchResultsWrapper');
+            const resultsContainer = document.getElementById('searchResultsContainer');
+            const resultsInner = document.getElementById('searchResultsInner');
+            const loadingEl = document.getElementById('searchLoading');
+            const emptyEl = document.getElementById('searchEmpty');
+
+            async function loadAnimeData() {
+                if (dataLoaded) return true;
+                loadingEl.classList.remove('hidden');
+                try {
+                    const resp = await fetch('/database/anime.json');
+                    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+                    animeData = await resp.json();
+                    dataLoaded = true; loadingEl.classList.add('hidden'); return true;
+                } catch (err) { loadingEl.classList.add('hidden'); emptyEl.classList.remove('hidden'); emptyEl.textContent = '⚠️ Gagal memuat data anime.'; return false; }
+            }
+            function fuzzyScore(text, query) {
+                const t = text.toLowerCase(), q = query.toLowerCase();
+                let score = 0, idx = 0;
+                for (const ch of q) { const pos = t.indexOf(ch, idx); if (pos >= idx) { score++; idx = pos + 1; } }
+                const norm = q.length > 0 ? score / q.length : 0;
+                const lenBonus = 1 - Math.abs(t.length - q.length) / Math.max(t.length, q.length, 1);
+                return norm * 0.85 + lenBonus * 0.15;
+            }
+            function highlightText(text, query) {
+                const q = query.toLowerCase().trim(); if (!q) return text;
+                const lower = text.toLowerCase(); const idx = lower.indexOf(q);
+                if (idx === -1) return text;
+                return text.slice(0, idx) + '<span class="result-highlight">' + text.slice(idx, idx + q.length) + '</span>' + text.slice(idx + q.length);
+            }
+            function performSearch(query) {
+                const q = query.trim(); if (!q) { closeResults(); return; }
+                if (!dataLoaded) { loadAnimeData().then(() => { if (dataLoaded) performSearch(q); }); return; }
+                const qLower = q.toLowerCase();
+                const prefixMatches = [], fuzzyCandidates = [];
+                for (const item of animeData) {
+                    const jp = item.r.toLowerCase(), en = item.e.toLowerCase();
+                    if (jp.startsWith(qLower) || en.startsWith(qLower)) prefixMatches.push(item);
+                    else fuzzyCandidates.push(item);
+                }
+                if (prefixMatches.length > 0) { renderResults(prefixMatches, q, 'prefix'); return; }
+                const scored = [];
+                for (const item of fuzzyCandidates) {
+                    const jp = item.r.toLowerCase(), en = item.e.toLowerCase();
+                    const best = Math.max(fuzzyScore(jp, qLower), fuzzyScore(en, qLower));
+                    if (best > 0.25) scored.push({ item, score: best });
+                }
+                scored.sort((a, b) => b.score - a.score);
+                const top = scored.slice(0, 50).map(s => s.item);
+                if (top.length === 0) { emptyEl.classList.remove('hidden'); emptyEl.textContent = 'Tidak ditemukan anime yang cocok.'; resultsInner.innerHTML = ''; openResults(); return; }
+                renderResults(top, q, 'fuzzy');
+            }
+            function renderResults(items, query, mode) {
+                emptyEl.classList.add('hidden');
+                let html = '';
+                const count = items.length;
+                const modeLabel = mode === 'prefix' ? 'Pencocokan tepat' : 'Hasil terdekat';
+                html += `<div class="flex items-center justify-between px-1 pb-2 border-b border-brand-blue/10 dark:border-sky-400/10 mb-2"><span class="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">${modeLabel} · ${count} hasil</span></div>`;
+                for (const item of items) {
+                    const slug = item.r.replace(/\s+/g, '_');
+                    html += `<div class="result-item px-3 py-2.5 flex items-center justify-between group transition-colors rounded-lg border border-transparent hover:border-brand-blue/20 dark:hover:border-sky-400/20" data-slug="${slug}">
+                        <div class="flex-1 min-w-0"><div class="flex items-center gap-2 flex-wrap"><span class="font-extrabold text-gray-800 dark:text-slate-100 text-sm md:text-base">${highlightText(item.r, query)}</span>${item.e ? `<span class="text-xs text-gray-400 dark:text-gray-500 font-medium truncate max-w-[200px]">${highlightText(item.e, query)}</span>` : ''}</div>
+                        <div class="flex items-center gap-3 mt-0.5 text-xs text-gray-400 dark:text-gray-500 flex-wrap"><span>${item.t || '—'}</span><span>•</span><span>${item.d ? item.d.slice(0,4) : '—'}</span><span>•</span><span class="truncate max-w-[120px]">${item.st || '—'}</span></div></div>
+                        <div class="arrow-icon ml-3 text-brand-blue dark:text-sky-400 flex-shrink-0 transition-all"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" /></svg></div>
+                    </div>`;
+                }
+                resultsInner.innerHTML = html;
+                resultsInner.querySelectorAll('.result-item').forEach(el => {
+                    el.addEventListener('click', function() {
+                        const slug = this.dataset.slug;
+                        if (slug) window.location.href = 'anime.html?id=' + encodeURIComponent(slug);
+                    });
+                });
+                openResults();
+            }
+            function openResults() {
+                resultsWrapper.classList.remove('max-h-0');
+                resultsWrapper.classList.add('max-h-[500px]', 'py-0');
+                resultsContainer.style.maxHeight = '460px'; resultsContainer.style.opacity = '1'; resultsContainer.classList.add('open');
+            }
+            function closeResults() {
+                resultsWrapper.classList.add('max-h-0'); resultsWrapper.classList.remove('max-h-[500px]', 'py-0');
+                resultsContainer.style.maxHeight = '0'; resultsContainer.style.opacity = '0'; resultsContainer.classList.remove('open');
+                const inner = document.getElementById('searchResultsInner'); if (inner) inner.innerHTML = '';
+                const empty = document.getElementById('searchEmpty'); if (empty) empty.classList.add('hidden');
+            }
+            function handleSearchInput(e) {
+                const val = e.target.value;
+                if (e.target === desktopInput && mobileInput) mobileInput.value = val;
+                else if (e.target === mobileInput && desktopInput) desktopInput.value = val;
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => performSearch(val), 180);
+            }
+            function initSearch() {
+                loadAnimeData();
+                if (desktopInput) {
+                    desktopInput.addEventListener('input', handleSearchInput);
+                    desktopInput.addEventListener('focus', function() { if (this.value.trim()) performSearch(this.value); });
+                    desktopInput.addEventListener('blur', function() {
+                        setTimeout(() => { const hovered = resultsInner.querySelector('.result-item:hover'); if (!hovered && document.activeElement !== mobileInput) closeResults(); }, 200);
+                    });
+                }
+                if (mobileInput) {
+                    mobileInput.addEventListener('input', handleSearchInput);
+                    mobileInput.addEventListener('focus', function() { if (this.value.trim()) performSearch(this.value); });
+                    mobileInput.addEventListener('blur', function() {
+                        setTimeout(() => { const hovered = resultsInner.querySelector('.result-item:hover'); if (!hovered && document.activeElement !== desktopInput) closeResults(); }, 200);
+                    });
+                }
+                document.addEventListener('click', function(e) {
+                    const isSearch = e.target.closest('#desktopSearch') || e.target.closest('#mobileSearch') || e.target.closest('#searchResultsWrapper');
+                    if (!isSearch) closeResults();
+                });
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') { closeResults(); if (desktopInput) desktopInput.blur(); if (mobileInput) mobileInput.blur(); }
+                });
+            }
+
+            function initUI() {
+                const stored = localStorage.getItem('bs_theme');
+                if (stored === 'dark') setTheme(true);
+                else if (stored === 'light') setTheme(false);
+                else if (window.matchMedia('(prefers-color-scheme: dark)').matches) setTheme(true);
+                else setTheme(false);
+                document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+                document.getElementById('sidebarThemeToggle').addEventListener('click', toggleTheme);
+                document.getElementById('mobileMenuBtn').addEventListener('click', () => toggleSidebar(true));
+                document.getElementById('closeMobileMenu').addEventListener('click', () => toggleSidebar(false));
+                document.getElementById('mobileOverlay').addEventListener('click', () => toggleSidebar(false));
+                document.getElementById('mobileSearchBtn').addEventListener('click', toggleMobileSearch);
+                document.addEventListener('keydown', (e) => { if (e.key === 'Escape') toggleSidebar(false); });
+                initSearch();
+            }
+
+            /* ============================================================
+               RENDER ANIME — DUAL MODE (single / dynamic)
+               ============================================================ */
+               function renderAnime(data) {
+
+                const params = new URLSearchParams(window.location.search);
+                const id = params.get('id');
+
+                const canonicalEl = document.getElementById('canonicalLink');
+                if (canonicalEl) {
+                    const canonicalUrl = `${location.origin}${location.pathname}${id ? '?id=' + encodeURIComponent(id) : ''}`;
+                    canonicalEl.href = canonicalUrl;
+                }
+
+                const container = document.getElementById('animeContainer');
+                document.title = `${data.title} · Brazil Sirih FanSub`;
+
+                const meta = data.metadata || {};
+                const encoders = data.encoders || {};
+                const telegramChannel = data.telegram_channel || '';
+                const password = 'brazilsirihfansub';
+                const mode = (data.mode === 'dynamic') ? 'dynamic' : 'single';
+                const downloads = data.downloads || {};
+
+                const resMap = {
+                    '720p': { badge: 'HD', cls: 'hd', label: '720p' },
+                    '1080p': { badge: 'FHD', cls: 'fhd', label: '1080p' },
+                    '1080p_hbr': { badge: 'FHD+', cls: 'fhdplus', label: '1080p HBR' }
+                };
+
+                function codecCls(codec) {
+                    const c = (codec || '').toUpperCase();
+                    if (c === 'AV1') return 'av1';
+                    if (c === 'HEVC') return 'hevc';
+                    return 'avc';
+                }
+                function badgeRes(resKey) {
+                    const r = resMap[resKey];
+                    return r ? `<span class="badge-res ${r.cls}">${r.badge}</span>` : '';
+                }
+                function badgeCodec(codec) {
+                    if (!codec) return '';
+                    return `<span class="badge-codec ${codecCls(codec)}">${codec}</span>`;
+                }
+                /* badge dinamis: menerima label apapun (FLAC, MP3, AV1, FHD, OST, dll) */
+                function badgeDynamic(label) {
+                    if (!label) return '';
+                    const l = String(label).trim();
+                    const upper = l.toUpperCase();
+                    if (upper === 'FLAC') return `<span class="badge-res fhdplus">${l}</span>`;
+                    if (upper === 'MP3') return `<span class="badge-codec mp3">${l}</span>`;
+                    if (upper === 'AV1') return `<span class="badge-codec av1">${l}</span>`;
+                    if (upper === 'HEVC' || upper === 'H265' || upper === 'H.265') return `<span class="badge-codec hevc">${l}</span>`;
+                    if (upper === 'AVC' || upper === 'H264' || upper === 'H.264') return `<span class="badge-codec avc">${l}</span>`;
+                    if (upper === 'FHD+' || upper === 'FHD PLUS' || l === '1080p_hbr') return `<span class="badge-res fhdplus">FHD+</span>`;
+                    if (upper === 'FHD' || upper === '1080P' || l === '1080p') return `<span class="badge-res fhd">${l}</span>`;
+                    if (upper === 'HD' || upper === '720P' || l === '720p') return `<span class="badge-res hd">${l}</span>`;
+                    if (['OST','OP','ED','BGM','OP1','ED1','ED2','IN','INSERT'].includes(upper)) return `<span class="badge-music">${l}</span>`;
+                    return `<span class="badge-res hd">${l}</span>`;
+                }
+
+                /* ── Quick stats ── */
+                const statItems = [
+                    { label: 'Episode', value: meta.episodes ?? '—' },
+                    { label: 'Status', value: meta.status || '—' },
+                    { label: 'Studio', value: meta.studio || '—' },
+                    { label: 'Source', value: meta.source || '—' }
+                ];
+                const statsHtml = statItems.map(s => `<div class="stat-box"><span class="stat-label">${s.label}</span><span class="stat-value">${s.value}</span></div>`).join('');
+
+                /* ── Genres & Themes ── */
+                const genres = Array.isArray(meta.genres) ? meta.genres : [];
+                const themes = Array.isArray(meta.themes) ? meta.themes : [];
+                const genresHtml = genres.map(g => `<span class="genre-tag">${g}</span>`).join('');
+                const themesHtml = themes.map(t => `<span class="theme-tag">${t}</span>`).join('');
+
+                /* ── Producers & Licensors ── */
+                const producers = Array.isArray(meta.producers) ? meta.producers : [];
+                const licensors = Array.isArray(meta.licensors) ? meta.licensors : [];
+                const producersHtml = producers.map(p => `<span class="producer-pill">${p}</span>`).join('');
+                const licensorsHtml = licensors.map(l => `<span class="producer-pill">${l}</span>`).join('');
+
+                /* ── Main Characters ── */
+                const chars = Array.isArray(meta.main_characters) ? meta.main_characters : [];
+                const charsHtml = chars.map(c => `<div class="character-item"><span class="char-name">${c.name}</span><span class="char-role">${c.role || ''}</span></div>`).join('');
+
+                /* ── Mode badge ── */
+                const modeLabel = mode === 'dynamic' ? '📺 Dynamic Series' : '🎬 Single Season';
+                const modeCls = mode === 'dynamic' ? 'dynamic' : 'single';
+                const modeBadgeHtml = `<div class="mb-3"><span class="mode-badge ${modeCls}">${modeLabel}</span></div>`;
+
+                /* ============================================================
+                   SHARED SECTIONS
+                   ============================================================ */
+
+                function renderMusicSection(music) {
+                    if (!Array.isArray(music) || music.length === 0) return '';
+                    const items = music.map(m => {
+                        const typeLabel = (m.type || 'MUSIC').toUpperCase();
+                        const fmt = (m.format || 'MP3').toUpperCase();
+                        const formatBadge = fmt === 'FLAC'
+                            ? `<span class="badge-res fhdplus">FLAC</span>`
+                            : `<span class="badge-codec mp3">MP3</span>`;
+                        return `
+                            <div class="download-item flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 border border-brand-blue/10 dark:border-sky-400/10 rounded-xl bg-white dark:bg-[#142033]">
+                                <div class="flex items-center gap-2 flex-wrap">
+                                    <span class="badge-music">${typeLabel}</span>
+                                    ${formatBadge}
+                                    <span class="text-sm font-bold text-gray-700 dark:text-gray-200">${m.title || '—'}</span>
+                                    ${m.artist ? `<span class="text-xs text-gray-500 dark:text-gray-400">· ${m.artist}</span>` : ''}
+                                    ${m.size ? `<span class="text-xs text-gray-400 dark:text-gray-500">· ${m.size}</span>` : ''}
+                                </div>
+                                <a href="${m.url || '#'}" target="_blank" rel="noopener" class="provider-btn mediafire">🔥 MediaFire</a>
+                            </div>`;
+                    }).join('');
+                    return `
+                        <div class="mt-6">
+                            <h4 class="font-black text-base md:text-lg text-gray-800 dark:text-slate-100 mb-3 flex items-center gap-2">
+                                🎵 Music / Soundtrack
+                                <span class="text-[10px] font-bold text-gray-400 dark:text-gray-500 bg-brand-blue/5 dark:bg-sky-400/5 px-2 py-0.5 rounded-full ml-auto uppercase tracking-wider">${music.length} rilisan mediafire</span>
+                            </h4>
+                            <div class="space-y-2.5">${items}</div>
+                        </div>`;
+                }
+
+                /* ============================================================
+                   MODE 1 — SINGLE SEASON
+                   ============================================================ */
+                function buildSingleDownloadBody() {
+                    const batch = downloads.anime_batch || downloads;
+                    let batchItems = '';
+                    for (const resKey of ['720p', '1080p', '1080p_hbr']) {
+                        const d = batch[resKey];
+                        if (!d) continue;
+                        const rc = resMap[resKey];
+                        const codec = d.codec || 'AVC';
+                        const size = d.size || '—';
+                        const url = d.url || d.mediafire || '#';
+                        const enc = encoders[resKey] || 'Brazil Sirih FanSub';
+
+                        // telegram_only: pakai tombol scroll ke section Telegram
+                        const telegramOnly = d.telegram_only === true || resKey === '1080p_hbr' && d.telegram_only === true;
+                        const actionHtml = telegramOnly
+                            ? `<button type="button" class="provider-btn telegram" data-scroll-telegram>📢 Khusus Telegram</button>`
+                            : `<a href="${url}" target="_blank" rel="noopener" class="provider-btn mediafire">🔥 MediaFire</a>`;
+
+                        if (resKey === '1080p_hbr') {
+                            batchItems += `
+                                <div class="download-item flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 border-2 border-amber-300/50 dark:border-amber-700/30 rounded-xl bg-gradient-to-br from-amber-50/50 to-white dark:from-amber-950/20 dark:to-slate-800/30">
+                                    <div class="flex items-center gap-2 flex-wrap">
+                                        <span class="badge-res fhdplus">FHD+</span>
+                                        <span class="badge-codec ${codecCls(codec)}">${codec}</span>
+                                        <span class="text-xs font-bold text-gray-600 dark:text-gray-300">${rc.label}</span>
+                                        <span class="text-xs text-gray-400 dark:text-gray-500">· ${size}</span>
+                                        <span class="text-xs text-gray-500 dark:text-gray-400">· ${enc}</span>
+                                    </div>
+                                    ${actionHtml}
+                                </div>`;
+                        } else {
+                            batchItems += `
+                                <div class="download-item flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 border border-brand-blue/10 dark:border-sky-400/10 rounded-xl bg-white dark:bg-[#142033]">
+                                    <div class="flex items-center gap-2 flex-wrap">
+                                        ${badgeRes(resKey)}
+                                        ${badgeCodec(codec)}
+                                        <span class="text-xs font-bold text-gray-600 dark:text-gray-300">${rc.label}</span>
+                                        <span class="text-xs text-gray-400 dark:text-gray-500">· ${size}</span>
+                                        <span class="text-xs text-gray-500 dark:text-gray-400">· ${enc}</span>
+                                    </div>
+                                    ${actionHtml}
+                                </div>`;
+                        }
+                    }
+                    if (!batchItems) batchItems = `<p class="text-sm text-gray-400 italic">Belum ada batch untuk anime ini.</p>`;
+
+                    // Light Novel (opsional)
+                    const ln = downloads.light_novel;
+                    let lnHtml = '';
+                    if (ln) {
+                        const idList = Array.isArray(ln.indonesia) ? ln.indonesia : [];
+                        const enList = Array.isArray(ln.english) ? ln.english : [];
+                        if (idList.length > 0 || enList.length > 0) {
+                            const renderVol = (arr) => arr.length === 0
+                                ? `<p class="text-sm text-gray-400 italic py-2">Belum tersedia.</p>`
+                                : arr.map(v => `
+                                    <div class="download-item flex items-center justify-between gap-3 p-3.5 border border-brand-blue/10 dark:border-sky-400/10 rounded-lg bg-white dark:bg-[#142033]">
+                                        <div class="flex items-center gap-2 flex-wrap min-w-0">
+                                            <span class="badge-vol">Vol ${v.volume || '?'}</span>
+                                            <span class="text-sm font-bold text-gray-700 dark:text-gray-200 truncate">${v.title || '—'}</span>
+                                            ${v.size ? `<span class="text-xs text-gray-400 dark:text-gray-500">· ${v.size}</span>` : ''}
+                                            <span class="text-[10px] font-bold text-brand-blue dark:text-sky-300 bg-brand-blue/10 dark:bg-sky-400/10 px-1.5 py-0.5 rounded">EPUB</span>
+                                        </div>
+                                        <a href="${v.url || '#'}" target="_blank" rel="noopener" class="provider-btn mediafire flex-shrink-0">🔥 mediafire</a>
+                                    </div>`).join('');
+                            lnHtml = `
+                                <div class="mt-6">
+                                    <h4 class="font-black text-base md:text-lg text-gray-800 dark:text-slate-100 mb-3 flex items-center gap-2">
+                                        📚 Light Novel
+                                        <span class="text-[10px] font-bold text-gray-400 dark:text-gray-500 bg-brand-blue/5 dark:bg-sky-400/5 px-2 py-0.5 rounded-full ml-auto uppercase tracking-wider">via mediafire</span>
+                                    </h4>
+                                    <div class="ln-lang-tabs flex gap-2 mb-3">
+                                        <button type="button" class="ln-tab active" data-lang="id">🇮🇩 Indonesia</button>
+                                        <button type="button" class="ln-tab" data-lang="en">🇬🇧 English</button>
+                                    </div>
+                                    <div class="ln-list space-y-2" data-lang="id">${renderVol(idList)}</div>
+                                    <div class="ln-list space-y-2 hidden" data-lang="en">${renderVol(enList)}</div>
+                                </div>`;
+                        }
+                    }
+
+                    return `
+                        <div class="mb-6">
+                            <h4 class="font-black text-base md:text-lg text-gray-800 dark:text-slate-100 mb-3 flex items-center gap-2">
+                                📦 Batch Anime
+                                <span class="text-[10px] font-bold text-gray-400 dark:text-gray-500 bg-brand-blue/5 dark:bg-sky-400/5 px-2 py-0.5 rounded-full ml-auto uppercase tracking-wider">via mediafire</span>
+                            </h4>
+                            <div class="space-y-3">${batchItems}</div>
+                        </div>
+                        ${renderMusicSection(downloads.music)}
+                        ${lnHtml}
+                    `;
+                }
+
+                /* ============================================================
+                   MODE 2 — DYNAMIC SERIES
+                   ============================================================ */
+                function buildDynamicDownloadBody() {
+                    const batchArr = Array.isArray(downloads.anime_batch) ? downloads.anime_batch : [];
+                    const epArr = Array.isArray(downloads.anime_episode) ? downloads.anime_episode : [];
+
+                    // Batch per 20 eps
+                    let batchItems = '';
+                    if (batchArr.length > 0) {
+                        batchItems = batchArr.map(b => {
+                            const links = [];
+                            if (b['720p']) links.push(`<a href="${b['720p'].url || '#'}" target="_blank" rel="noopener" class="provider-btn mediafire">🔥 720p${b['720p'].size ? ` · ${b['720p'].size}` : ''}</a>`);
+                            if (b['1080p']) links.push(`<a href="${b['1080p'].url || '#'}" target="_blank" rel="noopener" class="provider-btn mediafire">🔥 1080p${b['1080p'].size ? ` · ${b['1080p'].size}` : ''}</a>`);
+                            if (b['1080p_hbr']) {
+                                const hbr = b['1080p_hbr'];
+                                const isTelegram = hbr.telegram_only === true;
+                                if (isTelegram) {
+                                    links.push(`<button type="button" class="provider-btn telegram" data-scroll-telegram>📢 1080p HBR${hbr.size ? ` · ${hbr.size}` : ''}</button>`);
+                                } else {
+                                    links.push(`<a href="${hbr.url || '#'}" target="_blank" rel="noopener" class="provider-btn mediafire">🔥 1080p HBR${hbr.size ? ` · ${hbr.size}` : ''}</a>`);
+                                }
+                            }
+                            return `
+                                <div class="download-item flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 border border-brand-blue/10 dark:border-sky-400/10 rounded-xl bg-white dark:bg-[#142033]">
+                                    <div class="flex items-center gap-2 flex-wrap">
+                                        <span class="badge-range">Eps ${b.range || '?'}</span>
+                                        ${b.total_episodes ? `<span class="text-xs font-bold text-gray-600 dark:text-gray-300">${b.total_episodes} episode</span>` : ''}
+                                    </div>
+                                    <div class="flex gap-2 flex-wrap">${links.join('') || '<span class="badge-kosong">kosong</span>'}</div>
+                                </div>`;
+                        }).join('');
+                    } else {
+                        batchItems = `<p class="text-sm text-gray-400 italic">Belum ada batch tersedia.</p>`;
+                    }
+
+                    // Per episode
+                    let epItems = '';
+                    if (epArr.length > 0) {
+                        const sorted = [...epArr].sort((a, b) => (a.episode || 0) - (b.episode || 0));
+                        epItems = sorted.map(ep => {
+                            const links = [];
+                            if (ep['720p']) links.push(`<a href="${ep['720p'].url || '#'}" target="_blank" rel="noopener" class="provider-btn mediafire mini">720p</a>`);
+                            if (ep['1080p']) links.push(`<a href="${ep['1080p'].url || '#'}" target="_blank" rel="noopener" class="provider-btn mediafire mini">1080p</a>`);
+                            return `
+                                <div class="download-item flex items-center justify-between gap-2 p-2.5 border border-brand-blue/10 dark:border-sky-400/10 rounded-lg bg-white dark:bg-[#142033]">
+                                    <div class="flex items-center gap-2 min-w-0">
+                                        <span class="font-extrabold text-xs text-gray-700 dark:text-gray-200 flex-shrink-0">Eps ${ep.episode}</span>
+                                        ${ep.title ? `<span class="text-xs text-gray-500 dark:text-gray-400 truncate">${ep.title}</span>` : ''}
+                                    </div>
+                                    <div class="flex gap-1.5 flex-shrink-0">${links.join('') || '<span class="badge-kosong">kosong</span>'}</div>
+                                </div>`;
+                        }).join('');
+                    } else {
+                        epItems = `<p class="text-sm text-gray-400 italic">Belum ada episode tersedia.</p>`;
+                    }
+
+                    return `
+                        <div class="mb-6">
+                            <h4 class="font-black text-base md:text-lg text-gray-800 dark:text-slate-100 mb-3 flex items-center gap-2">
+                                📦 Batch per 20 Episode
+                                <span class="text-[10px] font-bold text-gray-400 dark:text-gray-500 bg-brand-blue/5 dark:bg-sky-400/5 px-2 py-0.5 rounded-full ml-auto uppercase tracking-wider">via mediafire</span>
+                            </h4>
+                            <div class="space-y-2.5">${batchItems}</div>
+                        </div>
+                        <div class="mb-6">
+                            <h4 class="font-black text-base md:text-lg text-gray-800 dark:text-slate-100 mb-3 flex items-center gap-2">
+                                📺 Per Episode
+                                <span class="text-[10px] font-bold text-gray-400 dark:text-gray-500 bg-brand-blue/5 dark:bg-sky-400/5 px-2 py-0.5 rounded-full ml-auto uppercase tracking-wider">${epArr.length} episode · via mediafire</span>
+                            </h4>
+                            <div class="ep-scroll space-y-2 pr-1">${epItems}</div>
+                        </div>
+                        ${renderMusicSection(downloads.music)}
+                    `;
+                }
+
+                /* ── Telegram files (dynamic labels) ── */
+                let telegramFilesHtml = '';
+                const tgFiles = Array.isArray(data.telegram_files) ? data.telegram_files : [];
+                if (tgFiles.length > 0 && telegramChannel) {
+                    const fileItems = tgFiles.map(tf => {
+                        let badges = '';
+                        if (Array.isArray(tf.labels) && tf.labels.length > 0) {
+                            badges = tf.labels.map(l => badgeDynamic(l)).join('');
+                        } else {
+                            if (tf.resolution) badges += badgeRes(tf.resolution);
+                            if (tf.codec) badges += badgeDynamic(tf.codec);
+                        }
+                        return `
+                            <div class="telegram-file-item">
+                                ${badges}
+                                <span class="size-text">${tf.size || ''}</span>
+                                <span class="file-name">${tf.file || ''}</span>
+                                <button class="copy-btn" data-file="${tf.file || ''}">📋 Salin</button>
+                            </div>`;
+                    }).join('');
+                    telegramFilesHtml = `
+                        <div id="telegramFilesSection" class="mt-6 telegram-files-card p-5 md:p-6">
+                            <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-2xl">✈️</span>
+                                    <h4 class="font-black text-base md:text-lg text-gray-800 dark:text-slate-100">File di Channel Telegram</h4>
+                                </div>
+                                <a href="${telegramChannel}" target="_blank" rel="noopener" class="telegram-channel-link">
+                                    <span>📢</span> Join Channel
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                                </a>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 font-medium mb-4">Salin nama file di bawah, lalu cari di channel Telegram untuk mengunduh.</p>
+                            <div class="space-y-2.5">${fileItems}</div>
+                        </div>`;
+                }
+
+                /* ── Poster ── */
+                const posterSrc = id ? `images/${id}.webp` : (data.poster || 'https://via.placeholder.com/800x1200?text=No+Poster');
+                const fallbackPoster = data.poster || 'https://via.placeholder.com/800x1200?text=No+Poster';
+
+                /* ── Download body (mode-aware) ── */
+                const downloadBodyHtml = mode === 'dynamic' ? buildDynamicDownloadBody() : buildSingleDownloadBody();
+
+                /* ── Build HTML ── */
+                const html = `
+                    <div class="mb-10 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start">
+                        <div class="w-full">
+                            <div class="relative w-full aspect-video rounded-2xl overflow-hidden poster-shadow bg-gray-100 dark:bg-slate-800 border border-brand-blue/15 dark:border-sky-400/15">
+                                <img src="${posterSrc}" alt="${data.title}" loading="lazy" class="w-full h-full object-cover object-center" onerror="this.onerror=null; this.src='${fallbackPoster}';" />
+                            </div>
+                        </div>
+                        <div class="w-full">
+                            <div class="mb-4">
+                                ${modeBadgeHtml}
+                                <h1 class="text-2xl md:text-3xl lg:text-4xl font-black text-gray-800 dark:text-slate-100 leading-tight">${data.title}</h1>
+                                ${data.english ? `<p class="text-base md:text-lg font-bold text-brand-blue dark:text-sky-300 mt-1.5">${data.english}</p>` : ''}
+                                ${data.indonesia ? `<p class="text-sm md:text-base font-semibold text-gray-500 dark:text-gray-400 mt-0.5">${data.indonesia}</p>` : ''}
+                            </div>
+                            <div class="grid grid-cols-2 gap-2.5 mb-4">${statsHtml}</div>
+                            ${genres.length ? `<div class="mb-3"><p class="text-[10px] font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-1.5">Genres</p><div class="flex flex-wrap gap-1.5">${genresHtml}</div></div>` : ''}
+                            ${themes.length ? `<div><p class="text-[10px] font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-1.5">Themes</p><div class="flex flex-wrap gap-1.5">${themesHtml}</div></div>` : ''}
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-[#142033] rounded-2xl border border-brand-blue/15 dark:border-sky-400/15 shadow-md p-6 md:p-8 mb-8 transition-colors">
+                        <div class="prose max-w-none text-gray-600 dark:text-gray-300 font-medium leading-relaxed">
+                            <h3 class="text-lg font-black text-gray-800 dark:text-slate-100 mb-3">📖 Sinopsis Cerita</h3>
+                            <div class="space-y-3">${data.synopsis}</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-[#142033] rounded-2xl border border-brand-blue/15 dark:border-sky-400/15 shadow-md p-6 md:p-8 mb-8 transition-colors">
+                        <h3 class="text-xl font-black text-gray-800 dark:text-slate-100 mb-5 flex items-center gap-3 border-b border-brand-blue/10 dark:border-sky-400/10 pb-4">📋 Informasi Anime</h3>
+                        <div class="info-grid">
+                            <div class="info-card">
+                                <h4>🎬 Encoder</h4>
+                                <ul>
+                                    <li><strong>HD (720p):</strong> ${encoders['720p'] || 'Brazil Sirih FanSub'}</li>
+                                    <li><strong>FHD (1080p):</strong> ${encoders['1080p'] || 'Brazil Sirih FanSub'}</li>
+                                    ${mode === 'single' && encoders['1080p_hbr'] ? `<li><strong>FHD+ (1080p HBR):</strong> ${encoders['1080p_hbr']}</li>` : ''}
+                                </ul>
+                            </div>
+                            <div class="info-card">
+                                <h4>🏢 Studio & Source</h4>
+                                <ul>
+                                    <li><strong>Studio:</strong> ${meta.studio || '—'}</li>
+                                    <li><strong>Source:</strong> ${meta.source || '—'}</li>
+                                    <li><strong>Aired:</strong> ${meta.aired || '—'}</li>
+                                </ul>
+                            </div>
+                            <div class="info-card">
+                                <h4>🏭 Producers</h4>
+                                <div class="flex flex-wrap gap-1.5 mt-1">${producersHtml || '<span class="text-sm text-gray-400 italic">—</span>'}</div>
+                            </div>
+                            <div class="info-card">
+                                <h4>📜 Licensors</h4>
+                                <div class="flex flex-wrap gap-1.5 mt-1">${licensorsHtml || '<span class="text-sm text-gray-400 italic">—</span>'}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    ${chars.length ? `
+                    <div class="bg-white dark:bg-[#142033] rounded-2xl border border-brand-blue/15 dark:border-sky-400/15 shadow-md p-6 md:p-8 mb-8 transition-colors">
+                        <h3 class="text-xl font-black text-gray-800 dark:text-slate-100 mb-4 flex items-center gap-3 border-b border-brand-blue/10 dark:border-sky-400/10 pb-4">👥 Karakter Utama</h3>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">${charsHtml}</div>
+                    </div>` : ''}
+
+                    <section class="bg-white dark:bg-[#142033] rounded-2xl border border-brand-blue/15 dark:border-sky-400/15 shadow-md p-6 md:p-8 transition-colors">
+                        <h3 class="text-xl font-black text-gray-800 dark:text-slate-100 mb-5 flex items-center gap-3 border-b border-brand-blue/10 dark:border-sky-400/10 pb-4">
+                            📥 Link Unduhan
+                            <span class="text-[10px] font-bold text-gray-400 dark:text-gray-500 bg-brand-blue/5 dark:bg-sky-400/5 px-2.5 py-1 rounded-full ml-auto uppercase tracking-wider">Semua rilisan adalah Softsub</span>
+                        </h3>
+
+                        <div class="mb-5 flex flex-wrap items-center gap-3 bg-amber-50/70 dark:bg-amber-950/20 border border-amber-200/50 dark:border-amber-700/30 rounded-xl px-5 py-3.5">
+                            <span class="font-bold text-gray-700 dark:text-gray-300 text-sm">🔑 Password:</span>
+                            <span class="pass-highlight">${password}</span>
+                            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium ml-1">(gunakan untuk semua link)</span>
+                        </div>
+
+                        ${downloadBodyHtml}
+
+                        <div class="mt-5 flex items-start gap-3 bg-rose-50/70 dark:bg-rose-950/20 border border-rose-200/50 dark:border-rose-800/30 rounded-xl px-5 py-3.5">
+                            <span class="text-lg flex-shrink-0">⚠️</span>
+                            <p class="text-xs md:text-sm font-medium text-rose-700 dark:text-rose-300 leading-relaxed">
+                                Link mati atau error? Hubungi kami di
+                                <a href="mailto:contact.brazilsirih@gmail.com" class="font-black underline decoration-2 underline-offset-2 hover:text-rose-900 dark:hover:text-rose-100 transition-colors">contact.brazilsirih@gmail.com</a>
+                            </p>
+                        </div>
+
+                        ${telegramFilesHtml}
+                    </section>
+
+                    <section class="bg-white dark:bg-[#142033] rounded-2xl border border-brand-blue/15 dark:border-sky-400/15 shadow-md p-6 md:p-8 mt-8 transition-colors">
+                        <h3 class="text-xl font-black text-gray-800 dark:text-slate-100 mb-5 flex items-center gap-3 border-b border-brand-blue/10 dark:border-sky-400/10 pb-4">📖 Informasi Tambahan</h3>
+                        <div class="info-grid">
+                            <div class="info-card">
+                                <h4>📝 Catatan Rilisan</h4>
+                                <p><strong>Semua rilisan Brazil Sirih FanSub adalah softsub</strong> — teks terjemahan terpisah (file .ass/.srt) dari video, sehingga bisa diaktifkan/dinonaktifkan, diubah ukuran &amp; fontnya sesuai preferensi.</p>
+                                <p class="mt-2">Direkomendasikan menggunakan <strong>mpv player</strong> untuk rendering softsub terbaik.</p>
+                            </div>
+                            <div class="info-card">
+                                <h4>🎬 Player Rekomendasi</h4>
+                                <p><strong>mpv player</strong> — ringan, bebas, dan mendukung hampir semua format &amp; codec. Tersedia untuk:</p>
+                                <ul>
+                                    <li>Windows · Linux · macOS</li>
+                                    <li>Android (mpv-android)</li>
+                                    <li>iOS (mpv via AltStore / sideload)</li>
+                                </ul>
+                            </div>
+                            <div class="info-card">
+                                <h4>${mode === 'dynamic' ? '💾 Ukuran per Rilisan' : '💾 Perkiraan Ukuran File'}</h4>
+                                ${mode === 'dynamic'
+                                    ? `<ul>
+                                        <li><strong>Batch 20 eps</strong> (720p AVC) — sekitar <strong>2 GB</strong></li>
+                                        <li><strong>Batch 20 eps</strong> (1080p HEVC) — sekitar <strong>4.5 GB</strong></li>
+                                        <li><strong>Per episode</strong> — sekitar <strong>100–250 MB</strong></li>
+                                        <li class="text-sm text-gray-500 dark:text-gray-400 mt-1">📌 Rilisan diperbarui secara berkala.</li>
+                                    </ul>`
+                                    : `<ul>
+                                        <li><strong>HD</strong> (720p AVC) — sekitar <strong>2 GB</strong> per batch</li>
+                                        <li><strong>FHD</strong> (1080p HEVC) — sekitar <strong>4.2 GB</strong> per batch</li>
+                                        <li><strong>FHD+ HBR</strong> (1080p HEVC) — sekitar <strong>4.9 GB</strong> per batch</li>
+                                        <li class="text-sm text-gray-500 dark:text-gray-400 mt-1">🎧 FHD+ menggunakan <strong>audio FLAC</strong> (lossless) untuk kualitas suara maksimal.</li>
+                                    </ul>`}
+                            </div>
+                            <div class="info-card">
+                                <h4>⚙️ Perbandingan Codec</h4>
+                                <ul>
+                                    <li><span class="codec-tag avc">AVC (H.264)</span> Kompatibilitas luas, ukuran lebih besar, kualitas baik.</li>
+                                    <li><span class="codec-tag hevc">HEVC (H.265)</span> Kompresi 50% lebih baik dari AVC, ukuran lebih kecil dengan kualitas setara atau lebih baik.</li>
+                                    <li><span class="codec-tag av1">AV1</span> Generasi terbaru, kompresi terbaik (hingga 30% lebih baik dari HEVC), tapi butuh perangkat modern.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                `;
+
+                container.innerHTML = html;
+
+                /* ── LN language tab handler ── */
+                container.querySelectorAll('.ln-tab').forEach(tab => {
+                    tab.addEventListener('click', function() {
+                        const lang = this.dataset.lang;
+                        container.querySelectorAll('.ln-tab').forEach(t => t.classList.toggle('active', t === this));
+                        container.querySelectorAll('.ln-list').forEach(l => l.classList.toggle('hidden', l.dataset.lang !== lang));
+                    });
+                });
+
+                /* ── Tombol scroll ke section Telegram (untuk 1080p_hbr telegram_only) ── */
+                container.querySelectorAll('[data-scroll-telegram]').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const tg = document.getElementById('telegramFilesSection');
+                        if (tg) {
+                            tg.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        } else if (telegramChannel) {
+                            window.open(telegramChannel, '_blank', 'noopener');
+                        }
+                    });
+                });
+
+                /* ── Copy buttons ── */
+                container.querySelectorAll('.copy-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const text = this.dataset.file || '';
+                        const orig = this.innerHTML;
+                        const done = () => {
+                            this.innerHTML = '✅ Tersalin';
+                            this.style.background = 'rgba(34,197,94,0.2)';
+                            setTimeout(() => { this.innerHTML = orig; this.style.background = ''; }, 1800);
+                        };
+                        if (navigator.clipboard && navigator.clipboard.writeText) {
+                            navigator.clipboard.writeText(text).then(done).catch(() => {});
+                        } else {
+                            const ta = document.createElement('textarea'); ta.value = text;
+                            document.body.appendChild(ta); ta.select();
+                            try { document.execCommand('copy'); } catch(e) {}
+                            document.body.removeChild(ta); done();
+                        }
+                    });
+                });
+            }
+
+            function loadAnime() {
+                const params = new URLSearchParams(window.location.search);
+                const id = params.get('id');
+                const container = document.getElementById('animeContainer');
+                if (!id) {
+                    container.innerHTML = `
+                        <div class="text-center py-20 bg-white dark:bg-[#142033] rounded-2xl shadow-md p-8 border border-brand-blue/15 dark:border-sky-400/15">
+                            <h1 class="text-3xl font-black text-red-500">⚠️ Anime tidak ditemukan</h1>
+                            <p class="mt-4 text-gray-600 dark:text-gray-400">Pastikan URL mengandung <code class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">?id=...</code></p>
+                            <a href="list.html" class="mt-6 inline-block px-6 py-3 bg-brand-blue text-white rounded-xl font-bold hover:bg-blue-700 transition">Kembali ke Daftar</a>
+                        </div>`;
+                    return;
+                }
+                fetch(`database/${id}.json`)
+                    .then(res => { if (!res.ok) throw new Error(`Data tidak ditemukan (${res.status})`); return res.json(); })
+                    .then(data => {
+                        if (typeof data === 'string' && data.trim().toLowerCase() === 'forwarded') {
+                            window.location.replace(`database/${id}.html`); return;
+                        }
+                        renderAnime(data);
+                    })
+                    .catch(err => {
+                        container.innerHTML = `
+                            <div class="text-center py-20 bg-white dark:bg-[#142033] rounded-2xl shadow-md p-8 border border-brand-blue/15 dark:border-sky-400/15">
+                                <h1 class="text-3xl font-black text-red-500">❌ Gagal memuat data</h1>
+                                <p class="mt-4 text-gray-600 dark:text-gray-400">${err.message}</p>
+                                <a href="list.html" class="mt-6 inline-block px-6 py-3 bg-brand-blue text-white rounded-xl font-bold hover:bg-blue-700 transition">Kembali ke Daftar</a>
+                            </div>`;
+                    });
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => { initUI(); loadAnime(); });
+            } else { initUI(); loadAnime(); }
+        })();
+    </script>
+</body>
+</html>

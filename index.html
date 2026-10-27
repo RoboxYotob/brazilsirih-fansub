@@ -1,10 +1,253 @@
 <!DOCTYPE html>
-<html>
+<html lang="id" class="scroll-smooth">
 <head>
-    <meta http-equiv="refresh" content="0; url=indeks.html">
-    <title>Redirecting...</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mengalihkan · Brazil Sirih FanSub</title>
+    <meta http-equiv="refresh" content="1; url=indeks.html" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <style>
+        :root {
+            --bg-1: #eaf2ff;
+            --bg-2: #dee9f8;
+            --glow-1: rgba(26, 115, 232, 0.12);
+            --glow-2: rgba(66, 133, 244, 0.10);
+            --panel-bg: rgba(255, 255, 255, 0.7);
+            --panel-border: rgba(26, 115, 232, 0.15);
+            --text-main: #0f2747;
+            --text-sub: #64748b;
+            --brand-blue: #1a73e8;
+            --brand-accent: #4285f4;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-1: #071224;
+                --bg-2: #0c1b36;
+                --glow-1: rgba(66, 133, 244, 0.18);
+                --glow-2: rgba(26, 115, 232, 0.14);
+                --panel-bg: rgba(15, 30, 58, 0.7);
+                --panel-border: rgba(100, 181, 246, 0.18);
+                --text-main: #e8f0fe;
+                --text-sub: #94a3b8;
+                --brand-blue: #64b5f6;
+                --brand-accent: #90caf9;
+            }
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body { min-height: 100%; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-1);
+            background-image:
+                radial-gradient(circle at 12% 8%, var(--glow-1) 0%, transparent 45%),
+                radial-gradient(circle at 88% 92%, var(--glow-2) 0%, transparent 45%),
+                linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            color: var(--text-main);
+            overflow: hidden;
+        }
+
+        .redirect-card {
+            position: relative;
+            max-width: 440px;
+            width: 100%;
+            background: var(--panel-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--panel-border);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 12px 40px -10px rgba(26, 115, 232, 0.2);
+            animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px) scale(0.98); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 1.9rem;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.35rem;
+            line-height: 1.1;
+        }
+        .logo-brazil {
+            background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .logo-sirih { color: var(--text-main); }
+        @media (prefers-color-scheme: dark) {
+            .logo-brazil {
+                background: linear-gradient(135deg, #64b5f6 0%, #90caf9 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+        }
+
+        .tagline {
+            display: inline-block;
+            font-size: 0.6rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--brand-blue);
+            background: rgba(26, 115, 232, 0.1);
+            border: 1px solid rgba(26, 115, 232, 0.2);
+            padding: 0.25rem 0.7rem;
+            border-radius: 999px;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Spinner elegan (dual ring) */
+        .spinner {
+            position: relative;
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 1.5rem;
+        }
+        .spinner::before,
+        .spinner::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 3px solid transparent;
+        }
+        .spinner::before {
+            border-top-color: var(--brand-blue);
+            border-right-color: var(--brand-accent);
+            animation: spin 1s linear infinite;
+        }
+        .spinner::after {
+            inset: 8px;
+            border-top-color: var(--brand-accent);
+            border-left-color: var(--brand-blue);
+            animation: spin 1.6s linear infinite reverse;
+            opacity: 0.55;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .status-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+        .status-sub {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-sub);
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Progress bar tipis */
+        .progress-track {
+            width: 100%;
+            height: 5px;
+            background: rgba(26, 115, 232, 0.12);
+            border-radius: 999px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--brand-blue), var(--brand-accent));
+            border-radius: 999px;
+            width: 0%;
+            animation: progress 1s ease-in-out forwards;
+        }
+        @keyframes progress {
+            from { width: 0%; }
+            to   { width: 100%; }
+        }
+
+        .manual-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, var(--brand-blue), var(--brand-accent));
+            color: #fff;
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: transform 0.2s ease, box-shadow 0.25s ease;
+            box-shadow: 0 6px 18px -6px rgba(26, 115, 232, 0.5);
+        }
+        .manual-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px -8px rgba(26, 115, 232, 0.6);
+        }
+        .manual-link svg { width: 16px; height: 16px; }
+
+        .footnote {
+            margin-top: 1.5rem;
+            font-size: 0.7rem;
+            color: var(--text-sub);
+            opacity: 0.75;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .redirect-card, .spinner::before, .spinner::after, .progress-fill {
+                animation: none !important;
+            }
+            .progress-fill { width: 100%; }
+        }
+    </style>
 </head>
 <body>
-    <p>Mohon tunggu, sedang mengalihkan ke <a href="indeks.html">Indeks</a>...</p>
+
+    <div class="redirect-card">
+        <div class="logo">
+            <span class="logo-brazil">Brazil</span><span class="logo-sirih">Sirih</span>
+        </div>
+        <span class="tagline">FanSub</span>
+
+        <div class="spinner" aria-hidden="true"></div>
+
+        <h1 class="status-title">Mengalihkan Halaman…</h1>
+        <p class="status-sub">Sebentar ya, kamu akan diarahkan ke halaman utama secara otomatis.</p>
+
+        <div class="progress-track"><div class="progress-fill"></div></div>
+
+        <a href="indeks.html" class="manual-link">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+            </svg>
+            Buka Sekarang
+        </a>
+
+        <p class="footnote">⚡ Non-komersial · Tidak terafiliasi dengan pemegang lisensi resmi.</p>
+    </div>
+
+    <noscript>
+        <meta http-equiv="refresh" content="0; url=indeks.html">
+    </noscript>
+
+    <script>
+        // Fallback redirect via JS (lebih cepat + lebih andal dari meta refresh di beberapa browser)
+        setTimeout(() => {
+            window.location.replace('indeks.html');
+        }, 700);
+    </script>
 </body>
 </html>

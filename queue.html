@@ -1,0 +1,2210 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Antrian Proyek · Brazil Sirih FanSub</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- JSON-LD: Referensi ke entitas Brazil Sirih FanSub (didefinisikan penuh di indeks.html) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://brazilsirih-fansub.pages.dev/#organization",
+  "name": "Brazil Sirih FanSub",
+  "alternateName": ["BSFS", "Brazil Sirih"],
+  "url": "https://brazilsirih-fansub.pages.dev/",
+  "logo": "https://brazilsirih-fansub.pages.dev/favicon.ico"
+}
+</script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        brand: { blue: '#1a73e8', dark: '#0d47a1', deep: '#0b1a3a', light: '#e8f0fe', accent: '#4285f4' },
+                        navy: { 50: '#e8edf5', 100: '#c5d0e3', 200: '#9eb3cf', 300: '#7695bb', 400: '#4f77a7', 500: '#2a5a93',
+                            600: '#1e4a7a', 700: '#143a61', 800: '#0b2a48', 900: '#051a30' }
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        /* ============================================================
+           BASE · Background biru lembut + radial glow (matching indeks & faq)
+           ============================================================ */
+        ::selection { background: #1a73e8; color: #fff; }
+        ::-moz-selection { background: #1a73e8; color: #fff; }
+
+        html, body { min-height: 100%; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #eef4ff;
+            background-image:
+                radial-gradient(circle at 12% 8%, rgba(26, 115, 232, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 88% 92%, rgba(66, 133, 244, 0.10) 0%, transparent 45%),
+                linear-gradient(180deg, #eaf2ff 0%, #dee9f8 100%);
+            background-attachment: fixed;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        html.dark body {
+            background-color: #071224;
+            background-image:
+                radial-gradient(circle at 12% 8%, rgba(66, 133, 244, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 88% 92%, rgba(26, 115, 232, 0.14) 0%, transparent 45%),
+                linear-gradient(180deg, #071224 0%, #0c1b36 100%);
+        }
+
+        /* ============================================================
+           HEADER · Glassmorphism biru
+           ============================================================ */
+        .glass-header {
+            background-color: rgba(235, 245, 255, 0.82);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(26, 115, 232, 0.12);
+            box-shadow: 0 4px 30px rgba(26, 115, 232, 0.06);
+            transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+        html.dark .glass-header {
+            background-color: rgba(10, 22, 45, 0.82);
+            border-bottom: 1px solid rgba(100, 181, 246, 0.14);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.35), 0 0 40px rgba(66, 133, 244, 0.05);
+        }
+
+        /* ============================================================
+           LOGO · Gradient biru
+           ============================================================ */
+        .logo-brazil {
+            background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+        }
+        html.dark .logo-brazil {
+            background: linear-gradient(135deg, #64b5f6 0%, #90caf9 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .logo-sirih {
+            color: #0f2747;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+        }
+        html.dark .logo-sirih { color: #e8f0fe; }
+
+        /* ============================================================
+           NAV LINK · Aksen biru
+           ============================================================ */
+        .nav-link {
+            position: relative;
+            font-weight: 700;
+            transition: all 0.2s;
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            color: #475569;
+        }
+        html.dark .nav-link { color: #cbd5e1; }
+        .nav-link:hover {
+            background-color: rgba(26, 115, 232, 0.08);
+            color: #1a73e8;
+        }
+        html.dark .nav-link:hover {
+            background-color: rgba(100, 181, 246, 0.12);
+            color: #90caf9;
+        }
+        .nav-link.active {
+            background: linear-gradient(135deg, rgba(26, 115, 232, 0.12), rgba(66, 133, 244, 0.10));
+            color: #1a73e8;
+            box-shadow: inset 0 0 0 1px rgba(26, 115, 232, 0.15);
+        }
+        html.dark .nav-link.active {
+            background: linear-gradient(135deg, rgba(100, 181, 246, 0.18), rgba(66, 133, 244, 0.14));
+            color: #90caf9;
+            box-shadow: inset 0 0 0 1px rgba(100, 181, 246, 0.2);
+        }
+
+        #desktopSearch, #mobileSearch, #queueLocalSearch { caret-color: #1a73e8; }
+
+        /* ============================================================
+           SEARCH RESULTS (Teknologi dari faq.html)
+           ============================================================ */
+        #searchResultsWrapper {
+            background-color: rgba(235, 245, 255, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(26, 115, 232, 0.12);
+            box-shadow: 0 12px 34px -10px rgba(26, 115, 232, 0.20);
+            transition: all 0.3s ease;
+        }
+        html.dark #searchResultsWrapper {
+            background-color: rgba(10, 22, 45, 0.95);
+            border-bottom-color: rgba(100, 181, 246, 0.14);
+            box-shadow: 0 12px 34px -10px rgba(0, 0, 0, 0.6);
+        }
+        #searchResultsContainer {
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            opacity: 0;
+            transform: translateY(-6px);
+            pointer-events: none;
+            max-height: 0;
+            overflow: hidden;
+        }
+        #searchResultsContainer.open {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+            max-height: 460px;
+            overflow-y: auto;
+        }
+        #searchResultsContainer .result-item {
+            cursor: pointer;
+            transition: background-color 0.15s ease, border-color 0.15s ease;
+            border-radius: 8px;
+        }
+        #searchResultsContainer .result-item:hover {
+            background-color: rgba(26, 115, 232, 0.07);
+        }
+        html.dark #searchResultsContainer .result-item:hover {
+            background-color: rgba(100, 181, 246, 0.10);
+        }
+        #searchResultsContainer .result-item .arrow-icon {
+            opacity: 0;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        #searchResultsContainer .result-item:hover .arrow-icon {
+            opacity: 1;
+            transform: translateX(4px);
+        }
+        .result-highlight {
+            background: #fbbf24;
+            color: #0b1a3a;
+            font-weight: 800;
+            padding: 0 2px;
+            border-radius: 3px;
+        }
+        html.dark .result-highlight {
+            background: #f59e0b;
+            color: #0b1a3a;
+        }
+        #searchResultsContainer::-webkit-scrollbar { width: 4px; }
+        #searchResultsContainer::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #4285f4, #1a73e8);
+            border-radius: 10px;
+        }
+        .spinner {
+            border: 3px solid rgba(26, 115, 232, 0.15);
+            border-top-color: #1a73e8;
+            border-radius: 50%;
+            width: 26px;
+            height: 26px;
+            animation: spin 0.7s linear infinite;
+        }
+        html.dark .spinner {
+            border-color: rgba(100, 181, 246, 0.15);
+            border-top-color: #64b5f6;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ============================================================
+           CARD · Aksen bar biru di kiri (matching indeks & faq)
+           ============================================================ */
+        .card-boxy {
+            border-radius: 12px;
+            background-image: linear-gradient(180deg, #1a73e8 0%, #4285f4 55%, #64b5f6 100%);
+            background-size: 4px 100%;
+            background-repeat: no-repeat;
+            background-position: left top;
+            transition: transform 0.25s ease, box-shadow 0.35s ease, background-color 0.3s, border-color 0.3s;
+            position: relative;
+        }
+        html body .card-boxy {
+            background-color: #ffffff;
+            border: 1px solid rgba(26, 115, 232, 0.12) !important;
+            box-shadow: 0 2px 12px rgba(26, 115, 232, 0.06);
+        }
+        html.dark body .card-boxy {
+            background-color: #0f1e3a;
+            border: 1px solid rgba(100, 181, 246, 0.12) !important;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+        }
+        .card-boxy:hover { transform: translateY(-3px); }
+        html body .card-boxy:hover {
+            box-shadow: 0 18px 38px -12px rgba(26, 115, 232, 0.28), 0 0 0 1px rgba(26, 115, 232, 0.08);
+        }
+        html.dark body .card-boxy:hover {
+            box-shadow: 0 18px 38px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(100, 181, 246, 0.18), 0 0 30px rgba(66, 133, 244, 0.08);
+        }
+
+        /* ============================================================
+           THUMBNAIL · Overlay gradient biru saat hover
+           ============================================================ */
+        .thumb-boxy {
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            background-color: rgba(26, 115, 232, 0.08);
+        }
+        html.dark .thumb-boxy {
+            background-color: rgba(30, 58, 95, 0.5);
+        }
+        .thumb-boxy::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 40%, rgba(11, 26, 58, 0.72) 100%);
+            opacity: 0.65;
+            transition: opacity 0.3s ease;
+            border-radius: 8px;
+            pointer-events: none;
+        }
+        .card-boxy:hover .thumb-boxy::after { opacity: 0.85; }
+        .thumb-boxy img {
+            transition: opacity 0.25s, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .card-boxy:hover .thumb-boxy img { transform: scale(1.05); }
+
+        /* ============================================================
+           H1 · Gradient text untuk aksen
+           ============================================================ */
+        h1 span.text-brand-blue {
+            background: linear-gradient(135deg, #1a73e8 0%, #4285f4 55%, #64b5f6 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+        html.dark h1 span.text-brand-blue {
+            background: linear-gradient(135deg, #64b5f6 0%, #90caf9 55%, #bbdefb 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        /* ============================================================
+           GENRE CHIPS · Dipertahankan warnanya
+           ============================================================ */
+        .genre-chip {
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 0.15rem 0.55rem;
+            border-radius: 5px;
+            letter-spacing: 0.02em;
+            border: 1px solid transparent;
+            transition: transform 0.2s;
+            white-space: nowrap;
+        }
+        .genre-chip:hover { transform: translateY(-1px); }
+        .genre-chip.komedi { background: #d1fae5; color: #065f46; border-color: #6ee7b7; }
+        .genre-chip.petualangan { background: #dbeafe; color: #1a56db; border-color: #93bbfc; }
+        .genre-chip.fantasi { background: #ede9fe; color: #5b21b6; border-color: #c4b5fd; }
+        .genre-chip.fiksi-ilmiah { background: #cffafe; color: #0e7490; border-color: #67e8f9; }
+        .genre-chip.misteri { background: #e0e7ff; color: #3730a3; border-color: #a5b4fc; }
+        .genre-chip.aksi { background: #fecaca; color: #991b1b; border-color: #fca5a5; }
+        .genre-chip.musik { background: #fce7f3; color: #9d174d; border-color: #f9a8d4; }
+        .genre-chip.drama { background: #ffe4e6; color: #9f1239; border-color: #fda4af; }
+        .genre-chip.romansa { background: #fae8ff; color: #6b21a8; border-color: #e879f9; }
+        .genre-chip.horor { background: #e2e8f0; color: #1e293b; border-color: #94a3b8; }
+        .genre-chip.olahraga { background: #dcfce7; color: #166534; border-color: #86efac; }
+        .genre-chip.perang { background: #fef3c7; color: #92400e; border-color: #fcd34d; }
+        .genre-chip.sejarah { background: #fef3c7; color: #92400e; border-color: #fcd34d; }
+        .genre-chip.cerita-seru { background: #fecaca; color: #991b1b; border-color: #fca5a5; }
+        .genre-chip.kehidupan { background: #d1fae5; color: #065f46; border-color: #6ee7b7; }
+        .genre-chip.psikologis { background: #e0e7ff; color: #3730a3; border-color: #a5b4fc; }
+        .genre-chip.supernatural { background: #ede9fe; color: #5b21b6; border-color: #c4b5fd; }
+        .genre-chip.sains-fiksi { background: #cffafe; color: #0e7490; border-color: #67e8f9; }
+        html.dark .genre-chip { border-color: rgba(255, 255, 255, 0.08); }
+        html.dark .genre-chip.komedi { background: #1a3a2a; color: #6ee7b7; }
+        html.dark .genre-chip.petualangan { background: #1a2a5a; color: #93bbfc; }
+        html.dark .genre-chip.fantasi { background: #2a1a5a; color: #a78bfa; }
+        html.dark .genre-chip.fiksi-ilmiah { background: #1a3a4a; color: #67e8f9; }
+        html.dark .genre-chip.misteri { background: #1a1a5a; color: #818cf8; }
+        html.dark .genre-chip.aksi { background: #3a1a1a; color: #fca5a5; }
+        html.dark .genre-chip.musik { background: #3a1a2a; color: #f9a8d4; }
+        html.dark .genre-chip.drama { background: #3a1a1a; color: #fda4af; }
+        html.dark .genre-chip.romansa { background: #2a1a3a; color: #e879f9; }
+        html.dark .genre-chip.horor { background: #2a2a3a; color: #94a3b8; }
+        html.dark .genre-chip.olahraga { background: #1a3a2a; color: #86efac; }
+        html.dark .genre-chip.perang { background: #3a2a1a; color: #fcd34d; }
+        html.dark .genre-chip.sejarah { background: #3a2a1a; color: #fcd34d; }
+        html.dark .genre-chip.cerita-seru { background: #3a1a1a; color: #fca5a5; }
+        html.dark .genre-chip.kehidupan { background: #1a3a2a; color: #6ee7b7; }
+        html.dark .genre-chip.psikologis { background: #1a1a5a; color: #818cf8; }
+        html.dark .genre-chip.supernatural { background: #2a1a5a; color: #a78bfa; }
+        html.dark .genre-chip.sains-fiksi { background: #1a3a4a; color: #67e8f9; }
+
+        /* ============================================================
+           BADGE TYPE, SOURCE, CODEC & STATUS
+           ============================================================ */
+        .type-badge {
+            font-size: 0.6rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0.15rem 0.55rem;
+            border-radius: 4px;
+            backdrop-filter: blur(4px);
+        }
+        .type-badge.tv { background: #dbeafe; color: #1a56db; }
+        .type-badge.ona { background: #e0e7ff; color: #4338ca; }
+        .type-badge.ova { background: #fce7f3; color: #be185d; }
+        .type-badge.movie { background: #fef3c7; color: #92400e; }
+        .type-badge.special { background: #ede9fe; color: #5b21b6; }
+        html.dark .type-badge.tv { background: #1a2a5a; color: #93bbfc; }
+        html.dark .type-badge.ona { background: #1a1a5a; color: #a5b4fc; }
+        html.dark .type-badge.ova { background: #3a1a2a; color: #f9a8d4; }
+        html.dark .type-badge.movie { background: #3a2a1a; color: #fcd34d; }
+        html.dark .type-badge.special { background: #2a1a5a; color: #c4b5fd; }
+
+        .source-badge {
+            font-size: 0.58rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0.12rem 0.5rem;
+            border-radius: 4px;
+            border: 1px solid;
+            backdrop-filter: blur(4px);
+        }
+        .source-badge.bd { background: #d1fae5; color: #065f46; border-color: #6ee7b7; }
+        .source-badge.web { background: #dbeafe; color: #1a56db; border-color: #93bbfc; }
+        .source-badge.dvd { background: #fef3c7; color: #92400e; border-color: #fcd34d; }
+        .source-badge.tv { background: #f1f5f9; color: #475569; border-color: #cbd5e1; }
+        html.dark .source-badge.bd { background: #1a3a2a; color: #6ee7b7; border-color: #065f46; }
+        html.dark .source-badge.web { background: #1a2a5a; color: #93bbfc; border-color: #1a56db; }
+        html.dark .source-badge.dvd { background: #3a2a1a; color: #fcd34d; border-color: #92400e; }
+        html.dark .source-badge.tv { background: #1e293b; color: #cbd5e1; border-color: #475569; }
+
+        .codec-tag-sm {
+            display: inline-block;
+            font-weight: 800;
+            font-size: 0.6rem;
+            padding: 0.1rem 0.45rem;
+            border-radius: 5px;
+            background: rgba(26, 115, 232, 0.10);
+            color: #1a73e8;
+            border: 1px solid rgba(26, 115, 232, 0.18);
+            white-space: nowrap;
+        }
+        html.dark .codec-tag-sm {
+            background: rgba(100, 181, 246, 0.12);
+            color: #90caf9;
+            border-color: rgba(100, 181, 246, 0.2);
+        }
+        .codec-tag-sm.hevc {
+            background: rgba(16, 185, 129, 0.12);
+            color: #047857;
+            border-color: rgba(16, 185, 129, 0.25);
+        }
+        html.dark .codec-tag-sm.hevc {
+            background: rgba(52, 211, 153, 0.12);
+            color: #6ee7b7;
+            border-color: rgba(52, 211, 153, 0.22);
+        }
+        .codec-tag-sm.av1 {
+            background: rgba(245, 158, 11, 0.12);
+            color: #92400e;
+            border-color: rgba(245, 158, 11, 0.25);
+        }
+        html.dark .codec-tag-sm.av1 {
+            background: rgba(251, 191, 36, 0.12);
+            color: #fcd34d;
+            border-color: rgba(251, 191, 36, 0.22);
+        }
+        .codec-tag-sm.ai {
+            background: rgba(139, 92, 246, 0.13);
+            color: #6d28d9;
+            border-color: rgba(139, 92, 246, 0.28);
+        }
+        html.dark .codec-tag-sm.ai {
+            background: rgba(167, 139, 250, 0.15);
+            color: #c4b5fd;
+            border-color: rgba(167, 139, 250, 0.26);
+        }
+
+        /* Status Pill Badges */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.38rem;
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0.22rem 0.65rem;
+            border-radius: 9999px;
+            border: 1px solid transparent;
+            white-space: nowrap;
+        }
+        .status-badge.dikerjakan {
+            background: rgba(26, 115, 232, 0.12);
+            color: #1a73e8;
+            border-color: rgba(26, 115, 232, 0.28);
+        }
+        html.dark .status-badge.dikerjakan {
+            background: rgba(66, 133, 244, 0.20);
+            color: #90caf9;
+            border-color: rgba(100, 181, 246, 0.35);
+        }
+        .status-badge.antrian {
+            background: rgba(245, 158, 11, 0.12);
+            color: #b45309;
+            border-color: rgba(245, 158, 11, 0.28);
+        }
+        html.dark .status-badge.antrian {
+            background: rgba(251, 191, 36, 0.15);
+            color: #fcd34d;
+            border-color: rgba(251, 191, 36, 0.3);
+        }
+        .status-badge.menunggu_bd {
+            background: rgba(139, 92, 246, 0.12);
+            color: #6d28d9;
+            border-color: rgba(139, 92, 246, 0.28);
+        }
+        html.dark .status-badge.menunggu_bd {
+            background: rgba(167, 139, 250, 0.16);
+            color: #c4b5fd;
+            border-color: rgba(167, 139, 250, 0.3);
+        }
+        .status-badge.ditunda {
+            background: rgba(239, 68, 68, 0.10);
+            color: #b91c1c;
+            border-color: rgba(239, 68, 68, 0.25);
+        }
+        html.dark .status-badge.ditunda {
+            background: rgba(248, 113, 113, 0.15);
+            color: #fca5a5;
+            border-color: rgba(248, 113, 113, 0.28);
+        }
+        .status-badge.selesai {
+            background: rgba(16, 185, 129, 0.12);
+            color: #047857;
+            border-color: rgba(16, 185, 129, 0.28);
+        }
+        html.dark .status-badge.selesai {
+            background: rgba(52, 211, 153, 0.16);
+            color: #6ee7b7;
+            border-color: rgba(52, 211, 153, 0.3);
+        }
+
+        /* Priority Badge */
+        .priority-badge {
+            font-size: 0.6rem;
+            font-weight: 800;
+            padding: 0.15rem 0.55rem;
+            border-radius: 6px;
+            letter-spacing: 0.03em;
+            white-space: nowrap;
+        }
+        .priority-badge.tinggi {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.14), rgba(249, 115, 22, 0.14));
+            color: #c2410c;
+            border: 1px solid rgba(249, 115, 22, 0.3);
+        }
+        html.dark .priority-badge.tinggi {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.22), rgba(249, 115, 22, 0.18));
+            color: #fdba74;
+            border-color: rgba(251, 146, 60, 0.35);
+        }
+        .priority-badge.normal {
+            background: rgba(26, 115, 232, 0.09);
+            color: #1a73e8;
+            border: 1px solid rgba(26, 115, 232, 0.2);
+        }
+        html.dark .priority-badge.normal {
+            background: rgba(100, 181, 246, 0.12);
+            color: #90caf9;
+            border-color: rgba(100, 181, 246, 0.22);
+        }
+        .priority-badge.rendah {
+            background: rgba(148, 163, 184, 0.14);
+            color: #475569;
+            border: 1px solid rgba(148, 163, 184, 0.28);
+        }
+        html.dark .priority-badge.rendah {
+            background: rgba(148, 163, 184, 0.12);
+            color: #94a3b8;
+            border-color: rgba(148, 163, 184, 0.22);
+        }
+
+        /* ============================================================
+           PIPELINE WORKFLOW PILLS (TL, TLC, Edit, TS, Encode, QC)
+           ============================================================ */
+        .pipeline-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 0.32rem;
+        }
+        .pipe-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0.3rem 0.15rem;
+            border-radius: 7px;
+            font-size: 0.62rem;
+            font-weight: 800;
+            border: 1px solid transparent;
+            transition: transform 0.15s ease;
+            text-align: center;
+        }
+        .pipe-step:hover { transform: translateY(-1px); }
+        .pipe-step .pipe-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 9999px;
+            margin-bottom: 2px;
+        }
+        .pipe-step.done {
+            background: rgba(16, 185, 129, 0.11);
+            color: #047857;
+            border-color: rgba(16, 185, 129, 0.26);
+        }
+        .pipe-step.done .pipe-dot { background: #10b981; }
+        html.dark .pipe-step.done {
+            background: rgba(16, 185, 129, 0.16);
+            color: #6ee7b7;
+            border-color: rgba(52, 211, 153, 0.28);
+        }
+
+        .pipe-step.wip {
+            background: rgba(26, 115, 232, 0.12);
+            color: #1a73e8;
+            border-color: rgba(26, 115, 232, 0.3);
+        }
+        .pipe-step.wip .pipe-dot {
+            background: #1a73e8;
+            box-shadow: 0 0 6px #1a73e8;
+        }
+        html.dark .pipe-step.wip {
+            background: rgba(66, 133, 244, 0.20);
+            color: #90caf9;
+            border-color: rgba(100, 181, 246, 0.35);
+        }
+        html.dark .pipe-step.wip .pipe-dot {
+            background: #64b5f6;
+            box-shadow: 0 0 6px #64b5f6;
+        }
+
+        .pipe-step.todo {
+            background: rgba(148, 163, 184, 0.10);
+            color: #64748b;
+            border-color: rgba(148, 163, 184, 0.2);
+        }
+        .pipe-step.todo .pipe-dot { background: #94a3b8; opacity: 0.6; }
+        html.dark .pipe-step.todo {
+            background: rgba(30, 41, 59, 0.65);
+            color: #64748b;
+            border-color: rgba(71, 85, 105, 0.3);
+        }
+
+        .pipe-step.skip {
+            background: transparent;
+            color: #94a3b8;
+            border: 1px dashed rgba(148, 163, 184, 0.3);
+            opacity: 0.55;
+        }
+        .pipe-step.skip .pipe-dot { background: #94a3b8; opacity: 0.3; }
+
+        /* ============================================================
+           PROGRESS BAR · Gradient biru + Shimmer
+           ============================================================ */
+        .progress-track {
+            height: 8px;
+            border-radius: 9999px;
+            background: rgba(26, 115, 232, 0.10);
+            overflow: hidden;
+            position: relative;
+        }
+        html.dark .progress-track {
+            background: rgba(100, 181, 246, 0.12);
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 9999px;
+            background: linear-gradient(90deg, #1a73e8 0%, #4285f4 60%, #64b5f6 100%);
+            transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            position: relative;
+        }
+        .progress-fill.done {
+            background: linear-gradient(90deg, #059669 0%, #10b981 60%, #34d399 100%);
+        }
+        .progress-fill.active-shimmer::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* ============================================================
+           FILTER TAB PILLS & SELECTS
+           ============================================================ */
+        .tab-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-size: 0.8rem;
+            font-weight: 800;
+            padding: 0.5rem 0.95rem;
+            border-radius: 10px;
+            background: #ffffff;
+            color: #475569;
+            border: 1px solid rgba(26, 115, 232, 0.14);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        html.dark .tab-pill {
+            background: #0f1e3a;
+            color: #cbd5e1;
+            border-color: rgba(100, 181, 246, 0.14);
+        }
+        .tab-pill:hover {
+            border-color: rgba(26, 115, 232, 0.35);
+            color: #1a73e8;
+            transform: translateY(-1px);
+        }
+        html.dark .tab-pill:hover {
+            border-color: rgba(100, 181, 246, 0.35);
+            color: #90caf9;
+        }
+        .tab-pill.active {
+            background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%);
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 6px 18px -6px rgba(26, 115, 232, 0.55);
+        }
+        html.dark .tab-pill.active {
+            background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%);
+            color: #ffffff;
+        }
+        .tab-pill .tab-count {
+            font-size: 0.68rem;
+            padding: 0.05rem 0.45rem;
+            border-radius: 9999px;
+            background: rgba(26, 115, 232, 0.10);
+            color: #1a73e8;
+            font-weight: 900;
+        }
+        html.dark .tab-pill .tab-count {
+            background: rgba(100, 181, 246, 0.15);
+            color: #90caf9;
+        }
+        .tab-pill.active .tab-count {
+            background: rgba(255, 255, 255, 0.24);
+            color: #ffffff;
+        }
+
+        .control-select {
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 0.5rem 0.85rem;
+            border-radius: 10px;
+            background-color: #ffffff;
+            color: #1e293b;
+            border: 1px solid rgba(26, 115, 232, 0.18);
+            outline: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        html.dark .control-select {
+            background-color: #0f1e3a;
+            color: #e2e8f0;
+            border-color: rgba(100, 181, 246, 0.2);
+        }
+        .control-select:focus {
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
+        }
+
+        /* ============================================================
+           SIDEBAR MOBILE & FOOTER
+           ============================================================ */
+        #mobileSidebar {
+            background: linear-gradient(180deg, #0a1a35 0%, #051025 55%, #0a1a35 100%);
+            border-right: 1px solid rgba(100, 181, 246, 0.15);
+            position: fixed;
+            overflow: hidden;
+        }
+        #mobileSidebar::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -40%;
+            width: 90%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(66, 133, 244, 0.25) 0%, transparent 65%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        #mobileSidebar > * { position: relative; z-index: 1; }
+
+        html body footer {
+            background-color: rgba(235, 245, 255, 0.6) !important;
+            border-top: 1px solid rgba(26, 115, 232, 0.12) !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        html.dark body footer {
+            background-color: rgba(7, 18, 36, 0.6) !important;
+            border-top: 1px solid rgba(100, 181, 246, 0.1) !important;
+        }
+
+        ::-webkit-scrollbar { width: 8px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #4285f4, #1a73e8);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #64b5f6, #4285f4);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-up { animation: fadeUp 0.35s ease-out both; }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-slide-down { animation: slideDown 0.2s ease-out forwards; }
+    </style>
+</head>
+
+<body class="text-gray-800 dark:text-slate-100 antialiased min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- ============================================================ -->
+    <!--  HEADER (Glassmorphism biru)                                 -->
+    <!-- ============================================================ -->
+    <header class="glass-header sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-18 md:h-20 gap-3">
+
+                <div class="flex items-center gap-4 lg:gap-6 min-w-0 flex-shrink">
+                    <button id="mobileMenuBtn" class="md:hidden p-2 text-slate-600 dark:text-slate-300 hover:text-brand-blue dark:hover:text-sky-400 rounded-lg hover:bg-brand-blue/10 dark:hover:bg-white/10 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+
+                    <a href="indeks.html" class="flex items-center gap-2 group flex-shrink-0">
+                        <span class="font-black text-2xl md:text-3xl tracking-tight">
+                            <span class="logo-brazil">Brazil</span><span class="logo-sirih">Sirih</span>
+                        </span>
+                        <span class="hidden sm:inline-block text-[9px] font-bold text-brand-blue dark:text-sky-300 bg-brand-blue/10 dark:bg-sky-400/10 px-2.5 py-0.5 rounded-full uppercase tracking-widest border border-brand-blue/20 dark:border-sky-400/20">FanSub</span>
+                    </a>
+
+                    <nav class="hidden md:flex items-center gap-0.5 lg:gap-1 ml-3 flex-shrink-0">
+                        <a href="indeks.html" class="nav-link text-sm">Beranda</a>
+                        <a href="list.html" class="nav-link text-sm">Daftar Anime</a>
+                        <a href="faq.html" class="nav-link text-sm">FAQ</a>
+                        <a href="queue.html" class="nav-link active text-sm">Antrian Proyek</a>
+                    </nav>
+                </div>
+
+                <div class="flex items-center gap-2 lg:gap-3 flex-shrink-0">
+                    <div class="hidden md:flex items-center bg-white/70 dark:bg-slate-800/60 backdrop-blur-md border border-brand-blue/15 dark:border-sky-400/15 rounded-full px-4 py-2 focus-within:bg-white dark:focus-within:bg-slate-800 focus-within:ring-2 focus-within:ring-brand-blue/30 transition-all">
+                        <svg class="w-4 h-4 text-brand-blue/70 dark:text-sky-300/80 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                        <input type="text" id="desktopSearch" placeholder="Cari anime..." class="bg-transparent border-none outline-none text-sm w-28 lg:w-44 text-gray-800 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 font-medium" autocomplete="off" />
+                    </div>
+
+                    <button id="mobileSearchBtn" class="md:hidden p-2.5 rounded-full text-slate-600 dark:text-slate-300 hover:text-brand-blue dark:hover:text-sky-400 hover:bg-brand-blue/10 dark:hover:bg-white/10 transition-colors" aria-label="Cari">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </button>
+
+                    <button id="themeToggle" class="p-2.5 rounded-full text-brand-blue dark:text-sky-300 hover:text-white bg-brand-blue/10 dark:bg-sky-400/10 border border-brand-blue/20 dark:border-sky-400/25 hover:bg-brand-blue dark:hover:bg-sky-500 hover:border-brand-blue dark:hover:border-sky-500 transition-all flex-shrink-0">
+                        <svg id="themeIconDark" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                        </svg>
+                        <svg id="themeIconLight" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div id="mobileSearchContainer" class="hidden md:hidden pb-4 pt-1 animate-slide-down">
+                <div class="flex items-center bg-white/70 dark:bg-slate-800/60 backdrop-blur-md border border-brand-blue/15 dark:border-sky-400/15 rounded-full px-4 py-2.5 focus-within:bg-white dark:focus-within:bg-slate-800 focus-within:ring-2 focus-within:ring-brand-blue/30 transition-all">
+                    <svg class="w-5 h-5 text-brand-blue/70 dark:text-sky-300/80 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    <input type="text" id="mobileSearch" placeholder="Cari judul anime..." class="bg-transparent border-none outline-none text-sm w-full text-gray-800 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 font-medium" autocomplete="off" />
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!--  SEARCH RESULTS CONTAINER (Teknologi dari faq.html)          -->
+    <!-- ============================================================ -->
+    <div id="searchResultsWrapper" class="sticky top-[72px] md:top-[80px] z-40 max-h-0 overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-0">
+            <div id="searchResultsContainer">
+                <div id="searchResultsInner" class="py-4 space-y-1.5"></div>
+                <div id="searchLoading" class="flex items-center justify-center py-6 hidden">
+                    <div class="spinner"></div>
+                    <span class="ml-3 text-sm font-semibold text-slate-500 dark:text-slate-400">Memuat data...</span>
+                </div>
+                <div id="searchEmpty" class="py-6 text-center text-sm font-medium text-slate-400 dark:text-slate-500 hidden">
+                    Tidak ada hasil untuk pencarian ini.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!--  MOBILE SIDEBAR (Menu Utama)                                 -->
+    <!-- ============================================================ -->
+    <div id="mobileOverlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 hidden transition-opacity"></div>
+    <div id="mobileSidebar" class="fixed inset-y-0 left-0 w-72 z-50 transform -translate-x-full transition-transform duration-300 shadow-2xl flex flex-col">
+        <div class="p-5 border-b border-sky-400/15 flex justify-between items-center bg-white/5">
+            <span class="font-black text-xl text-white">Menu</span>
+            <button id="closeMobileMenu" class="text-white/60 hover:text-red-400 hover:bg-red-500/10 p-2 rounded-lg transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <div class="flex-1 overflow-y-auto p-6 space-y-6">
+            <nav class="space-y-1">
+                <a href="indeks.html" class="block px-4 py-3 text-white/70 hover:text-white hover:bg-white/10 rounded-lg font-bold transition-colors">🏠 Beranda</a>
+                <a href="list.html" class="block px-4 py-3 text-white/70 hover:text-white hover:bg-white/10 rounded-lg font-bold transition-colors">📺 Daftar Anime</a>
+                <a href="faq.html" class="block px-4 py-3 text-white/70 hover:text-white hover:bg-white/10 rounded-lg font-bold transition-colors">❓ FAQ</a>
+                <a href="queue.html" class="block px-4 py-3 text-white bg-gradient-to-r from-brand-blue to-brand-accent rounded-lg font-bold transition-colors shadow-lg shadow-brand-blue/20">🧾 Antrian Proyek</a>
+            </nav>
+            <hr class="border-sky-400/15" />
+            <div>
+                <p class="text-xs font-bold text-sky-300/60 uppercase tracking-wider mb-3">Catatan Penting</p>
+                <div class="space-y-2 pl-1">
+                    <span class="block text-sm font-semibold text-white/70">Tolong dukung rilisan resmi agar anime baru bisa memiliki dana yang cukup.</span>
+                </div>
+            </div>
+            <hr class="border-sky-400/15" />
+            <div class="pt-2">
+                <button id="sidebarThemeToggle" class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-sky-400/10 border border-sky-400/20 rounded-lg font-bold text-white hover:bg-sky-400/20 transition-colors">
+                    <span id="sidebarThemeIcon">🌙</span> <span id="sidebarThemeLabel">Mode Malam</span>
+                </button>
+            </div>
+        </div>
+        <div class="p-6 border-t border-sky-400/15 bg-white/5">
+            <p class="text-xs text-center text-white/40 font-medium">Brazil Sirih FanSub · Non-komersial</p>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!--  MAIN CONTENT — ANTRIAN PROYEK                               -->
+    <!-- ============================================================ -->
+    <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+
+        <!-- Page Header -->
+        <div class="mb-6 md:mb-8 border-b-2 border-brand-blue/20 dark:border-sky-400/15 pb-5 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-blue/10 dark:bg-sky-400/10 border border-brand-blue/20 dark:border-sky-400/20 text-brand-blue dark:text-sky-300 text-xs font-extrabold uppercase tracking-wider mb-2">
+                    <span class="w-2 h-2 rounded-full bg-brand-blue dark:bg-sky-400 animate-ping"></span>
+                    Status Produksi & Takarir
+                </div>
+                <h1 class="text-3xl md:text-4xl font-black text-gray-800 dark:text-slate-100 tracking-tight">
+                    🧾 Antrian <span class="text-brand-blue">Proyek</span>
+                </h1>
+                <p class="text-sm text-gray-500 dark:text-gray-400 font-medium mt-1">
+                    Pantau perkembangan terjemahan, penyuntingan, typesetting, hingga QC rilisan Brazil Sirih FanSub
+                </p>
+            </div>
+            <div class="flex items-center gap-2.5 flex-wrap">
+                <span class="text-xs font-bold text-slate-500 dark:text-slate-400 bg-white/80 dark:bg-[#0f1e3a] border border-brand-blue/15 dark:border-sky-400/15 px-3.5 py-2 rounded-xl shadow-sm">
+                    🕒 Diperbarui: <strong id="lastUpdatedLabel" class="text-brand-blue dark:text-sky-300">—</strong>
+                </span>
+            </div>
+        </div>
+
+        <!-- Pengumuman / Info Banner -->
+        <div id="announcementBanner" class="card-boxy p-4 md:p-5 mb-6 flex items-start sm:items-center justify-between gap-4 animate-fade-up">
+            <div class="flex items-start sm:items-center gap-3.5 min-w-0">
+                <div class="w-10 h-10 rounded-xl bg-brand-blue/10 dark:bg-sky-400/15 border border-brand-blue/20 dark:border-sky-400/25 flex items-center justify-center text-xl flex-shrink-0">
+                    📢
+                </div>
+                <div class="min-w-0">
+                    <div class="text-xs font-extrabold uppercase tracking-wider text-brand-blue dark:text-sky-300">Informasi Antrian & Pengerjaan</div>
+                    <p id="announcementText" class="text-xs sm:text-sm font-semibold text-gray-600 dark:text-slate-300 mt-0.5 leading-relaxed">
+                        Memuat informasi antrian...
+                    </p>
+                </div>
+            </div>
+            <div class="hidden xl:flex items-center gap-2 flex-shrink-0 text-[11px] font-bold text-slate-500 dark:text-slate-400 bg-slate-100/80 dark:bg-slate-800/70 px-3 py-2 rounded-lg border border-brand-blue/10 dark:border-sky-400/10">
+                <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> Selesai</span>
+                <span>·</span>
+                <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-brand-blue"></span> Proses</span>
+                <span>·</span>
+                <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-400"></span> Belum</span>
+            </div>
+        </div>
+
+        <!-- ========================================================== -->
+        <!--  STATISTICS DASHBOARD CARDS                                -->
+        <!-- ========================================================== -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5 md:gap-5 mb-7">
+            <div class="card-boxy p-4 md:p-5 flex items-center justify-between animate-fade-up">
+                <div>
+                    <span class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400 dark:text-slate-400">Total Proyek</span>
+                    <div id="statTotal" class="text-2xl md:text-3xl font-black text-gray-800 dark:text-white mt-0.5">0</div>
+                    <span id="statAvgProgress" class="text-[11px] font-bold text-brand-blue dark:text-sky-400">Rata-rata 0%</span>
+                </div>
+                <div class="w-11 h-11 rounded-xl bg-brand-blue/10 dark:bg-sky-400/10 border border-brand-blue/20 dark:border-sky-400/20 flex items-center justify-center text-xl">
+                    🗂️
+                </div>
+            </div>
+
+            <div class="card-boxy p-4 md:p-5 flex items-center justify-between animate-fade-up" style="animation-delay:0.04s">
+                <div>
+                    <span class="text-[11px] font-extrabold uppercase tracking-wider text-brand-blue dark:text-sky-300">Sedang Dikerjakan</span>
+                    <div id="statActive" class="text-2xl md:text-3xl font-black text-brand-blue dark:text-sky-300 mt-0.5">0</div>
+                    <span class="text-[11px] font-bold text-slate-400 dark:text-slate-400">Proyek aktif saat ini</span>
+                </div>
+                <div class="w-11 h-11 rounded-xl bg-brand-blue/15 dark:bg-sky-400/15 border border-brand-blue/25 dark:border-sky-400/25 flex items-center justify-center text-xl">
+                    🔥
+                </div>
+            </div>
+
+            <div class="card-boxy p-4 md:p-5 flex items-center justify-between animate-fade-up" style="animation-delay:0.08s">
+                <div>
+                    <span class="text-[11px] font-extrabold uppercase tracking-wider text-amber-600 dark:text-amber-400">Menunggu / Antrian</span>
+                    <div id="statWaiting" class="text-2xl md:text-3xl font-black text-amber-600 dark:text-amber-300 mt-0.5">0</div>
+                    <span class="text-[11px] font-bold text-slate-400 dark:text-slate-400">Antrian & Tunggu BD</span>
+                </div>
+                <div class="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-center text-xl">
+                    ⏳
+                </div>
+            </div>
+
+            <div class="card-boxy p-4 md:p-5 flex items-center justify-between animate-fade-up" style="animation-delay:0.12s">
+                <div>
+                    <span class="text-[11px] font-extrabold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Selesai / Siap Rilis</span>
+                    <div id="statCompleted" class="text-2xl md:text-3xl font-black text-emerald-600 dark:text-emerald-300 mt-0.5">0</div>
+                    <span id="statTotalEps" class="text-[11px] font-bold text-slate-400 dark:text-slate-400">0/0 ep rampung</span>
+                </div>
+                <div class="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center text-xl">
+                    ✅
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================== -->
+        <!--  FILTER TABS & CONTROL BAR                                 -->
+        <!-- ========================================================== -->
+        <div class="space-y-4 mb-6">
+            <!-- Status Tabs -->
+            <div class="flex items-center gap-2 overflow-x-auto pb-1.5" id="statusTabs">
+                <button class="tab-pill active" data-status="all">
+                    <span>Semua</span>
+                    <span class="tab-count" id="count-all">0</span>
+                </button>
+                <button class="tab-pill" data-status="dikerjakan">
+                    <span>🔥 Sedang Dikerjakan</span>
+                    <span class="tab-count" id="count-dikerjakan">0</span>
+                </button>
+                <button class="tab-pill" data-status="antrian">
+                    <span>⏳ Dalam Antrian</span>
+                    <span class="tab-count" id="count-antrian">0</span>
+                </button>
+                <button class="tab-pill" data-status="menunggu_bd">
+                    <span>💿 Menunggu BD</span>
+                    <span class="tab-count" id="count-menunggu_bd">0</span>
+                </button>
+                <button class="tab-pill" data-status="ditunda">
+                    <span>⏸️ Ditunda</span>
+                    <span class="tab-count" id="count-ditunda">0</span>
+                </button>
+                <button class="tab-pill" data-status="selesai">
+                    <span>✅ Selesai</span>
+                    <span class="tab-count" id="count-selesai">0</span>
+                </button>
+            </div>
+
+            <!-- Secondary Filter & Sort Bar -->
+            <div class="card-boxy p-3.5 md:p-4 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3">
+                <!-- Local Queue Search -->
+                <div class="flex items-center bg-slate-100/90 dark:bg-slate-800/80 border border-brand-blue/15 dark:border-sky-400/15 rounded-xl px-3.5 py-2 flex-1 focus-within:ring-2 focus-within:ring-brand-blue/30 transition-all">
+                    <svg class="w-4 h-4 text-brand-blue dark:text-sky-400 mr-2.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    <input type="text" id="queueLocalSearch" placeholder="Filter proyek di dalam antrian (judul, studio, staf, catatan)..." class="bg-transparent border-none outline-none text-xs sm:text-sm w-full text-gray-800 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 font-semibold" autocomplete="off" />
+                </div>
+
+                <!-- Dropdowns & View Switcher -->
+                <div class="flex flex-wrap items-center gap-2">
+                    <select id="filterPriority" class="control-select">
+                        <option value="all">⚡ Semua Prioritas</option>
+                        <option value="tinggi">🔥 Prioritas Utama</option>
+                        <option value="normal">⚡ Normal</option>
+                        <option value="rendah">🌱 Santai</option>
+                    </select>
+
+                    <select id="filterType" class="control-select">
+                        <option value="all">📺 Semua Jenis</option>
+                        <option value="TV">TV</option>
+                        <option value="Movie">Movie</option>
+                        <option value="OVA">OVA</option>
+                        <option value="ONA">ONA</option>
+                        <option value="Special">Special</option>
+                    </select>
+
+                    <select id="filterSource" class="control-select">
+                        <option value="all">💿 Semua Sumber</option>
+                        <option value="BD">BD (Blu-ray)</option>
+                        <option value="WEB">WEB (Web-DL)</option>
+                        <option value="DVD">DVD</option>
+                        <option value="TV">TV</option>
+                    </select>
+
+                    <select id="sortQueue" class="control-select">
+                        <option value="priority">🎯 Urut: Prioritas & Status</option>
+                        <option value="progress_desc">📈 Progress Tertinggi</option>
+                        <option value="progress_asc">📉 Progress Terendah</option>
+                        <option value="updated">🕒 Terbaru Diperbarui</option>
+                        <option value="title">🔤 Judul (A–Z)</option>
+                    </select>
+
+                    <div class="inline-flex rounded-xl border border-brand-blue/20 dark:border-sky-400/20 overflow-hidden bg-white dark:bg-[#0f1e3a]">
+                        <button id="viewGridBtn" class="px-3 py-2 text-xs font-extrabold bg-brand-blue text-white transition-colors" title="Tampilan Kartu Detail">
+                            ⊞ Grid
+                        </button>
+                        <button id="viewCompactBtn" class="px-3 py-2 text-xs font-extrabold text-slate-600 dark:text-slate-300 hover:text-brand-blue transition-colors" title="Tampilan Baris Kompak">
+                            ☰ Kompak
+                        </button>
+                    </div>
+
+                    <button id="resetQueueFilterBtn" class="px-3 py-2 rounded-xl text-xs font-extrabold border border-brand-blue/25 dark:border-sky-400/25 text-brand-blue dark:text-sky-300 hover:bg-brand-blue/10 transition-colors" title="Reset Filter Antrian">
+                        ↺ Reset
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Counter Row -->
+        <div class="flex items-center justify-between mb-4 px-1">
+            <div class="text-xs sm:text-sm font-bold text-slate-500 dark:text-slate-400">
+                Menampilkan <strong id="showingCount" class="text-brand-blue dark:text-sky-300 font-black">0</strong> proyek dalam antrian
+            </div>
+            <div class="text-[11px] font-bold text-slate-400 dark:text-slate-500 hidden sm:block">
+                💡 Klik pada kartu proyek untuk melihat rincian tahapan penuh
+            </div>
+        </div>
+
+        <!-- ========================================================== -->
+        <!--  QUEUE CARDS CONTAINER                                     -->
+        <!-- ========================================================== -->
+        <div id="queueGrid" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <!-- Diisi otomatis oleh JavaScript -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="queueEmptyState" class="hidden card-boxy p-12 text-center mt-4">
+            <div class="text-5xl mb-3">📭</div>
+            <h3 class="text-lg md:text-xl font-black text-gray-800 dark:text-slate-100 mb-1">Tidak Ada Proyek yang Cocok</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">Coba ubah tab status, filter prioritas, atau kata kunci pencarian antrian di atas.</p>
+        </div>
+
+    </main>
+
+    <!-- ============================================================ -->
+    <!--  PROJECT DETAIL MODAL                                        -->
+    <!-- ============================================================ -->
+    <div id="projectModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+        <div class="card-boxy w-full max-w-2xl max-h-[90vh] overflow-y-auto p-5 md:p-7 animate-fade-up" id="projectModalContent">
+            <!-- Diisi otomatis saat kartu diklik -->
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!--  FOOTER                                                      -->
+    <!-- ============================================================ -->
+    <footer class="mt-auto transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 py-8 text-center">
+            <p class="text-sm text-brand-blue/70 dark:text-sky-300/70 font-medium">
+                ⚡ Non-komersial · Tidak terafiliasi dengan pemegang lisensi resmi.
+            </p>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!--  DATA ANTRIAN PROYEK (Dikelola oleh queue_panel.py)          -->
+    <!-- ============================================================ -->
+    <script>
+/* === QUEUE_DATA_START === */
+const EMBEDDED_QUEUE_DATA = {
+    "lastUpdated": "2026-10-22",
+    "announcement": "Antrian diperbarui secara berkala. Proyek dengan label Prioritas Utama dikerjakan lebih dulu, sedangkan proyek BD menunggu master Blu-ray rilis.",
+    "projects": [
+        {
+            "id": "proj-001",
+            "title": "Eiga Doraemon: Shin Nobita no Kaitei Kiganjou",
+            "titleEn": "New Nobita and the Castle of the Undersea Devil",
+            "slug": "eiga_doraemon_shin_nobita_no_kaitei_kiganjou",
+            "image": "/images/eiga_doraemon_shin_nobita_no_kaitei_kiganjou.webp",
+            "type": "Movie",
+            "source": "BD",
+            "codecs": [],
+            "studio": "",
+            "season": "",
+            "year": 2026,
+            "genre": [],
+            "status": "dikerjakan",
+            "priority": "tinggi",
+            "epDone": 0,
+            "epTotal": 1,
+            "progress": 0,
+            "pipeline": {
+                "TL": "done",
+                "TLC": "wip",
+                "Edit": "wip",
+                "TS": "wip",
+                "Encode": "done",
+                "QC": "wip"
+            },
+            "eta": "",
+            "staff": "",
+            "notes": "",
+            "updatedAt": "2026-10-27",
+            "hasReleasePage": false
+        },
+        {
+            "id": "proj-002",
+            "title": "Za Doraemonzu",
+            "titleEn": "The Doraemons",
+            "slug": "za_doraemonzu",
+            "image": "/images/za_doraemonzu.webp",
+            "type": "OVA",
+            "source": "DVD",
+            "codecs": [],
+            "studio": "",
+            "season": "",
+            "year": 1996,
+            "genre": [],
+            "status": "antrian",
+            "priority": "normal",
+            "epDone": 2,
+            "epTotal": 16,
+            "progress": 12,
+            "pipeline": {
+                "TL": "done",
+                "TLC": "wip",
+                "Edit": "wip",
+                "TS": "wip",
+                "Encode": "wip",
+                "QC": "wip"
+            },
+            "eta": "",
+            "staff": "",
+            "notes": "",
+            "updatedAt": "2026-10-27",
+            "hasReleasePage": false
+        },
+        {
+            "id": "proj-003",
+            "title": "Saikyou no Shienshoku \"Wajutsushi\" de Aru Ore wa Sekai Saikyou Clan wo Shitagaeru",
+            "titleEn": "The Most Notorious \"Talker\" Runs the World's Greatest Clan",
+            "slug": "saikyou_no_shienshoku_wajutsushi_de_aru_ore_wa_sekai_saikyou_clan_wo_shitagaeru",
+            "image": "/images/saikyou_no_shienshoku_wajutsushi_de_aru_ore_wa_sekai_saikyou_clan_wo_shitagaeru.webp",
+            "type": "TV",
+            "source": "BD",
+            "codecs": [],
+            "studio": "",
+            "season": "",
+            "year": 2024,
+            "genre": [],
+            "status": "antrian",
+            "priority": "normal",
+            "epDone": 0,
+            "epTotal": 12,
+            "progress": 0,
+            "pipeline": {
+                "TL": "wip",
+                "TLC": "wip",
+                "Edit": "wip",
+                "TS": "wip",
+                "Encode": "wip",
+                "QC": "wip"
+            },
+            "eta": "",
+            "staff": "",
+            "notes": "",
+            "updatedAt": "2026-10-27",
+            "hasReleasePage": false
+        },
+        {
+            "id": "proj-004",
+            "title": "Doraemon 2005 ep 1-20",
+            "titleEn": "",
+            "slug": "doraemon_2005_ep_1-20",
+            "image": "/images/doraemon_2005_ep_1-20.webp",
+            "type": "TV",
+            "source": "TV",
+            "codecs": [],
+            "studio": "Shin-Ei Animation",
+            "season": "",
+            "year": 2005,
+            "genre": [],
+            "status": "antrian",
+            "priority": "normal",
+            "epDone": 0,
+            "epTotal": 20,
+            "progress": 0,
+            "pipeline": {
+                "TL": "wip",
+                "TLC": "wip",
+                "Edit": "wip",
+                "TS": "wip",
+                "Encode": "wip",
+                "QC": "wip"
+            },
+            "eta": "",
+            "staff": "",
+            "notes": "",
+            "updatedAt": "2026-10-27",
+            "hasReleasePage": false
+        }
+    ]
+};
+/* === QUEUE_DATA_END === */
+    </script>
+
+    <!-- ============================================================ -->
+    <!--  JAVASCRIPT UTAMA                                            -->
+    <!-- ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            /* ================================================================
+               1. THEME & NAVIGATION SIDEBAR
+               ================================================================ */
+            function setTheme(dark) {
+                if (dark) {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('bs_theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('bs_theme', 'light');
+                }
+                updateThemeIcons();
+            }
+
+            function updateThemeIcons() {
+                const isDark = document.documentElement.classList.contains('dark');
+                const darkIcon = document.getElementById('themeIconDark');
+                const lightIcon = document.getElementById('themeIconLight');
+                const sidebarIcon = document.getElementById('sidebarThemeIcon');
+                const sidebarLabel = document.getElementById('sidebarThemeLabel');
+
+                if (darkIcon && lightIcon) {
+                    if (isDark) {
+                        darkIcon.classList.remove('hidden');
+                        lightIcon.classList.add('hidden');
+                    } else {
+                        darkIcon.classList.add('hidden');
+                        lightIcon.classList.remove('hidden');
+                    }
+                }
+                if (sidebarIcon) sidebarIcon.textContent = isDark ? '☀️' : '🌙';
+                if (sidebarLabel) sidebarLabel.textContent = isDark ? 'Mode Terang' : 'Mode Malam';
+            }
+
+            function toggleTheme() {
+                setTheme(!document.documentElement.classList.contains('dark'));
+            }
+
+            function toggleSidebar(open) {
+                const sidebar = document.getElementById('mobileSidebar');
+                const overlay = document.getElementById('mobileOverlay');
+                if (!sidebar || !overlay) return;
+                const isOpen = !sidebar.classList.contains('-translate-x-full');
+                const shouldOpen = (open !== undefined) ? open : !isOpen;
+
+                if (shouldOpen) {
+                    sidebar.classList.remove('-translate-x-full');
+                    overlay.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    sidebar.classList.add('-translate-x-full');
+                    overlay.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }
+            }
+
+            function toggleMobileSearch() {
+                const container = document.getElementById('mobileSearchContainer');
+                if (!container) return;
+                container.classList.toggle('hidden');
+                if (!container.classList.contains('hidden')) {
+                    document.getElementById('mobileSearch').focus();
+                }
+            }
+
+            /* ================================================================
+               2. GLOBAL HEADER SEARCH ENGINE (Teknologi Persis dari faq.html)
+               ================================================================ */
+            let animeData = [];
+            let dataLoaded = false;
+            let searchTimeout = null;
+
+            const desktopInput = document.getElementById('desktopSearch');
+            const mobileInput = document.getElementById('mobileSearch');
+            const resultsWrapper = document.getElementById('searchResultsWrapper');
+            const resultsContainer = document.getElementById('searchResultsContainer');
+            const resultsInner = document.getElementById('searchResultsInner');
+            const loadingEl = document.getElementById('searchLoading');
+            const emptyEl = document.getElementById('searchEmpty');
+
+            async function loadAnimeData() {
+                if (dataLoaded) return true;
+                loadingEl.classList.remove('hidden');
+                try {
+                    let resp = null;
+                    const paths = ['database/anime.json', './database/anime.json', '/database/anime.json'];
+                    for (const p of paths) {
+                        try {
+                            const r = await fetch(p);
+                            if (r.ok) { resp = r; break; }
+                        } catch (_) {}
+                    }
+                    if (!resp || !resp.ok) throw new Error('HTTP error');
+                    animeData = await resp.json();
+                    dataLoaded = true;
+                    loadingEl.classList.add('hidden');
+                    return true;
+                } catch (err) {
+                    console.error('Gagal memuat data anime:', err);
+                    loadingEl.classList.add('hidden');
+                    emptyEl.classList.remove('hidden');
+                    emptyEl.textContent = '⚠️ Gagal memuat data anime. Coba refresh halaman.';
+                    return false;
+                }
+            }
+
+            function fuzzyScore(text, query) {
+                const t = text.toLowerCase();
+                const q = query.toLowerCase();
+                let score = 0;
+                let idx = 0;
+                for (const ch of q) {
+                    const pos = t.indexOf(ch, idx);
+                    if (pos >= idx) {
+                        score++;
+                        idx = pos + 1;
+                    }
+                }
+                const norm = q.length > 0 ? score / q.length : 0;
+                const lenBonus = 1 - Math.abs(t.length - q.length) / Math.max(t.length, q.length, 1);
+                return norm * 0.85 + lenBonus * 0.15;
+            }
+
+            function highlightText(text, query) {
+                const q = query.toLowerCase().trim();
+                if (!q) return text;
+                const lower = text.toLowerCase();
+                const idx = lower.indexOf(q);
+                if (idx === -1) return text;
+                const before = text.slice(0, idx);
+                const matched = text.slice(idx, idx + q.length);
+                const after = text.slice(idx + q.length);
+                return before + '<span class="result-highlight">' + matched + '</span>' + after;
+            }
+
+            function performSearch(query) {
+                const q = query.trim();
+
+                if (!q) {
+                    closeResults();
+                    return;
+                }
+
+                if (!dataLoaded) {
+                    loadAnimeData().then(() => {
+                        if (dataLoaded) performSearch(q);
+                    });
+                    return;
+                }
+
+                const qLower = q.toLowerCase();
+                const prefixMatches = [];
+                const fuzzyCandidates = [];
+
+                for (const item of animeData) {
+                    const jp = (item.r || '').toLowerCase();
+                    const en = (item.e || '').toLowerCase();
+
+                    if (jp.startsWith(qLower) || en.startsWith(qLower)) {
+                        prefixMatches.push(item);
+                    } else {
+                        fuzzyCandidates.push(item);
+                    }
+                }
+
+                if (prefixMatches.length > 0) {
+                    renderSearchResults(prefixMatches, q, 'prefix');
+                    return;
+                }
+
+                const scored = [];
+                for (const item of fuzzyCandidates) {
+                    const jp = (item.r || '').toLowerCase();
+                    const en = (item.e || '').toLowerCase();
+                    const best = Math.max(fuzzyScore(jp, qLower), fuzzyScore(en, qLower));
+                    if (best > 0.25) scored.push({ item, score: best });
+                }
+
+                scored.sort((a, b) => b.score - a.score);
+                const top = scored.slice(0, 50).map(s => s.item);
+
+                if (top.length === 0) {
+                    emptyEl.classList.remove('hidden');
+                    emptyEl.textContent = 'Tidak ditemukan anime yang cocok. Coba kata kunci lain.';
+                    resultsInner.innerHTML = '';
+                    openResults();
+                    return;
+                }
+
+                renderSearchResults(top, q, 'fuzzy');
+            }
+
+            function renderSearchResults(items, query, mode) {
+                emptyEl.classList.add('hidden');
+
+                let html = '';
+                const count = items.length;
+                const modeLabel = mode === 'prefix' ? 'Pencocokan tepat' : 'Hasil terdekat';
+
+                html += `<div class="flex items-center justify-between px-1 pb-2 border-b border-brand-blue/10 dark:border-sky-400/10 mb-2">
+                            <span class="text-[11px] font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-wider">${modeLabel} · ${count} hasil</span>
+                         </div>`;
+
+                for (const item of items) {
+                    const jpTitle = item.r || '';
+                    const enTitle = item.e || '';
+                    const type = item.t || '—';
+                    const year = item.d ? item.d.slice(0, 4) : '—';
+                    const studio = item.st || '—';
+                    const genres = Array.isArray(item.g) ? item.g.slice(0, 3).join(', ') : '';
+
+                    const jpHl = highlightText(jpTitle, query);
+                    const enHl = enTitle ? highlightText(enTitle, query) : '';
+                    const slug = jpTitle.replace(/\s+/g, '_');
+
+                    html += `
+                        <div class="result-item px-3 py-2.5 flex items-center justify-between group border border-transparent hover:border-brand-blue/25 dark:hover:border-sky-400/25" data-slug="${slug}">
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-2 flex-wrap">
+                                    <span class="font-extrabold text-gray-800 dark:text-slate-100 text-sm md:text-base">${jpHl}</span>
+                                    ${enTitle ? `<span class="text-xs text-slate-400 dark:text-slate-500 font-medium truncate max-w-[200px]">${enHl}</span>` : ''}
+                                </div>
+                                <div class="flex items-center gap-3 mt-0.5 text-xs text-slate-400 dark:text-slate-500 flex-wrap">
+                                    <span>${type}</span>
+                                    <span>•</span>
+                                    <span>${year}</span>
+                                    ${genres ? `<span>•</span><span>${genres}</span>` : ''}
+                                    <span>•</span>
+                                    <span class="truncate max-w-[120px]">${studio}</span>
+                                </div>
+                            </div>
+                            <div class="arrow-icon ml-3 text-brand-blue dark:text-sky-400 flex-shrink-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </div>
+                        </div>`;
+                }
+
+                resultsInner.innerHTML = html;
+
+                resultsInner.querySelectorAll('.result-item').forEach(el => {
+                    el.addEventListener('click', function() {
+                        const slug = this.dataset.slug;
+                        if (slug) {
+                            window.location.href = 'anime.html?id=' + encodeURIComponent(slug);
+                        }
+                    });
+                });
+
+                openResults();
+            }
+
+            function openResults() {
+                resultsWrapper.classList.remove('max-h-0');
+                resultsWrapper.classList.add('max-h-[500px]');
+                resultsContainer.classList.add('open');
+            }
+
+            function closeResults() {
+                resultsWrapper.classList.add('max-h-0');
+                resultsWrapper.classList.remove('max-h-[500px]');
+                resultsContainer.classList.remove('open');
+                if (resultsInner) resultsInner.innerHTML = '';
+                if (emptyEl) emptyEl.classList.add('hidden');
+            }
+
+            function handleSearchInput(e) {
+                const val = e.target.value;
+                if (e.target === desktopInput && mobileInput) mobileInput.value = val;
+                else if (e.target === mobileInput && desktopInput) desktopInput.value = val;
+
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => performSearch(val), 180);
+            }
+
+            function initGlobalSearch() {
+                loadAnimeData();
+
+                if (desktopInput) {
+                    desktopInput.addEventListener('input', handleSearchInput);
+                    desktopInput.addEventListener('focus', function() {
+                        if (this.value.trim()) performSearch(this.value);
+                    });
+                    desktopInput.addEventListener('blur', function() {
+                        setTimeout(() => {
+                            const hovered = resultsInner.querySelector('.result-item:hover');
+                            if (!hovered && document.activeElement !== mobileInput) closeResults();
+                        }, 200);
+                    });
+                }
+
+                if (mobileInput) {
+                    mobileInput.addEventListener('input', handleSearchInput);
+                    mobileInput.addEventListener('focus', function() {
+                        if (this.value.trim()) performSearch(this.value);
+                    });
+                    mobileInput.addEventListener('blur', function() {
+                        setTimeout(() => {
+                            const hovered = resultsInner.querySelector('.result-item:hover');
+                            if (!hovered && document.activeElement !== desktopInput) closeResults();
+                        }, 200);
+                    });
+                }
+
+                document.addEventListener('click', function(e) {
+                    const isSearch = e.target.closest('#desktopSearch') ||
+                        e.target.closest('#mobileSearch') ||
+                        e.target.closest('#searchResultsWrapper');
+                    if (!isSearch) closeResults();
+                });
+
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') {
+                        closeResults();
+                        closeProjectModal();
+                        if (desktopInput) desktopInput.blur();
+                        if (mobileInput) mobileInput.blur();
+                    }
+                });
+            }
+
+            /* ================================================================
+               3. ANTRIAN PROYEK (QUEUE SYSTEM)
+               ================================================================ */
+            let queueMeta = {
+                lastUpdated: (typeof EMBEDDED_QUEUE_DATA !== 'undefined' && EMBEDDED_QUEUE_DATA.lastUpdated) ? EMBEDDED_QUEUE_DATA.lastUpdated : '',
+                announcement: (typeof EMBEDDED_QUEUE_DATA !== 'undefined' && EMBEDDED_QUEUE_DATA.announcement) ? EMBEDDED_QUEUE_DATA.announcement : '',
+                projects: (typeof EMBEDDED_QUEUE_DATA !== 'undefined' && Array.isArray(EMBEDDED_QUEUE_DATA.projects)) ? EMBEDDED_QUEUE_DATA.projects : []
+            };
+
+            let activeStatusTab = 'all';
+            let viewMode = 'grid'; // 'grid' | 'compact'
+
+            const statusMetaMap = {
+                'dikerjakan': { label: '🔥 Sedang Dikerjakan', short: 'Dikerjakan', order: 1 },
+                'antrian': { label: '⏳ Dalam Antrian', short: 'Antrian', order: 2 },
+                'menunggu_bd': { label: '💿 Menunggu BD', short: 'Menunggu BD', order: 3 },
+                'ditunda': { label: '⏸️ Ditunda', short: 'Ditunda', order: 4 },
+                'selesai': { label: '✅ Selesai / Siap Rilis', short: 'Selesai', order: 5 }
+            };
+
+            const priorityMetaMap = {
+                'tinggi': { label: '🔥 Prioritas Utama', order: 1 },
+                'normal': { label: '⚡ Normal', order: 2 },
+                'rendah': { label: '🌱 Santai', order: 3 }
+            };
+
+            const pipelineLabels = {
+                'TL': 'Terjemahan (TL)',
+                'TLC': 'Cek TL (TLC)',
+                'Edit': 'Penyuntingan (Edit)',
+                'TS': 'Typesetting (TS)',
+                'Encode': 'Video / Encode',
+                'QC': 'Quality Control (QC)'
+            };
+
+            const pipelineStateLabels = {
+                'done': 'Selesai',
+                'wip': 'Sedang Proses',
+                'todo': 'Belum Mulai',
+                'skip': 'Tidak Diperlukan'
+            };
+
+            const genreMap = {
+                'Komedi': 'komedi', 'Comedy': 'komedi',
+                'Petualangan': 'petualangan', 'Adventure': 'petualangan',
+                'Fantasi': 'fantasi', 'Fantasy': 'fantasi',
+                'Fiksi Ilmiah': 'fiksi-ilmiah', 'Sci-Fi': 'sains-fiksi', 'Sains-Fiksi': 'sains-fiksi',
+                'Misteri': 'misteri', 'Mystery': 'misteri',
+                'Aksi': 'aksi', 'Action': 'aksi',
+                'Musik': 'musik', 'Music': 'musik',
+                'Drama': 'drama',
+                'Romansa': 'romansa', 'Romance': 'romansa',
+                'Horor': 'horor', 'Horror': 'horor',
+                'Olahraga': 'olahraga', 'Sports': 'olahraga',
+                'Perang': 'perang',
+                'Sejarah': 'sejarah', 'Historical': 'sejarah',
+                'Cerita Seru': 'cerita-seru', 'Thriller': 'cerita-seru',
+                'Kehidupan': 'kehidupan', 'Slice of Life': 'kehidupan',
+                'Psikologis': 'psikologis', 'Psychological': 'psikologis',
+                'Supernatural': 'supernatural'
+            };
+
+            function formatDateIndo(dateStr) {
+                if (!dateStr) return '—';
+                const d = new Date(dateStr);
+                if (isNaN(d.getTime())) return dateStr;
+                return d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+            }
+
+            function getCodecClass(c) {
+                const up = (c || '').toUpperCase();
+                if (up.includes('HEVC')) return 'hevc';
+                if (up.includes('AV1')) return 'av1';
+                if (up.includes('ESRGAN') || up.includes('AI')) return 'ai';
+                return '';
+            }
+
+            function updateSummaryStats() {
+                const projects = queueMeta.projects || [];
+                const total = projects.length;
+                const countByStatus = {
+                    'all': total,
+                    'dikerjakan': 0,
+                    'antrian': 0,
+                    'menunggu_bd': 0,
+                    'ditunda': 0,
+                    'selesai': 0
+                };
+
+                let totalProgress = 0;
+                let epDoneSum = 0;
+                let epTotalSum = 0;
+
+                projects.forEach(p => {
+                    const st = p.status || 'antrian';
+                    if (countByStatus[st] !== undefined) countByStatus[st]++;
+                    totalProgress += Number(p.progress || 0);
+                    epDoneSum += Number(p.epDone || 0);
+                    epTotalSum += Number(p.epTotal || 0);
+                });
+
+                const avgProg = total > 0 ? Math.round(totalProgress / total) : 0;
+
+                document.getElementById('statTotal').textContent = total;
+                document.getElementById('statAvgProgress').textContent = `Rata-rata ${avgProg}% selesai`;
+                document.getElementById('statActive').textContent = countByStatus['dikerjakan'];
+                document.getElementById('statWaiting').textContent = countByStatus['antrian'] + countByStatus['menunggu_bd'];
+                document.getElementById('statCompleted').textContent = countByStatus['selesai'];
+                document.getElementById('statTotalEps').textContent = `${epDoneSum} / ${epTotalSum} episode rampung`;
+
+                // Update tab badges
+                Object.keys(countByStatus).forEach(k => {
+                    const el = document.getElementById('count-' + k);
+                    if (el) el.textContent = countByStatus[k];
+                });
+
+                // Header meta
+                document.getElementById('lastUpdatedLabel').textContent = formatDateIndo(queueMeta.lastUpdated);
+                const annBanner = document.getElementById('announcementBanner');
+                const annText = document.getElementById('announcementText');
+                if (queueMeta.announcement && queueMeta.announcement.trim()) {
+                    annBanner.classList.remove('hidden');
+                    annText.textContent = queueMeta.announcement;
+                } else {
+                    annBanner.classList.add('hidden');
+                }
+            }
+
+            function getFilteredAndSortedProjects() {
+                const q = (document.getElementById('queueLocalSearch').value || '').toLowerCase().trim();
+                const prio = document.getElementById('filterPriority').value;
+                const type = document.getElementById('filterType').value;
+                const src = document.getElementById('filterSource').value;
+                const sortBy = document.getElementById('sortQueue').value;
+
+                let list = (queueMeta.projects || []).filter(p => {
+                    if (activeStatusTab !== 'all' && p.status !== activeStatusTab) return false;
+                    if (prio !== 'all' && p.priority !== prio) return false;
+                    if (type !== 'all' && (p.type || '').toLowerCase() !== type.toLowerCase()) return false;
+                    if (src !== 'all' && (p.source || '').toUpperCase() !== src.toUpperCase()) return false;
+
+                    if (q) {
+                        const hay = [
+                            p.title || '',
+                            p.titleEn || '',
+                            p.studio || '',
+                            p.season || '',
+                            p.staff || '',
+                            p.notes || '',
+                            p.eta || '',
+                            ...(Array.isArray(p.genre) ? p.genre : []),
+                            ...(Array.isArray(p.codecs) ? p.codecs : [])
+                        ].join(' ').toLowerCase();
+                        if (!hay.includes(q)) return false;
+                    }
+                    return true;
+                });
+
+                list.sort((a, b) => {
+                    if (sortBy === 'progress_desc') return (b.progress || 0) - (a.progress || 0);
+                    if (sortBy === 'progress_asc') return (a.progress || 0) - (b.progress || 0);
+                    if (sortBy === 'updated') return String(b.updatedAt || '').localeCompare(String(a.updatedAt || ''));
+                    if (sortBy === 'title') return String(a.title || '').localeCompare(String(b.title || ''));
+
+                    // Default: status order then priority order then progress
+                    const stA = (statusMetaMap[a.status] || { order: 9 }).order;
+                    const stB = (statusMetaMap[b.status] || { order: 9 }).order;
+                    if (stA !== stB) return stA - stB;
+
+                    const prA = (priorityMetaMap[a.priority] || { order: 9 }).order;
+                    const prB = (priorityMetaMap[b.priority] || { order: 9 }).order;
+                    if (prA !== prB) return prA - prB;
+
+                    return (b.progress || 0) - (a.progress || 0);
+                });
+
+                return list;
+            }
+
+            function renderQueue() {
+                const grid = document.getElementById('queueGrid');
+                const empty = document.getElementById('queueEmptyState');
+                const showingCount = document.getElementById('showingCount');
+
+                const filtered = getFilteredAndSortedProjects();
+                showingCount.textContent = filtered.length;
+                grid.innerHTML = '';
+
+                if (filtered.length === 0) {
+                    empty.classList.remove('hidden');
+                    return;
+                }
+                empty.classList.add('hidden');
+
+                if (viewMode === 'compact') {
+                    grid.className = 'space-y-3';
+                } else {
+                    grid.className = 'grid grid-cols-1 md:grid-cols-2 gap-5';
+                }
+
+                filtered.forEach((p, idx) => {
+                    const slug = p.slug || (p.title || '').toLowerCase().replace(/\s+/g, '_');
+                    const imgPath = p.image || `/images/${slug}.webp`;
+                    const stMeta = statusMetaMap[p.status] || statusMetaMap['antrian'];
+                    const prMeta = priorityMetaMap[p.priority] || priorityMetaMap['normal'];
+                    const typeCls = (p.type || 'tv').toLowerCase();
+                    const srcCls = (p.source || 'web').toLowerCase();
+                    const prog = Math.min(100, Math.max(0, Number(p.progress || 0)));
+                    const isDone = p.status === 'selesai' || prog >= 100;
+                    const isWip = p.status === 'dikerjakan';
+
+                    const pipe = p.pipeline || {};
+                    const pipeStages = ['TL', 'TLC', 'Edit', 'TS', 'Encode', 'QC'];
+                    const pipeHTML = pipeStages.map(stage => {
+                        const st = pipe[stage] || 'todo';
+                        const titleTip = `${pipelineLabels[stage]}: ${pipelineStateLabels[st] || st}`;
+                        return `
+                            <div class="pipe-step ${st}" title="${titleTip}">
+                                <span class="pipe-dot"></span>
+                                <span>${stage}</span>
+                            </div>
+                        `;
+                    }).join('');
+
+                    const codecsHTML = (Array.isArray(p.codecs) ? p.codecs : []).map(c => {
+                        return `<span class="codec-tag-sm ${getCodecClass(c)}">${c}</span>`;
+                    }).join('');
+
+                    const genresHTML = (Array.isArray(p.genre) ? p.genre : []).slice(0, 4).map(g => {
+                        const cls = genreMap[g] || 'komedi';
+                        return `<span class="genre-chip ${cls}">${g}</span>`;
+                    }).join('');
+
+                    const card = document.createElement('article');
+                    card.style.animationDelay = (idx * 0.03) + 's';
+
+                    if (viewMode === 'compact') {
+                        card.className = 'card-boxy p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 cursor-pointer animate-fade-up';
+                        card.innerHTML = `
+                            <div class="flex items-center gap-3.5 min-w-0 flex-1">
+                                <div class="thumb-boxy w-20 h-14 flex-shrink-0">
+                                    <img src="${imgPath}" alt="${p.title}" loading="lazy" class="w-full h-full object-cover"
+                                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%2290%22%3E%3Crect fill=%22%23142a4f%22 width=%22160%22 height=%2290%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%2364b5f6%22 font-size=%2220%22%3E🎬%3C/text%3E%3C/svg%3E'" />
+                                </div>
+                                <div class="min-w-0 flex-1">
+                                    <div class="flex items-center gap-1.5 flex-wrap mb-1">
+                                        <span class="status-badge ${p.status}">${stMeta.short}</span>
+                                        <span class="priority-badge ${p.priority}">${prMeta.label}</span>
+                                        <span class="type-badge ${typeCls}">${p.type || 'TV'}</span>
+                                        ${p.source ? `<span class="source-badge ${srcCls}">${p.source}</span>` : ''}
+                                        ${codecsHTML}
+                                    </div>
+                                    <h3 class="font-black text-sm md:text-base text-gray-800 dark:text-slate-100 truncate">${p.title}</h3>
+                                    <div class="text-xs text-slate-500 dark:text-slate-400 truncate">
+                                        Ep ${p.epDone || 0}/${p.epTotal || '?'} · 🎯 ${p.eta || '—'} ${p.notes ? '· 💬 ' + p.notes : ''}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-full sm:w-56 flex-shrink-0">
+                                <div class="flex justify-between text-xs font-extrabold mb-1">
+                                    <span class="text-slate-500 dark:text-slate-400">Ep ${p.epDone || 0} / ${p.epTotal || '?'}</span>
+                                    <span class="text-brand-blue dark:text-sky-300">${prog}%</span>
+                                </div>
+                                <div class="progress-track mb-2">
+                                    <div class="progress-fill ${isDone ? 'done' : ''} ${isWip ? 'active-shimmer' : ''}" style="width: ${prog}%"></div>
+                                </div>
+                                <div class="pipeline-grid">${pipeHTML}</div>
+                            </div>
+                        `;
+                    } else {
+                        card.className = 'card-boxy p-4 md:p-5 flex flex-col justify-between gap-4 cursor-pointer animate-fade-up';
+                        card.innerHTML = `
+                            <div>
+                                <!-- Top Row: Thumbnail + Header Info -->
+                                <div class="flex gap-4">
+                                    <div class="thumb-boxy w-28 sm:w-36 aspect-video sm:aspect-[16/10] flex-shrink-0 self-start">
+                                        <img src="${imgPath}" alt="${p.title}" loading="lazy" class="w-full h-full object-cover"
+                                             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22320%22 height=%22200%22%3E%3Crect fill=%22%23142a4f%22 width=%22320%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%2364b5f6%22 font-family=%22sans-serif%22 font-size=%2232%22%3E🎬%3C/text%3E%3C/svg%3E'" />
+                                        <div class="absolute top-1.5 left-1.5 flex gap-1 flex-wrap z-10">
+                                            <span class="type-badge ${typeCls}">${p.type || 'TV'}</span>
+                                            ${p.source ? `<span class="source-badge ${srcCls}">${p.source}</span>` : ''}
+                                        </div>
+                                    </div>
+
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between gap-1.5 flex-wrap mb-1.5">
+                                            <span class="status-badge ${p.status}">
+                                                ${isWip ? '<span class="w-1.5 h-1.5 rounded-full bg-current animate-ping"></span>' : ''}
+                                                ${stMeta.label}
+                                            </span>
+                                            <span class="priority-badge ${p.priority}">${prMeta.label}</span>
+                                        </div>
+
+                                        <h3 class="font-black text-base md:text-lg leading-snug text-gray-800 dark:text-slate-100 line-clamp-2 hover:text-brand-blue dark:hover:text-sky-300 transition-colors">
+                                            ${p.title}
+                                        </h3>
+                                        ${p.titleEn ? `<p class="text-xs font-semibold text-slate-400 dark:text-slate-400 line-clamp-1 mt-0.5">${p.titleEn}</p>` : ''}
+
+                                        <div class="flex items-center gap-2 flex-wrap mt-2 text-[11px] font-bold text-slate-500 dark:text-slate-400">
+                                            ${p.studio ? `<span>🏢 ${p.studio}</span>` : ''}
+                                            ${p.season ? `<span>· 📅 ${p.season}</span>` : ''}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Codecs & Genres Row -->
+                                <div class="flex items-center justify-between gap-2 flex-wrap mt-3.5 pt-3 border-t border-brand-blue/10 dark:border-sky-400/10">
+                                    <div class="flex items-center gap-1 flex-wrap">
+                                        ${codecsHTML}
+                                    </div>
+                                    <div class="flex items-center gap-1 flex-wrap">
+                                        ${genresHTML}
+                                    </div>
+                                </div>
+
+                                <!-- Progress Bar Section -->
+                                <div class="mt-3.5 bg-brand-blue/[0.04] dark:bg-sky-400/[0.05] border border-brand-blue/10 dark:border-sky-400/10 rounded-xl p-3">
+                                    <div class="flex items-center justify-between text-xs font-extrabold mb-1.5">
+                                        <span class="text-gray-700 dark:text-slate-200">
+                                            📺 Episode <strong class="text-brand-blue dark:text-sky-300">${p.epDone || 0}</strong> dari <strong>${p.epTotal || '?'}</strong>
+                                        </span>
+                                        <span class="text-brand-blue dark:text-sky-300 font-black">${prog}% Rampung</span>
+                                    </div>
+                                    <div class="progress-track mb-3">
+                                        <div class="progress-fill ${isDone ? 'done' : ''} ${isWip ? 'active-shimmer' : ''}" style="width: ${prog}%"></div>
+                                    </div>
+
+                                    <!-- 6-Stage FanSub Pipeline -->
+                                    <div class="pipeline-grid">
+                                        ${pipeHTML}
+                                    </div>
+                                </div>
+
+                                <!-- Notes Box -->
+                                ${p.notes ? `
+                                <div class="mt-3 text-xs text-slate-600 dark:text-slate-300 bg-slate-100/80 dark:bg-slate-800/50 rounded-lg px-3 py-2 border-l-2 border-brand-blue dark:border-sky-400 font-medium leading-relaxed">
+                                    💬 ${p.notes}
+                                </div>` : ''}
+                            </div>
+
+                            <!-- Card Footer: Staff, ETA & Action -->
+                            <div class="pt-2.5 border-t border-brand-blue/10 dark:border-sky-400/10 flex items-center justify-between gap-2 flex-wrap text-[11px] font-bold text-slate-500 dark:text-slate-400">
+                                <div class="truncate max-w-[65%]" title="${p.staff || ''}">
+                                    👥 ${p.staff || 'Tim Brazil Sirih'}
+                                </div>
+                                <div class="flex items-center gap-2 ml-auto">
+                                    <span class="text-brand-blue dark:text-sky-300 bg-brand-blue/10 dark:bg-sky-400/10 px-2.5 py-0.5 rounded-md border border-brand-blue/15 dark:border-sky-400/20">
+                                        🎯 ${p.eta || 'Segera'}
+                                    </span>
+                                </div>
+                            </div>
+                        `;
+                    }
+
+                    card.addEventListener('click', () => openProjectModal(p));
+                    grid.appendChild(card);
+                });
+            }
+
+            /* ================================================================
+               4. MODAL DETAIL PROYEK
+               ================================================================ */
+            function openProjectModal(p) {
+                const modal = document.getElementById('projectModal');
+                const content = document.getElementById('projectModalContent');
+                const slug = p.slug || (p.title || '').toLowerCase().replace(/\s+/g, '_');
+                const stMeta = statusMetaMap[p.status] || statusMetaMap['antrian'];
+                const prMeta = priorityMetaMap[p.priority] || priorityMetaMap['normal'];
+                const prog = Math.min(100, Math.max(0, Number(p.progress || 0)));
+                const isDone = p.status === 'selesai' || prog >= 100;
+
+                const pipe = p.pipeline || {};
+                const pipeDetailHTML = ['TL', 'TLC', 'Edit', 'TS', 'Encode', 'QC'].map(stage => {
+                    const st = pipe[stage] || 'todo';
+                    return `
+                        <div class="pipe-step ${st} p-2.5">
+                            <div class="flex items-center gap-1.5 font-black text-xs">
+                                <span class="pipe-dot"></span>
+                                <span>${stage}</span>
+                            </div>
+                            <div class="text-[10px] font-semibold opacity-80 mt-0.5">${pipelineStateLabels[st] || st}</div>
+                        </div>
+                    `;
+                }).join('');
+
+                const codecsHTML = (Array.isArray(p.codecs) ? p.codecs : []).map(c =>
+                    `<span class="codec-tag-sm ${getCodecClass(c)}">${c}</span>`
+                ).join(' ');
+
+                const genresHTML = (Array.isArray(p.genre) ? p.genre : []).map(g =>
+                    `<span class="genre-chip ${genreMap[g] || 'komedi'}">${g}</span>`
+                ).join(' ');
+
+                content.innerHTML = `
+                    <div class="flex items-start justify-between gap-4 border-b border-brand-blue/15 dark:border-sky-400/15 pb-4">
+                        <div>
+                            <div class="flex items-center gap-2 flex-wrap mb-2">
+                                <span class="status-badge ${p.status}">${stMeta.label}</span>
+                                <span class="priority-badge ${p.priority}">${prMeta.label}</span>
+                                <span class="type-badge ${(p.type || 'tv').toLowerCase()}">${p.type || 'TV'}</span>
+                                ${p.source ? `<span class="source-badge ${(p.source || 'web').toLowerCase()}">${p.source}</span>` : ''}
+                            </div>
+                            <h2 class="text-xl md:text-2xl font-black text-gray-800 dark:text-white leading-snug">${p.title}</h2>
+                            ${p.titleEn ? `<p class="text-xs md:text-sm font-semibold text-slate-400 mt-0.5">${p.titleEn}</p>` : ''}
+                        </div>
+                        <button id="closeModalBtn" class="p-2 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-500/10 transition-colors">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="mt-4 space-y-4">
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs">
+                            <div class="p-3 rounded-xl bg-brand-blue/5 dark:bg-sky-400/5 border border-brand-blue/10 dark:border-sky-400/10">
+                                <div class="text-[10px] font-extrabold uppercase text-slate-400">Episode</div>
+                                <div class="font-black text-sm text-gray-800 dark:text-white mt-0.5">${p.epDone || 0} / ${p.epTotal || '?'}</div>
+                            </div>
+                            <div class="p-3 rounded-xl bg-brand-blue/5 dark:bg-sky-400/5 border border-brand-blue/10 dark:border-sky-400/10">
+                                <div class="text-[10px] font-extrabold uppercase text-slate-400">Target / ETA</div>
+                                <div class="font-black text-sm text-brand-blue dark:text-sky-300 mt-0.5">${p.eta || '—'}</div>
+                            </div>
+                            <div class="p-3 rounded-xl bg-brand-blue/5 dark:bg-sky-400/5 border border-brand-blue/10 dark:border-sky-400/10">
+                                <div class="text-[10px] font-extrabold uppercase text-slate-400">Studio</div>
+                                <div class="font-black text-sm text-gray-800 dark:text-white mt-0.5 truncate">${p.studio || '—'}</div>
+                            </div>
+                            <div class="p-3 rounded-xl bg-brand-blue/5 dark:bg-sky-400/5 border border-brand-blue/10 dark:border-sky-400/10">
+                                <div class="text-[10px] font-extrabold uppercase text-slate-400">Update Terakhir</div>
+                                <div class="font-black text-sm text-gray-800 dark:text-white mt-0.5">${formatDateIndo(p.updatedAt)}</div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-brand-blue/[0.04] dark:bg-sky-400/[0.05] border border-brand-blue/15 dark:border-sky-400/15">
+                            <div class="flex justify-between text-xs font-extrabold mb-1.5">
+                                <span>Progress Keseluruhan Proyek</span>
+                                <span class="text-brand-blue dark:text-sky-300">${prog}%</span>
+                            </div>
+                            <div class="progress-track mb-4">
+                                <div class="progress-fill ${isDone ? 'done' : 'active-shimmer'}" style="width: ${prog}%"></div>
+                            </div>
+                            <div class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400 mb-2">Tahapan Pengerjaan (Workflow Pipeline)</div>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                                ${pipeDetailHTML}
+                            </div>
+                        </div>
+
+                        ${p.notes ? `
+                        <div class="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/25 text-xs sm:text-sm text-amber-900 dark:text-amber-200 font-medium leading-relaxed">
+                            <strong class="font-black block mb-0.5">📌 Catatan Proyek:</strong>
+                            ${p.notes}
+                        </div>` : ''}
+
+                        <div class="flex flex-wrap items-center justify-between gap-2 text-xs">
+                            <div class="font-bold text-slate-500 dark:text-slate-400">👥 <strong>Staf:</strong> ${p.staff || 'Tim Brazil Sirih'}</div>
+                            <div class="flex flex-wrap gap-1">${codecsHTML} ${genresHTML}</div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-brand-blue/15 dark:border-sky-400/15 flex items-center justify-end gap-3">
+                        ${p.hasReleasePage ? `
+                        <a href="anime.html?id=${encodeURIComponent(slug)}" class="px-4 py-2.5 rounded-xl bg-brand-blue hover:bg-brand-dark text-white text-xs font-black shadow-lg shadow-brand-blue/25 transition-all">
+                            🎬 Buka Halaman Rilisan Anime →
+                        </a>` : ''}
+                        <button id="closeModalFooterBtn" class="px-4 py-2.5 rounded-xl border border-brand-blue/25 dark:border-sky-400/25 text-xs font-extrabold text-brand-blue dark:text-sky-300 hover:bg-brand-blue/10 transition-colors">
+                            Tutup
+                        </button>
+                    </div>
+                `;
+
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.getElementById('closeModalBtn').addEventListener('click', closeProjectModal);
+                document.getElementById('closeModalFooterBtn').addEventListener('click', closeProjectModal);
+            }
+
+            function closeProjectModal() {
+                const modal = document.getElementById('projectModal');
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+
+            /* ================================================================
+               5. INITIALIZATION & EVENT LISTENERS
+               ================================================================ */
+            async function tryLoadExternalQueueJson() {
+                // Jika ada file queue.json terbaru saat di-host via server, muat sebagai prioritas.
+                // Jika dibuka langsung via file://, EMBEDDED_QUEUE_DATA otomatis bekerja tanpa kendala CORS.
+                try {
+                    const r = await fetch('queue.json', { cache: 'no-store' });
+                    if (r.ok) {
+                        const data = await r.json();
+                        if (data && Array.isArray(data.projects)) {
+                            queueMeta = data;
+                        }
+                    }
+                } catch (_) {
+                    // Gunakan EMBEDDED_QUEUE_DATA
+                }
+                updateSummaryStats();
+                renderQueue();
+            }
+
+            function init() {
+                const stored = localStorage.getItem('bs_theme');
+                if (stored === 'dark') setTheme(true);
+                else if (stored === 'light') setTheme(false);
+                else if (window.matchMedia('(prefers-color-scheme: dark)').matches) setTheme(true);
+                else setTheme(false);
+
+                document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+                document.getElementById('sidebarThemeToggle').addEventListener('click', toggleTheme);
+
+                document.getElementById('mobileMenuBtn').addEventListener('click', () => toggleSidebar(true));
+                document.getElementById('closeMobileMenu').addEventListener('click', () => toggleSidebar(false));
+                document.getElementById('mobileOverlay').addEventListener('click', () => toggleSidebar(false));
+                document.getElementById('mobileSearchBtn').addEventListener('click', toggleMobileSearch);
+
+                // Status Tabs
+                document.querySelectorAll('#statusTabs .tab-pill').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        document.querySelectorAll('#statusTabs .tab-pill').forEach(b => b.classList.remove('active'));
+                        this.classList.add('active');
+                        activeStatusTab = this.dataset.status || 'all';
+                        renderQueue();
+                    });
+                });
+
+                // Filter Controls
+                ['queueLocalSearch', 'filterPriority', 'filterType', 'filterSource', 'sortQueue'].forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) {
+                        el.addEventListener('input', renderQueue);
+                        el.addEventListener('change', renderQueue);
+                    }
+                });
+
+                // View Mode Toggle
+                const gridBtn = document.getElementById('viewGridBtn');
+                const compactBtn = document.getElementById('viewCompactBtn');
+                gridBtn.addEventListener('click', () => {
+                    viewMode = 'grid';
+                    gridBtn.className = 'px-3 py-2 text-xs font-extrabold bg-brand-blue text-white transition-colors';
+                    compactBtn.className = 'px-3 py-2 text-xs font-extrabold text-slate-600 dark:text-slate-300 hover:text-brand-blue transition-colors';
+                    renderQueue();
+                });
+                compactBtn.addEventListener('click', () => {
+                    viewMode = 'compact';
+                    compactBtn.className = 'px-3 py-2 text-xs font-extrabold bg-brand-blue text-white transition-colors';
+                    gridBtn.className = 'px-3 py-2 text-xs font-extrabold text-slate-600 dark:text-slate-300 hover:text-brand-blue transition-colors';
+                    renderQueue();
+                });
+
+                // Reset Queue Filters
+                document.getElementById('resetQueueFilterBtn').addEventListener('click', () => {
+                    activeStatusTab = 'all';
+                    document.querySelectorAll('#statusTabs .tab-pill').forEach(b => {
+                        b.classList.toggle('active', b.dataset.status === 'all');
+                    });
+                    document.getElementById('queueLocalSearch').value = '';
+                    document.getElementById('filterPriority').value = 'all';
+                    document.getElementById('filterType').value = 'all';
+                    document.getElementById('filterSource').value = 'all';
+                    document.getElementById('sortQueue').value = 'priority';
+                    renderQueue();
+                });
+
+                // Modal backdrop click
+                document.getElementById('projectModal').addEventListener('click', function(e) {
+                    if (e.target === this) closeProjectModal();
+                });
+
+                initGlobalSearch();
+                updateSummaryStats();
+                renderQueue();
+                tryLoadExternalQueueJson();
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+        })();
+    </script>
+</body>
+</html>
